@@ -1,0 +1,207 @@
+/* //////////////////////////////////////////////////////////*/
+  /* NOTES: */
+  /* positioning atributes are OFTEN inline styles   */
+  /* animation delays are also OFTEN inline styles */
+  /* animation delays are always inline styles        */
+  /* .box will responsively resize                    */
+  /* .background-img (position static) helps responsively resize the bounding box */
+  /* everything below .abs-content absolutely positioned */
+  /* TODO: Get .box to always stay in the center of the body */
+  /* TODO: move all non absolutely postioned items to flexbox or grid */
+/* //////////////////////////////////////////////////////////*/
+
+:root {
+    --color-black: #3A2F33;
+    --color-white: #ffffff;
+    --color-highlight: #faf393; /* with black or primary-dk */
+    --color-primary-dk: #00376d;
+    --color-primary-lt: #397aac;
+    --color-accent-grn: #588023;
+    --color-accent-org: #fca424;
+  }
+  
+  /* ////////////////////////// */
+    /* Global Styles */
+  /* ////////////////////////// */
+  body {
+    color: #00376d;
+    font-family: Arial, Helvetica, "Trebuchet MS", Verdana, sans-serif;
+    margin-left: 3%;
+    margin-top: 2%;
+    background-color: #4B9CD3;
+  }
+  
+  .box {
+    position: relative;
+    width: 90%;
+  }
+  
+  .background-img {
+    width: 100%;
+  }
+  
+  .abs-content {
+    position: absolute;
+    display: block;
+  }
+  
+  .arrow, .audio-button {
+    bottom: 2.5%;
+    width: 5%;
+    padding: 1%;
+    cursor: pointer;
+  
+  }
+  
+  .footer {
+    left: 3%;
+    bottom: 3%;
+  }
+  
+  .img-lg {
+    height: 100%;
+  }
+  
+  .txt-box {
+    max-width: 70%;
+  }
+  
+  .img-logo {
+    width: 12%;
+  }
+  
+  .txt-xlg {
+    font-size: 4vw;
+  }
+  .txt-lg  {
+    font-size: 3vw;
+  }
+  .txt-md {
+    font-size: 2.5vw;
+  }
+  .txt-sm {
+    font-size: 1.5vw;
+  }
+  .txt-xsm {
+    font-size: 1vw;
+  }
+  .is-info {
+    right: 1%;
+    top: 0.1%;
+    background-color: #588023;
+    font-size: 1.5vw;
+    color: white;
+  }
+  
+  .is-warn {
+    background-color: #fca424;
+    right: 1%;
+    top: 0.1%;
+    font-size: 1.5vw;
+  }
+  
+  .is-paperclip {
+    top: 2.5%;
+    width: 8%;
+    height: 14%
+  }
+  
+  .is-highlighted {
+    opacity: 0.3;
+    background-color: #faf393;
+  }
+  
+  .is-inactive {
+    opacity: 0.0;
+    cursor: auto;
+  }
+  /* ////////////////////////// */
+    /* modal CSS */
+  /* ////////////////////////// */
+  
+  .modal-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    transition: opacity .3s ease;
+  }
+  
+  .modal-container {
+    width: 80%;
+    height: 80%;
+    /* margin: 0px auto; */
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  
+  .modal-header h3 {
+    margin-top: 0;
+    color: #42b983;
+  }
+  
+  .modal-body {
+    margin: 20px 0;
+  }
+  
+  .modal-default-button {
+    float: right;
+  }
+  
+  /* ////////////////////////// */
+    /* shift */
+  /* ////////////////////////// */
+  
+  .anim-shift:hover {
+    transform: scale3d(1.2, 1.2, 1) rotate(5deg);
+  }
+  
+  /* ////////////////////////// */
+    /* bobble */
+  /* ////////////////////////// */
+  
+  .anim-bobble:hover {
+    animation: bobble 0.5s infinite;
+  }
+  
+  @keyframes bobble {
+    0% {
+        transform: translateY(-5px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(-5px);
+    }
+  }
+  
+  /* ////////////////////////// */
+    /* slide */
+  /* ////////////////////////// */
+  
+  .anim-slide {
+    animation: slide 1s forwards;
+  }
+  
+  @keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
+  }

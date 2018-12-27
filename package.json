@@ -1,0 +1,17 @@
+{
+  "name": "adult-enrollment-simple-test",
+  "version": "1.0.0",
+  "description": "this is a test of babel",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib"
+  },
+  "author": "Jonathan Dudzik",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3"
+  }
+}
