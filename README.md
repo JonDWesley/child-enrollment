@@ -1,10 +1,7 @@
 # adult-enrollment
 
-#create create the build, zip the following files and uplaod to Adobe Connect:
-- /assets
-- index.html
-- main-compiled.js
-- stylesheet.css
+#Build process:
+1. Run "npx babel main.js --out- create the build, zip the entire /dist folder and upload to Adobe Connect.
 
 #TODO:
 1. Do not reveal next() button until audio has finished.
