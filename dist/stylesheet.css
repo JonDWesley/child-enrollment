@@ -2,12 +2,10 @@
   /* NOTES: */
   /* positioning atributes are OFTEN inline styles   */
   /* animation delays are also OFTEN inline styles */
-  /* animation delays are always inline styles        */
   /* .box will responsively resize                    */
   /* .background-img (position static) helps responsively resize the bounding box */
   /* everything below .abs-content absolutely positioned */
   /* TODO: Get .box to always stay in the center of the body */
-  /* TODO: move all non absolutely postioned items to flexbox or grid */
 /* //////////////////////////////////////////////////////////*/
 
 :root {
@@ -23,6 +21,7 @@
   /* ////////////////////////// */
     /* Global Styles */
   /* ////////////////////////// */
+  
   body {
     color: #00376d;
     font-family: Arial, Helvetica, "Trebuchet MS", Verdana, sans-serif;
@@ -61,11 +60,7 @@
   .img-lg {
     height: 100%;
   }
-  
-  .txt-box {
-    max-width: 70%;
-  }
-  
+
   .img-logo {
     width: 12%;
   }
@@ -73,48 +68,64 @@
   .txt-xlg {
     font-size: 4vw;
   }
+
   .txt-lg  {
     font-size: 3vw;
   }
+
   .txt-md {
     font-size: 2.5vw;
   }
+  
   .txt-sm {
     font-size: 1.5vw;
   }
+
   .txt-xsm {
     font-size: 1vw;
   }
-  .is-info {
+
+  .txt-btn {
+    font-size: 3vw;
+    box-shadow: 1px 3px 2px #777777;
+  }
+
+  .is-grn {
     right: 1%;
     top: 0.1%;
     background-color: #588023;
     font-size: 1.5vw;
     color: white;
+    box-shadow: 1px 3px 2px #777777;
   }
   
-  .is-warn {
+  .is-org {
     background-color: #fca424;
     right: 1%;
     top: 0.1%;
     font-size: 1.5vw;
+    box-shadow: 1px 3px 2px #777777;
   }
-  
+ 
   .is-paperclip {
     top: 2.5%;
     width: 8%;
     height: 14%
   }
-  
+
   .is-highlighted {
     opacity: 0.3;
     background-color: #faf393;
   }
-  
-  .is-inactive {
-    opacity: 0.0;
-    cursor: auto;
+
+  .disabled {
+    cursor: not-allowed;
+    background-color: #cccccc;
+    color: #666666;
+    opacity: .7;
   }
+
+  
   /* ////////////////////////// */
     /* modal CSS */
   /* ////////////////////////// */
@@ -166,27 +177,8 @@
   /* ////////////////////////// */
   
   .anim-shift:hover {
-    transform: scale3d(1.2, 1.2, 1) rotate(5deg);
-  }
-  
-  /* ////////////////////////// */
-    /* bobble */
-  /* ////////////////////////// */
-  
-  .anim-bobble:hover {
-    animation: bobble 0.5s infinite;
-  }
-  
-  @keyframes bobble {
-    0% {
-        transform: translateY(-5px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(-5px);
-    }
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 3px 8px 5px #777777;
   }
   
   /* ////////////////////////// */
@@ -203,5 +195,30 @@
     }
     100% {
         transform: translateX(200%);
+    }
+  }
+
+  /* ////////////////////////// */
+    /* attention */
+  /* ////////////////////////// */
+
+  .attention {
+    animation: grow 1.5s ease-in-out infinite;
+  }
+
+  @keyframes grow {
+    0% {
+        /* transform: translateY(-2px); */
+        transform: scale(1);
+        
+    }
+    50% {
+        /* transform: translateY(-8px); */
+        transform: scale(1.06);
+        box-shadow: 1px 0.5px 2px #777777;
+    }
+    100% {
+        transform: translateY(-2px);
+        transform: scale(1);
     }
   }
