@@ -7,7 +7,7 @@ var app = new Vue({
   el: '#app',
   data: function data() {
     return {
-      currentSlide: 0,
+      currentSlide: 17,
       bgImgSrc: './assets/images/slide-standard.png',
       showNav: false,
       isAttention: true,
@@ -24,7 +24,7 @@ var app = new Vue({
   },
   methods: {
     getStarted: function getStarted() {
-      this.currentSlide++;
+      this.currentSlide = 1;
       this.showNav = true;
       this.isDisabled = true;
       this.isAttention = true;

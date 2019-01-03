@@ -196,8 +196,8 @@
 
             <modal v-if="modalFiveOne">
                 <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">Definition: Functionally Impaired Adult</h2>
-                <p class="abs-content txt-sm" style="left: 10%; bottom: 40%; width: 80%;" slot="body">
-                    Functionally impaired adult means chronically impaired disabled persons 18 years of age or older,
+                <p class="abs-content txt-sm" style="left: 10%; bottom: 10%; width: 80%;" slot="body">
+                    "Functionally impaired adult means chronically impaired disabled persons 18 years of age or older,
                     including victims of Alzheimer's disease and related disorders with neurological and
                     organic brain dysfunction, who are physically or mentally impaired to the extent that their capacity for
                     independence and their ability to carry out activities of daily living is markedly limited. Activities of
@@ -205,7 +205,7 @@
                     taking public transportation, maintaining a residence, caring appropriately for one's grooming or hygiene,
                     using telephones and directories, or using a post office. Marked limitations refer to the severity of impairment,
                     and not the number of limited activities, and occur when the degree of limitation is such as to seriously interfere
-                    with the ability to function independently.
+                    with the ability to function independently".
                 </p>
                 <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
                 <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFiveOne = false">Close</button>
@@ -231,17 +231,11 @@
             </div>
 
             <modal v-if="modalSixOne">
-                <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">Definition: Functionally Impaired Adult</h2>
-                <p class="abs-content txt-sm" style="left: 10%; bottom: 40%; width: 80%;" slot="body">
-                    Functionally impaired adult means chronically impaired disabled persons 18 years of age or older,
-                    including victims of Alzheimer's disease and related disorders with neurological and
-                    organic brain dysfunction, who are physically or mentally impaired to the extent that their capacity for
-                    independence and their ability to carry out activities of daily living is markedly limited. Activities of
-                    daily living include, but are not limited to, adaptive activities such as cleaning, shopping, cooking,
-                    taking public transportation, maintaining a residence, caring appropriately for one's grooming or hygiene,
-                    using telephones and directories, or using a post office. Marked limitations refer to the severity of impairment,
-                    and not the number of limited activities, and occur when the degree of limitation is such as to seriously interfere
-                    with the ability to function independently.
+                <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">Definition: Group living arrangment</h2>
+                <p class="abs-content txt-md" style="left: 10%; bottom: 30%; width: 80%;" slot="body">
+                    "Residential communities which may or may not be subsidized by federal, State, or local funds but which are private 
+                    residences housing an individual or a group of individuals who are primarily responsible for their own care and who maintain a 
+                    presence in the community but who may need on-site monitoring".
                 </p>
                 <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
                 <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalSixOne = false">Close</button>
@@ -254,14 +248,14 @@
                 <audio id="media" preload="metadata">
                   <source src="./assets/audio/7.mp3" type="audio/mp3">
                 </audio>
-                <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp/snp/pdf/cacfp/forms/fy2019/enrollment/AdultEnrollmentForm-7-2018.pdf" target="_blank">
+                <a href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/AdultEnrollmentForm-7-2018.pdf" target="_blank">
                     <img 
                         class="abs-content pure-button is-paperclip anim-shift is-grn" 
                         v-if="currentSlide === 7" 
                         src="./assets/images/paperclip.svg">
                 </a>
                 <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Training Portal Home Enrollment Form</h1>
-                <p class="abs-content txt-md" style="left: 5%; bottom: 55%; width: 62%;" >The Training Portal Home Adult Enrollment form collects the required information in one simple form!</p>
+                <p class="abs-content txt-md" style="left: 5%; bottom: 50%; width: 62%;" >The Training Portal Home Adult Enrollment form collects the required information in one simple form!</p>
                 <p class="abs-content txt-md" style="left: 5%; bottom: 35%; width: 65%;">Click on the button with the paper clip located in the top right corner to download a copy of the form.</p>
                 <p class="abs-content txt-md anim-slide" style="left: -80%; bottom: 10%; width: 50%; animation-delay: 4s;" v-if="currentSlide === 7">
                     Let’s take a closer look at the Adult Participant enrollment form from the State agency
@@ -287,7 +281,7 @@
                 @load="chngBg('./assets/images/slide-blank.png')"
                 @click="wrongAnswer">
             <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #1:</p>
-            <p class="abs-content txt-sm" style="left: 50%; bottom: 68%; width: 45%;">Click in the section that is missing information.</p>
+            <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
             <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
                 Correct! Joe’s enrollment documentation is missing the information on his living arrangement. 
                 This makes the documentation invalid. Joe’s meals cannot be claimed until the enrollment 
@@ -312,7 +306,7 @@
                 @load="chngBg('./assets/images/slide-blank.png')" 
                 @click="wrongAnswer">
             <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #2:</p>
-            <p class="abs-content txt-sm" style="left: 50%; bottom: 68%; width: 45%;">Click in the section that is missing information.</p>
+            <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
             <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
                 Correct! Because John is under the age of 60, the enrollment documentation must indicate if he is a 
                 “functionally impaired adult.” This box needs to be checked for any adult day care participant under 
@@ -408,8 +402,13 @@
             <audio id="media" preload="metadata">
               <source src="./assets/audio/17.mp3" type="audio/mp3">
             </audio>
-            <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/questions-concerns.jpg">
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
+            <img 
+                class="abs-content" 
+                style="left: 20%; top: 5%; width: 60%;" 
+                src="./assets/images/questions-concerns.jpg"
+                @load="showNav = false">
+            <a class="abs-content pure-button txt-btn" style="bottom: 10%; right: 1%; background-color: #fca424;" href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp">Exit to Training Portal</a>     
+            <button class="abs-content pure-button txt-btn" style="bottom: 10%; left: 1%; background-color: #fca424;" @Click="getStarted();">Return to the beginning</a>     
         </div>
       </div>
     </div>

@@ -1,9 +1,10 @@
 # adult-enrollment
 
 #Build process:
-1. Run "npx babel main.js --out- create the build, zip the entire /dist folder and upload to Adobe Connect.
+1. Run "npx babel script.js --watch --out-file ./dist/main-compiled.js" to create the build, zip the entire /dist folder and upload to Adobe Connect.
 
 #TODO:
+*. Make practice page larger
 1. Create Training Portal. Add instruction video to portal. Add html presentation to portal (and link back to portal). Add useful links/files to portal. 
 1. move vanilla JS play() and Pause() to VueJS (Wait) - either bind directly to the method, or use the Vue #ref object.
 2. Make listening to the full audio track and visiting the buttons manditory and make Nav arrow change when it is possible to move to next section
@@ -15,6 +16,7 @@
 8. create a simple alert animation for each button that must still be clicked (turn off after first click)
 9. do not load nav buttons on first slide
 10. change the slide background on the practice sections
+
 
 
 ## Project setup
