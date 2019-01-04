@@ -44,12 +44,29 @@
     display: block;
   }
   
-  .arrow, .audio-button {
+  .arrow-previous {
+    bottom: 2.5%;
+    right: 17.5%;
+    width: 5%;
+    padding: 1%;
+    cursor: pointer;
+    transform: rotate(0deg);
+  }
+
+  .arrow-next {
+    bottom: 2.5%;
+    right: 1%;
+    width: 5%;
+    padding: 1%;
+    cursor: pointer;
+    transform: rotate(180deg);
+  }
+  
+  .audio-button {
     bottom: 2.5%;
     width: 5%;
     padding: 1%;
     cursor: pointer;
-  
   }
   
   .footer {
@@ -115,6 +132,7 @@
 
   .is-highlighted {
     opacity: 0.3;
+    border: 3px solid;
     background-color: #faf393;
   }
 
@@ -202,15 +220,14 @@
     /* attention */
   /* ////////////////////////// */
 
-  .attention {
-    animation: grow 1.5s ease-in-out infinite;
+  .attention-play {
+    animation: playButton 1.5s ease-in-out infinite;
   }
 
-  @keyframes grow {
+  @keyframes playButton {
     0% {
         /* transform: translateY(-2px); */
-        transform: scale(1);
-        
+        transform: scale(1);  
     }
     50% {
         /* transform: translateY(-8px); */
@@ -220,5 +237,28 @@
     100% {
         transform: translateY(-2px);
         transform: scale(1);
+    }
+  }
+
+  .attention-next {
+    animation: nextButton 1.5s ease-in-out infinite;
+  }
+
+  @keyframes nextButton {
+    0% {
+        /* transform: translateY(-2px); */
+        transform: scale(1);
+        transform: rotate(180deg);
+    }
+    50% {
+        /* transform: translateY(-8px); */
+        transform: scale(1.06);
+        box-shadow: 1px 0.5px 2px #777777;
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: translateX(-2px);
+        transform: scale(1);
+        transform: rotate(180deg);
     }
   }

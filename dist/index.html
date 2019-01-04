@@ -43,54 +43,55 @@
     </script>
     
     <div id="app">
-      <div class="box">
+    <div class="box">
         <img 
             class="background-img" 
             :src="bgImgSrc">
-        <div class="navBar" v-if="showNav">
+        
+        <div class="navBar" v-if="showNav" style= "z-index: 10;">
             <img
-            v-bind:class="{ attention: isAttention }"
-            class="abs-content pure-button audio-button"
-            style="right: 12%;" src="./assets/images/play.svg"
-            @Click=playMedia()>
+                class="abs-content pure-button arrow-previous"
+                src="./assets/images/left-arrow.svg"
+                @click="previous()"
+            >
             <img
-            class="abs-content pure-button audio-button"
-            style="right: 6.5%;" src="./assets/images/pause.svg"
-            @Click=pauseMedia()> 
+                v-bind:class="{ 'attention-play': playAttention }"
+                class="abs-content pure-button audio-button"
+                style="right: 12%;" src="./assets/images/play.svg"
+                @Click="playMedia()"
+            >
             <img
-            class="abs-content pure-button arrow"
-            style="right: 17.5%; transform: rotate(0deg)"
-            src="./assets/images/left-arrow.svg"
-            @click="previous">
+                class="abs-content pure-button audio-button"
+                style="right: 6.5%;" src="./assets/images/pause.svg"
+                @Click="pauseMedia()"
+            >
             <img
-            v-bind:class="{ 'disabled': isDisabled}"
-            class="abs-content pure-button arrow"
-            style="right: 1%; transform: rotate(180deg)"
-            src="./assets/images/right-arrow.svg"
-            @click="next">
+                v-bind:class="{ 'attention-next': nextAttention }"
+                class="abs-content pure-button arrow-next"
+                src="./assets/images/right-arrow.svg"
+                @click="next()"
+            >
         </div>
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 0">
-            <audio id="media" preload="metadata" autoplay>
-                <source src="./assets/audio/0.mp3" type="audio/mp3">
-            </audio>
-            <img 
+            <img
                 class="abs-content img-logo" 
                 style="left: 10%; bottom: 50%;" 
                 src="./assets/images/state-logo.jpg"
-                @load="showNav = false">
-            <button class="abs-content pure-button txt-btn" style="bottom: 20%; right: 1%; background-color: #fca424; z-index: 1;" @Click="getStarted();">GET STARTED</button>
+            >
+            <button 
+                class="abs-content pure-button txt-btn" 
+                style="bottom: 20%; right: 1%; background-color: #fca424;" 
+                @Click="slideWelcome()">GET STARTED
+            </button>
             <h1 class="abs-content txt-xlg" style="left: 25%; bottom: 45%; width: 70%;">Adult Enrollment Documentation Training</h1>
-            <p class="abs-content txt-md" style="left: 3%; bottom: 5%;">Presenter: Jonathan Dudzik</p>
+            <p class="abs-content txt-md" style="left: 3%; bottom: 8%;">Presenter: Jonathan Dudzik</p>
             <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
         </div>
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 1">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/1.mp3" type="audio/mp3">
-            </audio>
             <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%; width: 70%;">Objectives</h1>
             <p class="abs-content txt-lg" style="left: 10%; bottom: 60%; width: 70%;">1. Identify enrollment documentation regulations and requirements</p>
             <p class="abs-content txt-lg" style="left: 10%; bottom: 40%; width: 70%;">2. Identify a sample CACFP Adult Participant Enrollment Form</p>
@@ -100,15 +101,13 @@
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 2">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/2.mp3" type="audio/mp3">
-            </audio>
             <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
             <img 
                 class="abs-content" 
                 style="left: 68%; bottom: 23%; width: 30%; box-shadow: 1px 1px 2px 2px #ccc;" 
                 src=".\assets/images\adult-indian-couple.jpg" 
-                title="Photo credit: Indian Man Woman Old1_AA044166">
+                title="Photo credit: Indian Man Woman Old1_AA044166"
+            >
             <ul class="abs-content pure-menu-list txt-md" style="left: 5%; bottom: 20%; padding-bottom: 3%; width: 60%">
                 <li class="pure-menu-item" style="padding-bottom: 3%;" >Every enrolled participant must have enrollment documentation of file.</li>
                 <li class="pure-menu-item" style="padding-bottom: 3%;">The records are valid the entire time the adult is enrolled.</li>
@@ -119,9 +118,6 @@
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 3">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/3.mp3" type="audio/mp3">
-            </audio>
             <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
             <p class="abs-content txt-lg" style="left: 10%; bottom: 40%; width: 70%;">Why must adult day care programs collect and maintain enrollment documentation?</p>
             <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
@@ -141,9 +137,6 @@
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 4">
             <div>
-                <audio id="media" preload="metadata">
-                  <source src="./assets/audio/4.mp3" type="audio/mp3">
-                </audio>
                 <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
                 <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 40%;" @click="modalFourOne = true">Regulation: 226.19a(b)(8)</p>
                 <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 20%;" @click="modalFourTwo = true">Regulation: 226.19a(b)(10)</p>
@@ -180,9 +173,6 @@
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 5">
             <div>
-                <audio id="media" preload="metadata">
-                  <source src="./assets/audio/5.mp3" type="audio/mp3">
-                </audio>
                 <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
                 <img 
                     class="abs-content" 
@@ -215,9 +205,6 @@
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 6">
             <div>
-                <audio id="media" preload="metadata">
-                  <source src="./assets/audio/6.mp3" type="audio/mp3">
-                </audio>
                 <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
                 <img 
                     class="abs-content" 
@@ -245,9 +232,6 @@
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 7">
             <div>
-                <audio id="media" preload="metadata">
-                  <source src="./assets/audio/7.mp3" type="audio/mp3">
-                </audio>
                 <a href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/AdultEnrollmentForm-7-2018.pdf" target="_blank">
                     <img 
                         class="abs-content pure-button is-paperclip anim-shift is-grn" 
@@ -255,30 +239,27 @@
                         src="./assets/images/paperclip.svg">
                 </a>
                 <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Training Portal Home Enrollment Form</h1>
-                <p class="abs-content txt-md" style="left: 5%; bottom: 50%; width: 62%;" >The Training Portal Home Adult Enrollment form collects the required information in one simple form!</p>
+                <p class="abs-content txt-md" style="left: 5%; bottom: 50%; width: 62%;" >The Adult Enrollment form collects the required information in one simple form!</p>
                 <p class="abs-content txt-md" style="left: 5%; bottom: 35%; width: 65%;">Click on the button with the paper clip located in the top right corner to download a copy of the form.</p>
-                <p class="abs-content txt-md anim-slide" style="left: -80%; bottom: 10%; width: 50%; animation-delay: 4s;" v-if="currentSlide === 7">
+                <p class="abs-content txt-md anim-slide" style="left: -80%; bottom: 13%; width: 50%; animation-delay: 4s;" v-if="currentSlide === 7">
                     Let’s take a closer look at the Adult Participant enrollment form from the State agency
                 </p>
                 <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
             </div>
         </div>
 
-        <!-- NEW SLIDE -->
+        <!-- SLIDE VIDEO -->
+        <!-- <div id="videoForm" class="abs-content" style="left: 10%; top: 5%;"></div> -->
         <div v-if="currentSlide === 8">
-            <video id="media" class="abs-content" style="left: 10%; top: 5%; width: 80%;" src="./assets/video/8.mp4" controls></video>
+                <video id="videoOne" class="abs-content" style="left: 10%; top: 5%; width: 80%;" src="./assets/video/8.mp4" controls></video>
         </div>
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 9">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/9.1.mp3" type="audio/mp3">
-            </audio>
             <img 
                 class="abs-content" 
                 style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
                 src="./assets/images/Joe Black Example.jpg" 
-                @load="chngBg('./assets/images/slide-blank.png')"
                 @click="wrongAnswer">
             <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #1:</p>
             <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
@@ -296,14 +277,10 @@
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 10">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/10.1.mp3" type="audio/mp3">
-            </audio>
             <img 
                 class="abs-content" 
                 style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
                 src="./assets/images/John Smith Example.jpg" 
-                @load="chngBg('./assets/images/slide-blank.png')" 
                 @click="wrongAnswer">
             <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #2:</p>
             <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
@@ -320,11 +297,8 @@
             <div class="abs-content" style="left: 6.3%; bottom: 65%; width: 40%; height: 8%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
         </div>
 
-        <!-- SLIDE  -->
+        <!-- NEW SLIDE  -->
         <div v-if="currentSlide === 11">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/11.mp3" type="audio/mp3">
-            </audio>
             <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Recording Keeping</h1>
             <img 
                 class="abs-content" 
@@ -340,9 +314,6 @@
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 12">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/12.mp3" type="audio/mp3">
-            </audio>
             <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%;">Enrollment Documentation Best Practice</h1>
             <p class="abs-content txt-xlg" style="left: 5%; bottom: 50%; width: 80%">An enrollment policy would address these issues:</p>
             <ul class="abs-content pure-menu-list txt-md" style="left: 10%; bottom: 13%; padding-bottom: 3%; width: 80%;">
@@ -356,9 +327,6 @@
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 13">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/13.mp3" type="audio/mp3">
-            </audio>
             <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%;">Enrollment Documentation Best Practice</h1>
             <img class="abs-content" style="left: 70%; bottom: 25%; width: 30%;" src="./assets/images/best-practices.jpg" title="Photo credit: Best practice icon_Fotolia_140006081_Subscription_XXL">
             <ul class="abs-content pure-menu-list txt-md" style="left: 8%; bottom: 10%; padding-bottom: 3%; width: 60%;">
@@ -372,46 +340,36 @@
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 14">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/14.mp3" type="audio/mp3">
-            </audio>
             <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
             <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
         </div>
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 15">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/15.mp3" type="audio/mp3">
-            </audio>
             <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
             <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
         </div>
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 16">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/16.mp3" type="audio/mp3">
-            </audio>
             <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
             <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
         </div>
 
         <!-- NEW SLIDE -->
         <div v-if="currentSlide === 17">
-            <audio id="media" preload="metadata">
-              <source src="./assets/audio/17.mp3" type="audio/mp3">
-            </audio>
             <img 
                 class="abs-content" 
                 style="left: 20%; top: 5%; width: 60%;" 
-                src="./assets/images/questions-concerns.jpg"
-                @load="showNav = false">
-            <a class="abs-content pure-button txt-btn" style="bottom: 10%; right: 1%; background-color: #fca424;" href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp">Exit to Training Portal</a>     
-            <button class="abs-content pure-button txt-btn" style="bottom: 10%; left: 1%; background-color: #fca424;" @Click="getStarted();">Return to the beginning</a>     
+                src="./assets/images/questions-concerns.jpg">
+            <div v-if="showFinish">
+                <a class="abs-content pure-button txt-btn" style="bottom: 10%; right: 1%; background-color: #fca424;" href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp">Exit to Training Portal</a>     
+                <button class="abs-content pure-button txt-btn" style="bottom: 10%; left: 1%; background-color: #fca424;" @Click="slideFinish()">Return to the beginning</a>     
+            </div>
         </div>
       </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 	<script src="./main-compiled.js"></script>

@@ -1,3 +1,6 @@
+var audio = new Audio;
+var video = document.getElementById("videoOne");
+
 Vue.component ('modal', {
   template: "#modal-template"
 })
@@ -6,11 +9,12 @@ var app = new Vue({
   el: '#app',
   data() {
     return {
-      currentSlide: 17,
+      currentSlide: 7,
       bgImgSrc: './assets/images/slide-standard.png',
-      showNav: false,
-      isAttention: true,
-      isDisabled: true,
+      showNav: true,
+      showFinish: false,
+      playAttention: false,
+      nextAttention: false,
       rightAnswerMsg: false,
       wrongAnswerMsg: false,
       highlightAnswer: '',
@@ -22,42 +26,153 @@ var app = new Vue({
     };
   },
   methods: { 
-    getStarted() {
-      this.currentSlide = 1;
-      this.showNav = true;
-      this.isDisabled = true;
-      this.isAttention = true;
-    },
-    next() {
-      this.currentSlide++;
-      // fixes ei playing multiple audio files from previously visited slides
-      document.getElementById('media').pause();
-      // Make sure answer and nav related objects are reset with each new screen
-      this.isDisabled = true;
-      this.isAttention = true;
-      this.rightAnswerMsg = false;
-      this.highlightAnswer = '';
-      this.bgImgSrc = './assets/images/slide-standard.png';
-    },
 
     previous() {
-      // if (this.currentSlide < 0) { this.currentSlide = 1; }
       this.currentSlide --;
-      this.bgImgSrc = './assets/images/slide-standard.png';
+      audio.pause();
+      if (this.currentSlide === 0) {
+        audio.src = "./assets/audio/0.mp3" 
+      }
+      if (this.currentSlide === 1) {
+        audio.src = "./assets/audio/1.mp3" 
+      }
+      if (this.currentSlide === 2) {
+        audio.src = "./assets/audio/2.mp3" 
+      }
+      if (this.currentSlide === 3) {
+        audio.src = "./assets/audio/3.mp3" 
+      }
+      if (this.currentSlide === 4) {
+        audio.src = "./assets/audio/4.mp3" 
+      }
+      if (this.currentSlide === 5) {
+        audio.src = "./assets/audio/5.mp3" 
+      }
+      if (this.currentSlide === 6) {
+        audio.src = "./assets/audio/6.mp3" 
+      }
+      if (this.currentSlide === 7) {
+        audio.src = "./assets/audio/7.mp3" 
+      }
+      if (this.currentSlide === 8) {  
+      }
+      if (this.currentSlide === 9) {
+        audio.src = "./assets/audio/9.1.mp3" 
+      }
+      if (this.currentSlide === 10) {
+        audio.src = "./assets/audio/10.1.mp3" 
+      }
+      if (this.currentSlide === 11) {
+        audio.src = "./assets/audio/11.mp3" 
+      }
+      if (this.currentSlide === 12) {
+        audio.src = "./assets/audio/12.mp3" 
+      }
+      if (this.currentSlide === 13) {
+        audio.src = "./assets/audio/13.mp3" 
+      }
+      if (this.currentSlide === 14) {
+        audio.src = "./assets/audio/14.mp3" 
+      }
+      if (this.currentSlide === 15) {
+        audio.src = "./assets/audio/15.mp3" 
+      }
+      if (this.currentSlide === 16) {
+        audio.src = "./assets/audio/16.mp3" 
+      }
+      if (this.currentSlide === 17) {
+        audio.src = "./assets/audio/17.mp3" 
+      }
+      audio.load();
+    },
+
+    next() {
+      this.playAttention = true;
+      this.nextAttention = false;
+      this.currentSlide++;
+      audio.pause();
+      if (this.currentSlide === 1) {
+        audio.src = "./assets/audio/1.mp3" 
+      }
+      if (this.currentSlide === 2) {
+        audio.src = "./assets/audio/2.mp3" 
+      }
+      if (this.currentSlide === 3) {
+        audio.src = "./assets/audio/3.mp3" 
+      }
+      if (this.currentSlide === 4) {
+        audio.src = "./assets/audio/4.mp3" 
+      }
+      if (this.currentSlide === 5) {
+        audio.src = "./assets/audio/5.mp3" 
+      }
+      if (this.currentSlide === 6) {
+        audio.src = "./assets/audio/6.mp3" 
+      }
+      if (this.currentSlide === 7) {
+        audio.src = "./assets/audio/7.mp3" 
+      }
+      if (this.currentSlide === 8) { 
+      }
+      if (this.currentSlide === 9) {
+        audio.src = "./assets/audio/9.1.mp3"
+      }
+      if (this.currentSlide === 10) {
+        audio.src = "./assets/audio/10.1.mp3"
+      }
+      if (this.currentSlide === 11) {
+        audio.src = "./assets/audio/11.mp3" 
+      }
+      if (this.currentSlide === 12) {
+        audio.src = "./assets/audio/12.mp3" 
+      }
+      if (this.currentSlide === 13) {
+        audio.src = "./assets/audio/13.mp3" 
+      }
+      if (this.currentSlide === 14) {
+        audio.src = "./assets/audio/14.mp3" 
+      }
+      if (this.currentSlide === 15) {
+        audio.src = "./assets/audio/15.mp3" 
+      }
+      if (this.currentSlide === 16) {
+        audio.src = "./assets/audio/16.mp3" 
+      }
+      if (this.currentSlide === 17) {
+        audio.src = "./assets/audio/17.mp3";
+        this.showFinish = true;
+        this.showNav = false;
+        audio.autoplay = true;
+      }
+      audio.load();
     },
 
     playMedia() {
-      document.getElementById('media').play();
-      this.isDisabled = false;
-      this.isAttention = false
+      audio.play();
+      this.playAttention=false;
+      audio.onended = function(e) {
+        app.nextAttention = true;
+      }
     },
 
     pauseMedia() {
-      document.getElementById('media').pause()
+      audio.pause();
     },
 
-    chngBg(newBg) {
-      this.bgImgSrc = newBg;
+    slideWelcome() { 
+      audio.src ="./assets/audio/16.mp3";
+      audio.play();
+      audio.onended = function(e) {
+        app.showNav = true;
+        app.next();
+      }
+    },
+
+    slideFinish() {
+      this.currentSlide = 0;
+      this.showNav = true;
+      audio.pause();
+      audio.src ="./assets/audio/0.mp3";
     },
 
     rightAnswer() {
