@@ -6,6 +6,7 @@
 #TODO:
 NEXT STEP: fix right answer highlighting!
 1. remove the play and pause button from the video screen
+2. out all if statements into one function that get callled with both the next and previous buttons.
 1. improve practice, exercise and quiz sections
 1. create link to transcript PDF
 3. add your progress bar
