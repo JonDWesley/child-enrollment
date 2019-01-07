@@ -4,21 +4,18 @@
 1. Run "npx babel script.js --watch --out-file ./dist/main-compiled.js" to create the build, zip the entire /dist folder and upload to Adobe Connect.
 
 #TODO:
-NEXT STEP: fix right answer highlighting!
-1. remove the play and pause button from the video screen
-2. out all if statements into one function that get callled with both the next and previous buttons.
-1. improve practice, exercise and quiz sections
-1. create link to transcript PDF
-3. add your progress bar
-4. improve nav controls when video is playing
-7. get second audio for answers to play only on a correct answer.
-13. Making a reference in audio track to nutritionnc.com home page in footer (incorrect)
+1. make question pdf full screen and scollable
+2. make question answer come up on a modal
+3. fix the correct answer highlighting
+6. get second audio for answers to play only on a correct answer
+13. fix reference in audio track to nutritionnc.com home page in footer (incorrect)
 14. Senario #2 has an akward delay in the start of the audio
-16. no mention in introduction of next button showing ready state after audio
-17. turn each slide template into a actual vue template (?)
-20. nextAttention broke in IE...
-2. remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
+16. fix intro video to correctly illistrate how nav buttons work
+17. fix nextAttention animation in IE
+18. remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
 21. clean up code
+22. improve notes within code
+23. check your code in Internet Explorer
 
 NOTES ADD them to the code???
     

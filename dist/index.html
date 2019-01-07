@@ -50,17 +50,19 @@
         
         <div class="navBar" v-if="showNav" style= "z-index: 10;">
             <img
+                v-bind:class="{ disabled: previousDisabled }"
                 class="abs-content pure-button arrow-previous"
                 src="./assets/images/left-arrow.svg"
                 @click="previous()"
             >
             <img
-                v-bind:class="{ 'attention-play': playAttention }"
+                v-bind:class="{ 'attention-play': playAttention, disabled: playDisabled  }"
                 class="abs-content pure-button audio-button"
                 style="right: 12%;" src="./assets/images/play.svg"
                 @Click="playMedia()"
             >
             <img
+                v-bind:class="{ disabled: pauseDisabled  }"
                 class="abs-content pure-button audio-button"
                 style="right: 6.5%;" src="./assets/images/pause.svg"
                 @Click="pauseMedia()"

@@ -131,16 +131,12 @@
   }
 
   .is-highlighted {
-    opacity: 0.3;
-    border: 3px solid;
-    background-color: #faf393;
+    border: 8px solid #fca424;
   }
 
   .disabled {
-    cursor: not-allowed;
-    background-color: #cccccc;
-    color: #666666;
-    opacity: .7;
+    opacity: .0;
+    cursor: default;
   }
 
   

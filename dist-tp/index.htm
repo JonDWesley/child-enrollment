@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Update Portal v1</title>
+ <title>Adult Enrollment</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,105 +20,105 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
-.mainContentContainer {
-	margin: 0 auto;
-	margin-left: 295px;
-	height: 90vh;
-	width: 70%; /*fall back value*/
-	width: calc(100% - 315px);
-	background-color: white;
-	margin-top: 30px;
-	padding: 30px;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
+	.mainContentContainer {
+		margin: 0 auto;
+		margin-left: 295px;
+		height: 90vh;
+		width: 70%; /*fall back value*/
+		width: calc(100% - 315px);
+		background-color: white;
+		margin-top: 30px;
+		padding: 30px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	}
 
-#titleContainer {
-	margin-top: 20%;
-}
+	#titleContainer {
+		margin-top: 20%;
+	}
 
-#iframeContainer {
-	display: none;
-	width: 95%;
-    height: 80vh;
-	border: 2px solid gray;
-    border-radius: 5px;
-    overflow: auto;
-}
+	#iframeContainer {
+		display: none;
+		width: 95%;
+		height: 80vh;
+		border: 2px solid gray;
+		border-radius: 5px;
+		overflow: auto;
+	}
 
-#videoContainer {
-	display: none;
-	width: 95%;
-    height: 80vh;
-	border: 2px solid gray;
-    border-radius: 5px;
-    overflow: auto;
-}
+	#videoContainer {
+		display: none;
+		width: 95%;
+		height: 80vh;
+		border: 2px solid gray;
+		border-radius: 5px;
+		overflow: auto;
+	}
 
-#trainingTitle {
-	width: 100%
-	padding: 30px;
-	margin-bottom: 40px;
-	font-size: 36px;
-	color: #36454F;
-}
+	#trainingTitle {
+		width: 100%;
+		padding: 30px;
+		margin-bottom: 40px;
+		font-size: 36px;
+		color: #36454F;
+	}
 
-.titleImage {
-	width: 100%;
-	max-width: 500px;
-}
+	.titleImage {
+		width: 100%;
+		max-width: 500px;
+	}
 
-h1 {
-    padding-left: 5px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-    color: #00376d;
-}
+	h1 {
+		padding-left: 5px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		color: #00376d;
+	}
 
-p {
-	font-size: 18px;
-}
+	p {
+		font-size: 18px;
+	}
 
-.sidenav {
-    height: 100%;
-    width: 270px;
-    margin-top: 15px;
-	margin-left: 20px;
-    padding-top: 30px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #4B9CD3;
-	text-align: left;
-    overflow-x: hidden;
-}
+	.sidenav {
+		height: 100%;
+		width: 270px;
+		margin-top: 15px;
+		margin-left: 20px;
+		padding-top: 30px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: #4B9CD3;
+		text-align: left;
+		overflow-x: hidden;
+	}
 
-.sidenav a {
-    color: white;
-    margin-left: 10px;
+	.sidenav a {
+		color: white;
+		margin-left: 10px;
+		padding: 10px;
+		text-decoration: none;
+		display: block;
+	}
+
+	.sidenav a:hover {
+		background-color: #ddd;
+		color: black;
+	}
+
+	li {
+	list-style-type: none;
+	color: white;
 	padding: 10px;
-    text-decoration: none;
-    display: block;
-}
+	margin-left: 10px;
+	text-decoration: none;
+	display: block;
+	background-color: transparent;
+	}
 
-.sidenav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-li {
-  list-style-type: none;
-  color: white;
-  padding: 10px;
-  margin-left: 10px;
-  text-decoration: none;
-  display: block;
-  background-color: transparent;
-}
-
-li:hover {
-  background-color: #ddd;
-  color: black;
-}
+	li:hover {
+	background-color: #ddd;
+	color: black;
+	}
 
 </style>
 
@@ -147,21 +147,21 @@ function setVideo(videoSource) {
 </div>
 
 <div class="sidenav">
-  <h1>Media</h1>
+  <h1>START HERE</h1>
 	<ul>
 		<li id="iframeOne" onclick="setVideo('res/instructions.mp4')">Course Instructions</li>
 	</ul>
   <hr/>
   
-  <h1>Webinar</h1>
+  <h1>Training Module</h1>
 	<a href="https://ncnutrition.adobeconnect.com/adult-enrollment-webinar">Adult Enrollment Documentation</a>
 	<hr/>
 
-  <h1>Files</h1>
+  <h1>File Download</h1>
 	<a href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/AdultEnrollmentForm-7-2018.pdf" target="_blank">NC CACFP Adult Enrollment Form</a>
   <hr/>
   
-  <h1>Links</h1>
+  <h1>Webpage Links</h1>
 	<a href="https://www.nutritionnc.com/" target="_blank">NC DHHS Homepage</a>
 	<a href="https://nutritionnc.com/snp/forms.htm" target="_blank">CACFP Forms</a>
  </div>
