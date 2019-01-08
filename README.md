@@ -1,8 +1,5 @@
 # adult-enrollment
 
-#Build process:
-1. Run "npx babel script.js --watch --out-file ./dist/main-compiled.js" to create the build, zip the entire /dist folder and upload to Adobe Connect.
-
 #TODO:
 1. make question pdf full screen and scollable
 2. make question answer come up on a modal and make nav bar sticky with a white background
@@ -19,27 +16,7 @@ NOTES ADD them to the code???
     
     //this is the logic that is run "on load" of each slide
     //this logic is common to all slides
-    //differing logic is possible through the iff statements
-
-
-
-Things I deleted or didn't go with:
-
-
-    // slideVideo() {
-    //   var video = document.createElement('video');
-    //   video.src = "./assets/video/8.mp4";
-    //   video.setAttribute("width", "95%");
-    //   video.setAttribute("controls", "controls");
-    //   video.setAttribute("autoplay", "true")
-    //   document.getElementById('videoForm').appendChild(video);
-    //   // this.showNav = false;
-    //   video.onended = function() {
-    //     document.getElementById('videoForm').removeChild(video);
-    //     // app.showNav = true;
-    //   }
-    // },
-
+    //differing logic is possible through the if statements
 
 ## Project setup
 ```
@@ -68,3 +45,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Build process:
+Run "npx babel script.js --watch --out-file ./dist/main-compiled.js" to create the build, zip the entire /dist folder and upload to Adobe Connect.
