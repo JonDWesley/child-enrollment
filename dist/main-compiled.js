@@ -9,9 +9,9 @@ var app = new Vue({
   el: '#app',
   data: function data() {
     return {
-      currentSlide: 7,
+      currentSlide: 0,
       bgImgSrc: './assets/images/slide-standard.png',
-      showNav: true,
+      showNav: false,
       showFinish: false,
       previousDisabled: false,
       playDisabled: false,
@@ -40,6 +40,7 @@ var app = new Vue({
       this.currentSlide++;
       audio.pause();
       this.slideControl();
+      console.log(this.rightAnswerMsg);
     },
     playMedia: function playMedia() {
       audio.play();
@@ -64,7 +65,9 @@ var app = new Vue({
     slideFinish: function slideFinish() {
       this.currentSlide = 0;
       this.showNav = true;
+      this.playAttention = false;
       audio.pause();
+      audio.autoplay = false;
       audio.src = "./assets/audio/0.mp3";
       this.previousDisabled = true;
     },
@@ -112,25 +115,34 @@ var app = new Vue({
         audio.src = "./assets/audio/7.mp3";
         this.pauseDisabled = false;
         this.playDisabled = false;
+        this.bgImgSrc = "./assets/images/slide-standard.png";
       }
 
       if (this.currentSlide === 8) {
+        audio.src = "";
         this.pauseDisabled = true;
         this.playDisabled = true;
+        this.bgImgSrc = "./assets/images/slide-blank.png";
       }
 
       if (this.currentSlide === 9) {
         audio.src = "./assets/audio/9.1.mp3";
         this.pauseDisabled = false;
         this.playDisabled = false;
+        this.bgImgSrc = "./assets/images/slide-blank.png";
       }
 
       if (this.currentSlide === 10) {
-        audio.src = "./assets/audio/10.1.mp3";
+        audio.src = "./assets/audio/10.1.mp3"; //reset the correct answer highlighting and message
+
+        this.rightAnswerMsg = false;
+        this.highlightAnswer = '';
+        this.bgImgSrc = "./assets/images/slide-blank.png";
       }
 
       if (this.currentSlide === 11) {
         audio.src = "./assets/audio/11.mp3";
+        this.bgImgSrc = "./assets/images/slide-standard.png";
       }
 
       if (this.currentSlide === 12) {

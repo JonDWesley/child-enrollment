@@ -5,8 +5,7 @@
 
 #TODO:
 1. make question pdf full screen and scollable
-2. make question answer come up on a modal
-3. fix the correct answer highlighting
+2. make question answer come up on a modal and make nav bar sticky with a white background
 6. get second audio for answers to play only on a correct answer
 13. fix reference in audio track to nutritionnc.com home page in footer (incorrect)
 14. Senario #2 has an akward delay in the start of the audio
@@ -15,7 +14,6 @@
 18. remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
 21. clean up code
 22. improve notes within code
-23. check your code in Internet Explorer
 
 NOTES ADD them to the code???
     
