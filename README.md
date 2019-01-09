@@ -1,22 +1,20 @@
 # adult-enrollment
 
-#TODO:
-1. make question pdf full screen and scollable
-2. make question answer come up on a modal and make nav bar sticky with a white background
-6. get second audio for answers to play only on a correct answer
-13. fix reference in audio track to nutritionnc.com home page in footer (incorrect)
-14. Senario #2 has an akward delay in the start of the audio
-16. fix intro video to correctly illistrate how nav buttons work
-17. fix nextAttention animation in IE
-18. remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
-21. clean up code
-22. improve notes within code
+#TODO Keep these notes in order to move changes to other modules :
+###. remove the console.log showing "true"
+###. make question pdf full screen and scollable
+###. make question answer come up on a modal and make nav bar sticky with a white background
+###. get second audio for answers to play only on a correct answer
+###. fix reference in audio track to nutritionnc.com home page in footer (incorrect)
+###. Senario #2 has an akward delay in the start of the audio
+###. fix intro video to correctly illistrate how nav buttons work
+###. fix nextAttention animation in IE
+###. remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
+###. clean up code
+###. improve notes within code
+###. Improve accesability
 
-NOTES ADD them to the code???
-    
-    //this is the logic that is run "on load" of each slide
-    //this logic is common to all slides
-    //differing logic is possible through the if statements
+# Resources, links, and files needed:
 
 ## Project setup
 ```
@@ -48,3 +46,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Build process:
 Run "npx babel script.js --watch --out-file ./dist/main-compiled.js" to create the build, zip the entire /dist folder and upload to Adobe Connect.
+
+###. Production Mode:
+replace the development CDN with the production one

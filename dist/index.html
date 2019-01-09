@@ -1,380 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="./assets/images/favicon-16x16.png" sizes="16x16">
-
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous"> 
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-	<link rel="stylesheet" href="./stylesheet.css">
-    
-    <title>Adult Enrollment</title>
-    
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but adult-enrollment doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    
-    <!-- component for default modal -->
-    <script type="text/x-template" id="modal-template">
-        <div class="modal-mask">
-            <div class="modal-container"
-                role="dialog"
-                aria-labelledby="pop-up textbox"
-                aria-describedby="a text box of additional information">
-
-                <header class="modal-header">
-                    <slot name="header"></slot>
-                </header>
-
-                <section class="modal-body">
-                    <slot name="body"></slot>
-                </section>
-
-                <footer class="modal-footer">
-                    <slot name="footer"></slot>
-                </footer>
-
-            </div>
-        </div>
-    </script>
-    
-    <div id="app">
-    <div class="box">
-        <img 
-            class="background-img" 
-            :src="bgImgSrc">
+    <head>
         
-        <div class="navBar" v-if="showNav" style= "z-index: 10;">
-            <img
-                v-bind:class="{ disabled: previousDisabled }"
-                class="abs-content pure-button arrow-previous"
-                src="./assets/images/left-arrow.svg"
-                @click="previous()"
-            >
-            <img
-                v-bind:class="{ 'attention-play': playAttention, disabled: playDisabled  }"
-                class="abs-content pure-button audio-button"
-                style="right: 12%;" src="./assets/images/play.svg"
-                @Click="playMedia()"
-            >
-            <img
-                v-bind:class="{ disabled: pauseDisabled  }"
-                class="abs-content pure-button audio-button"
-                style="right: 6.5%;" src="./assets/images/pause.svg"
-                @Click="pauseMedia()"
-            >
-            <img
-                v-bind:class="{ 'attention-next': nextAttention }"
-                class="abs-content pure-button arrow-next"
-                src="./assets/images/right-arrow.svg"
-                @click="next()"
-            >
-        </div>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" href="./assets/images/favicon-16x16.png" sizes="16x16">
 
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 0">
-            <img
-                class="abs-content img-logo" 
-                style="left: 10%; bottom: 50%;" 
-                src="./assets/images/state-logo.jpg"
-            >
-            <button 
-                class="abs-content pure-button txt-btn" 
-                style="bottom: 20%; right: 1%; background-color: #fca424;" 
-                @Click="slideWelcome()">GET STARTED
-            </button>
-            <h1 class="abs-content txt-xlg" style="left: 25%; bottom: 45%; width: 70%;">Adult Enrollment Documentation Training</h1>
-            <p class="abs-content txt-md" style="left: 3%; bottom: 8%;">Presenter: Jonathan Dudzik</p>
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+        <link rel="stylesheet" href="./stylesheet.css">
 
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 1">
-            <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%; width: 70%;">Objectives</h1>
-            <p class="abs-content txt-lg" style="left: 10%; bottom: 60%; width: 70%;">1. Identify enrollment documentation regulations and requirements</p>
-            <p class="abs-content txt-lg" style="left: 10%; bottom: 40%; width: 70%;">2. Identify a sample CACFP Adult Participant Enrollment Form</p>
-            <p class="abs-content txt-lg" style="left: 10%; bottom: 20%; width: 70%;">3. Accurately assess enrollment documentation</p>
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 2">
-            <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
-            <img 
-                class="abs-content" 
-                style="left: 68%; bottom: 23%; width: 30%; box-shadow: 1px 1px 2px 2px #ccc;" 
-                src=".\assets/images\adult-indian-couple.jpg" 
-                title="Photo credit: Indian Man Woman Old1_AA044166"
-            >
-            <ul class="abs-content pure-menu-list txt-md" style="left: 5%; bottom: 20%; padding-bottom: 3%; width: 60%">
-                <li class="pure-menu-item" style="padding-bottom: 3%;" >Every enrolled participant must have enrollment documentation of file.</li>
-                <li class="pure-menu-item" style="padding-bottom: 3%;">The records are valid the entire time the adult is enrolled.</li>
-                <li class="pure-menu-item" >Lack of CACFP enrollment documentation could lead to disallowance of reimbursement.</li>
-            </ul>
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 3">
-            <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
-            <p class="abs-content txt-lg" style="left: 10%; bottom: 40%; width: 70%;">Why must adult day care programs collect and maintain enrollment documentation?</p>
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-            <p class="abs-content txt-xlg anim-slide" style="left: -60%; bottom: 20%; animation-delay: 4s;" v-if="currentSlide === 3">…It’s in the regulations.</p>
-            <p class="abs-content pure-button is-grn anim-shift" v-if="currentSlide === 3" @click="modalThreeOne = true">Good<br>to<br>know!</p>
-        </div>
-
-        <modal v-if="modalThreeOne">
-            <h2 class="abs-content txt-lg " style="left: 20%; bottom: 75%;" slot="header">Regulations in the CACFP:</h2>
-            <p class="abs-content txt-md" style="left: 10%; bottom: 30%; width: 70%;" slot="body">What we mean when we refer to the "regulations" is the Code of Federal Regulations (CFR). The CFR is a codification of general
-                and permanent rules published in the Federal Register by the departments and agencies of the Federal Government produced by the Office of the Federal
-                Register and the Government Publishing Office.</p>
-            <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
-            <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer" @click="modalThreeOne = false">Close</button>
-        </modal>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 4">
-            <div>
-                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
-                <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 40%;" @click="modalFourOne = true">Regulation: 226.19a(b)(8)</p>
-                <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 20%;" @click="modalFourTwo = true">Regulation: 226.19a(b)(10)</p>
-                <p class="abs-content txt-md" style="left: 5%; bottom: 60%;">Click on each regulation below to take a closer look!</p>
-                <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-            </div>
-
-            <modal v-if="modalFourOne">
-                <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">7 CFR 226.19a(b)(8)</h2>
-                <p class="abs-content txt-md" style="left: 10%; bottom: 40%; width: 70%;" slot="body">
-                    "Adult day care centers shall collect and maintain documentation of the enrollment of each 
-                    adult participant including information used to determine eligibility for free and reduced price meals."
-                </p>
-                <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
-                <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFourOne = false">close</button>
-            </modal>
-
-            <modal v-if="modalFourTwo">
-                <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">7 CFR 226.19a(b)(10)</h2>
-                <p class="abs-content txt-md" style="left: 10%; bottom: 10%; width: 80%" slot="body">
-                    "Each adult day care center shall maintain records on the age of each enrolled person.
-                    In addition, each adult day care center shall maintain records which demonstrate that each 
-                    enrolled person under the age of 60 meets the functional impairment eligibility requirements 
-                    established under the definition of “functionally impaired adult” contained in this part. 
-                    Finally, each adult day care center shall maintained records which document that qualified 
-                    adult day care participants reside in their own homes (whether alone or with spouses, 
-                    children or guardians) or in group living arrangements"
-                </p>
-                <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
-                <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFourTwo = false">Close</button>
-            </modal>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 5">
-            <div>
-                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
-                <img 
-                    class="abs-content" 
-                    style="left: 50%; bottom: 23%; width: 40%; box-shadow: 1px 1px 2px 2px #ccc;" 
-                    src="./assets/images/dog-disabled-owner.jpg" 
-                    title="photo credit: Labrador guide dog and his disabled owner_Fotolia_113482366_Subscription_XXL.jpg">
-                <p class="abs-content txt-md" style="left: 5%; bottom: 30%; width: 40%;">Click on the “Need to know” button now to further define what Functionally Impaired Adult means.</p>
-                <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-                <p class="abs-content pure-button is-org anim-shift" v-if="currentSlide === 5" @click="modalFiveOne = true">Need<br>to<br>know!</p>
-            </div>
-
-            <modal v-if="modalFiveOne">
-                <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">Definition: Functionally Impaired Adult</h2>
-                <p class="abs-content txt-sm" style="left: 10%; bottom: 10%; width: 80%;" slot="body">
-                    "Functionally impaired adult means chronically impaired disabled persons 18 years of age or older,
-                    including victims of Alzheimer's disease and related disorders with neurological and
-                    organic brain dysfunction, who are physically or mentally impaired to the extent that their capacity for
-                    independence and their ability to carry out activities of daily living is markedly limited. Activities of
-                    daily living include, but are not limited to, adaptive activities such as cleaning, shopping, cooking,
-                    taking public transportation, maintaining a residence, caring appropriately for one's grooming or hygiene,
-                    using telephones and directories, or using a post office. Marked limitations refer to the severity of impairment,
-                    and not the number of limited activities, and occur when the degree of limitation is such as to seriously interfere
-                    with the ability to function independently".
-                </p>
-                <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
-                <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFiveOne = false">Close</button>
-            </modal>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 6">
-            <div>
-                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
-                <img 
-                    class="abs-content" 
-                    style="left: 70%; bottom: 19%; width: 20%; box-shadow: 1px 1px 2px 2px #ccc;" 
-                    src="./assets/images/elderly-living.jpg" 
-                    title="Photo credit: Photolia- W Man Woman Old3_00077398">
-                <p class="abs-content txt-md" style="left: 5%; bottom: 45%; width: 62%;" >Identifying the adult participant’s living arrangement is a requirement for CACFP.</p>
-                <p class="abs-content txt-md" style="left: 5%; bottom: 25%; width: 65%;">Click on the “Need to know” button now to further define what a group living arrangement is.</p>
-                <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-                <p class="abs-content pure-button is-org anim-shift" v-if="currentSlide === 6" @click="modalSixOne = true">Need<br>to<br>know!</p>
-            </div>
-
-            <modal v-if="modalSixOne">
-                <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">Definition: Group living arrangment</h2>
-                <p class="abs-content txt-md" style="left: 10%; bottom: 30%; width: 80%;" slot="body">
-                    "Residential communities which may or may not be subsidized by federal, State, or local funds but which are private 
-                    residences housing an individual or a group of individuals who are primarily responsible for their own care and who maintain a 
-                    presence in the community but who may need on-site monitoring".
-                </p>
-                <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
-                <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalSixOne = false">Close</button>
-            </modal>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 7">
-            <div>
-                <a href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/AdultEnrollmentForm-7-2018.pdf" target="_blank">
-                    <img 
-                        class="abs-content pure-button is-paperclip anim-shift is-grn" 
-                        v-if="currentSlide === 7" 
-                        src="./assets/images/paperclip.svg">
-                </a>
-                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Training Portal Home Enrollment Form</h1>
-                <p class="abs-content txt-md" style="left: 5%; bottom: 50%; width: 62%;" >The Adult Enrollment form collects the required information in one simple form!</p>
-                <p class="abs-content txt-md" style="left: 5%; bottom: 35%; width: 65%;">Click on the button with the paper clip located in the top right corner to download a copy of the form.</p>
-                <p class="abs-content txt-md anim-slide" style="left: -80%; bottom: 13%; width: 50%; animation-delay: 4s;" v-if="currentSlide === 7">
-                    Let’s take a closer look at the Adult Participant enrollment form from the State agency
-                </p>
-                <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-            </div>
-        </div>
-
-        <!-- SLIDE VIDEO -->
-        <!-- <div id="videoForm" class="abs-content" style="left: 10%; top: 5%;"></div> -->
-        <div v-if="currentSlide === 8">
-                <video id="videoOne" class="abs-content" style="left: 10%; top: 5%; width: 80%;" src="./assets/video/8.mp4" controls></video>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 9">
-            <img 
-                class="abs-content" 
-                style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
-                src="./assets/images/Joe Black Example.jpg" 
-                @click="wrongAnswer">
-            <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #1:</p>
-            <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
-            <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
-                Correct! Joe’s enrollment documentation is missing the information on his living arrangement. 
-                This makes the documentation invalid. Joe’s meals cannot be claimed until the enrollment 
-                documentation is returned to the participant and completed.
-            </p>
-            <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
-        </div>
-
-        <div v-if="currentSlide === 9">
-            <div class="abs-content" style="left: 6.5%; bottom: 47%; width: 38%; height: 10%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 10">
-            <img 
-                class="abs-content" 
-                style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
-                src="./assets/images/John Smith Example.jpg" 
-                @click="wrongAnswer">
-            <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #2:</p>
-            <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
-            <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
-                Correct! Because John is under the age of 60, the enrollment documentation must indicate if he is a 
-                “functionally impaired adult.” This box needs to be checked for any adult day care participant under 
-                the age of 60. As in the previous example, John’s meals cannot be claimed until the enrollment 
-                documentation is returned to the participant or their guardian and completed.
-            </p>
-            <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
-        </div>
-
-        <div v-if="currentSlide === 10">
-            <div class="abs-content" style="left: 6.3%; bottom: 64%; width: 38%; height: 9%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
-        </div>
-
-        <!-- NEW SLIDE  -->
-        <div v-if="currentSlide === 11">
-            <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Recording Keeping</h1>
-            <img 
-                class="abs-content" 
-                style="left: 50%; bottom: 23%; width: 40%;" 
-                src="./assets/images/data-records.png" 
-                title="photo credit: Data-MagnifyingGlass Fotolia_41471060_Subscription_XL / PadlockandKey_Fotolia_26005195_Subscription_XL">
-            <p class="abs-content txt-md" style="left: 5%; bottom: 20%; width: 40%;">
-                All CACFP documents must be maintained on file for 3 years plus the current year.<br><br>
-                But, keep adult enrollment documentation for all participants currently enrolled!
-            </p>
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 12">
-            <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%;">Enrollment Documentation Best Practice</h1>
-            <p class="abs-content txt-xlg" style="left: 5%; bottom: 50%; width: 80%">An enrollment policy would address these issues:</p>
-            <ul class="abs-content pure-menu-list txt-md" style="left: 10%; bottom: 13%; padding-bottom: 3%; width: 80%;">
-                <li class="pure-menu-item" style="padding-bottom: 3%;" >When the institution will collect enrollment documentation</li>
-                <li class="pure-menu-item" style="padding-bottom: 3%;">Where the enrollment documentation will be kept</li>
-                <li class="pure-menu-item" style="padding-bottom: 3%;">Who is responsible for verifying the enrollment documentation</li>
-                <li class="pure-menu-item">How to ensure that enrollment records are kept confidential</li>
-            </ul>
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 13">
-            <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%;">Enrollment Documentation Best Practice</h1>
-            <img class="abs-content" style="left: 70%; bottom: 25%; width: 30%;" src="./assets/images/best-practices.jpg" title="Photo credit: Best practice icon_Fotolia_140006081_Subscription_XXL">
-            <ul class="abs-content pure-menu-list txt-md" style="left: 8%; bottom: 10%; padding-bottom: 3%; width: 60%;">
-                <li class="pure-menu-item" style="padding-bottom: 3%;" >Keep enrollment documentation organized in a binder at the center</li>
-                <li class="pure-menu-item" style="padding-bottom: 3%;">Arrange enrollment documentation alphabetically</li>
-                <li class="pure-menu-item" style="padding-bottom: 3%;">Document participant withdrawal date on the enrollment documentation</li>
-                <li class="pure-menu-item" style="padding-bottom: 3%;">Before filing your monthly claim, ensure that all enrollment documentation is complete, including the date and signature</li>
-            </ul>
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 14">
-            <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 15">
-            <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 16">
-            <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
-            <p class="abs-content txt-sm footer">Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp" target="_blank">Training Portal Home</a></p>
-        </div>
-
-        <!-- NEW SLIDE -->
-        <div v-if="currentSlide === 17">
-            <img 
-                class="abs-content" 
-                style="left: 20%; top: 5%; width: 60%;" 
-                src="./assets/images/questions-concerns.jpg">
-            <div v-if="showFinish">
-                <a class="abs-content pure-button txt-btn" style="bottom: 10%; right: 1%; background-color: #fca424;" href="https://ncnutrition.adobeconnect.com/adult-enrollment-tp">Exit to Training Portal</a>     
-                <button class="abs-content pure-button txt-btn" style="bottom: 10%; left: 1%; background-color: #fca424;" @Click="slideFinish()">Return to the beginning</a>     
-            </div>
-        </div>
-      </div>
-    </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-	<script src="./main-compiled.js"></script>
+        <title>Child Enrollment</title>
     
-  </body>
+    </head>
+    <body>
+
+        <noscript>
+            <strong>We're sorry but adult-enrollment doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        </noscript>
+    
+        <!-- COMPONENT FOR DEFAULT MODAL -->
+        <script type="text/x-template" id="modal-template">
+            <div class="modal-mask">
+                <div class="modal-container"
+                    role="dialog"
+                    aria-labelledby="pop-up textbox"
+                    aria-describedby="a text box of additional information">
+
+                    <header class="modal-header">
+                        <slot name="header"></slot>
+                    </header>
+
+                    <section class="modal-body">
+                        <slot name="body"></slot>
+                    </section>
+
+                    <footer class="modal-footer">
+                        <slot name="footer"></slot>
+                    </footer>
+
+                </div>
+            </div>
+        </script>
+
+        <!-- COMPONENT FOR DEFAULT FOOTER -->
+        <script type="text/x-template" id="footer-template">
+            
+            <footer 
+                class="abs-content txt-sm footer">
+                Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/child-enrollment-tp" target="_blank">Training Portal Home</a>
+            </footer>
+
+        </script>
+    
+        <div id="app" class="main-container">
+            
+            <!-- GLOBAL IMAGES AND NAV BAR IN MOST SLIDES -->
+            <img 
+                class="background-img" 
+                :src="bgImgSrc">
+        
+            <div class="navBar" v-if="showNav" style= "z-index: 10;">
+                
+                <img
+                    v-bind:class="{ disabled: previousDisabled }"
+                    class="abs-content pure-button arrow-previous"
+                    src="./assets/images/left-arrow.svg"
+                    @click="previous()">
+                
+                <img
+                    v-bind:class="{ 'attention-play': playAttention, disabled: playDisabled  }"
+                    class="abs-content pure-button audio-button"
+                    style="right: 12%;" src="./assets/images/play.svg"
+                    @Click="playMedia()">
+                
+                <img
+                    v-bind:class="{ disabled: pauseDisabled  }"
+                    class="abs-content pure-button audio-button"
+                    style="right: 6.5%;" src="./assets/images/pause.svg"
+                    @Click="pauseMedia()">
+            
+                <img
+                    v-bind:class="{ 'attention-next': nextAttention }"
+                    class="abs-content pure-button arrow-next"
+                    src="./assets/images/right-arrow.svg"
+                    @click="next()">
+            
+            </div>
+
+            <!-- NEW SLIDE: GET STARTED - HAS OWN FUNCTION -->
+            <div v-if="currentSlide === 0">
+
+                <img
+                    class="abs-content img-logo" 
+                    style="left: 10%; bottom: 50%;" 
+                    src="./assets/images/state-logo.jpg"
+                    alt="State of North Caroline seal">
+
+                <button 
+                    class="abs-content pure-button txt-btn" 
+                    style="bottom: 20%; right: 1%; background-color: #fca424;" 
+                    @Click="slideWelcome()">GET STARTED</button>
+
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 25%; bottom: 45%; width: 70%;">
+                    Child Enrollment Documentation Training</h1>
+
+                <p
+                    class="abs-content txt-md"
+                    style="left: 3%; bottom: 8%;">
+                    Presenter: Jonathan Dudzik</p>
+
+                <my-footer/>
+
+            </div>
+
+            <!-- NEW SLIDE OBJECTIVES - DOES NOT HAVE OWN FUNCTION -->
+            <div v-if="currentSlide === 1">
+                
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 75%; width: 70%;">
+                    Module Objectives</h1>
+
+                <img 
+                    class="abs-content" 
+                    style="right: 0%; bottom: 30%; width: 35%;"
+                    src="./assets/images/01-checkboxes.jpg" 
+                    title="Photo credit: CheckBoxes Fotolia_34846078_Subscription_XXL">
+                
+                <ol 
+                    class="abs-content txt-md" 
+                    style="left: 5%; bottom: 15%; width: 45%">   
+                    
+                    <li 
+                        style="padding-bottom: 3%;">
+                        List the types of institutions that require enrollment documentation</li>
+                    
+                    <li 
+                        style="padding-bottom: 3%;">
+                        Identify enrollment documentation regulations and requirements</li>
+                    
+                    <li 
+                        style="padding-bottom: 3%;">
+                        Identify the NC CACFP Child Participant Enrollment Form</li>
+                    
+                    <li 
+                        style="padding-bottom: 3%;">
+                        And accurately assess enrollment documentation</li></ol>
+
+                <my-footer/>
+                
+            </div>
+
+            <!-- NEW SLIDE NON-EXEMPT INSTITUTIONS - DOES HAVE OWN MODAL -->
+            <div v-if="currentSlide === 2">
+            
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 75%; width: 70%;">
+                    Child Care Requirements</h1>
+
+                <p 
+                    class="abs-content txt-lg" 
+                    style="left: 5%; bottom: 55%; width: 80%;">
+                    Which child care programs that need enrollment documentation?</p>
+
+                <p 
+                    class="abs-content txt-lg anim-slide" 
+                    style="left: -95%; bottom: 18%; width: 65%; animation-delay: 4s;">
+                    All types of centers require enrollment documentation, except for emergency shelters and at-risk afterschool care centers.</p>
+
+                <p 
+                    class="abs-content pure-button is-grn anim-shift" 
+                    @click="modalTwoOneFunc()">Good<br>to<br>know!</p>
+
+                <modal v-if="modalTwoOne">
+
+                    <h2 
+                        class="abs-content txt-lg " 
+                        style="left: 10%; bottom: 70%;" 
+                        slot="header">Examples of institutions that need enrollment documentation:</h2>
+                    
+                    <p 
+                        class="abs-content txt-lg" 
+                        style="left: 15%; bottom: 30%; width: 65%;" 
+                        slot="body">Licensed centers, preschools, Head Start Programs, day care homes, and outside school hours
+                        care centers (if they are a part of a traditional child care center).</p>
+                    
+                    <p 
+                        class="abs-content txt-xsm" 
+                        style="left: 75%; bottom: 7%;" 
+                        slot="footer">Source: <a href="https://www.ecfr.gov/cgi-bin/text-idx?SID=9c3a6681dbf6aada3632967c4bfeb030&mc=true&node=pt7.4.226&rgn=div5#se7.4.226_115" 
+                        target="_blank"> USDA: 7 CFR 226.15</a></p>
+                    
+                    <button 
+                        class="abs-content txt-sm pure-button" 
+                        style="left: 50%; bottom: 5%;" 
+                        slot="footer" 
+                        @click="closeModal()">Close</button>
+
+                </modal>
+                
+                <my-footer/>
+
+            </div>
+
+            <!-- NEW SLIDE
+            <div v-if="currentSlide === 3">
+                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
+                <p class="abs-content txt-lg" style="left: 10%; bottom: 40%; width: 70%;">Why must adult day care programs collect and maintain enrollment documentation?</p>
+                <my-footer/>
+                <p class="abs-content txt-xlg anim-slide" style="left: -60%; bottom: 20%; animation-delay: 4s;" v-if="currentSlide === 3">…It’s in the regulations.</p>
+                <p class="abs-content pure-button is-grn anim-shift" v-if="currentSlide === 3" @click="modalThreeOne = true">Good<br>to<br>know!</p>
+            </div>
+
+            <modal v-if="modalThreeOne">
+                <h2 class="abs-content txt-lg " style="left: 20%; bottom: 75%;" slot="header">Regulations in the CACFP:</h2>
+                <p class="abs-content txt-md" style="left: 10%; bottom: 30%; width: 70%;" slot="body">What we mean when we refer to the "regulations" is the Code of Federal Regulations (CFR). The CFR is a codification of general
+                    and permanent rules published in the Federal Register by the departments and agencies of the Federal Government produced by the Office of the Federal
+                    Register and the Government Publishing Office.</p>
+                <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
+                <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer" @click="modalThreeOne = false">Close</button>
+            </modal> -->
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 4">
+                <div>
+                    <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
+                    <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 40%;" @click="modalFourOne = true">Regulation: 226.19a(b)(8)</p>
+                    <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 20%;" @click="modalFourTwo = true">Regulation: 226.19a(b)(10)</p>
+                    <p class="abs-content txt-md" style="left: 5%; bottom: 60%;">Click on each regulation below to take a closer look!</p>
+                    <my-footer/>
+                </div>
+
+                <modal v-if="modalFourOne">
+                    <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">7 CFR 226.19a(b)(8)</h2>
+                    <p class="abs-content txt-md" style="left: 10%; bottom: 40%; width: 70%;" slot="body">
+                        "Adult day care centers shall collect and maintain documentation of the enrollment of each 
+                        adult participant including information used to determine eligibility for free and reduced price meals."
+                    </p>
+                    <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
+                    <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFourOne = false">close</button>
+                </modal>
+
+                <modal v-if="modalFourTwo">
+                    <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">7 CFR 226.19a(b)(10)</h2>
+                    <p class="abs-content txt-md" style="left: 10%; bottom: 10%; width: 80%" slot="body">
+                        "Each adult day care center shall maintain records on the age of each enrolled person.
+                        In addition, each adult day care center shall maintain records which demonstrate that each 
+                        enrolled person under the age of 60 meets the functional impairment eligibility requirements 
+                        established under the definition of “functionally impaired adult” contained in this part. 
+                        Finally, each adult day care center shall maintained records which document that qualified 
+                        adult day care participants reside in their own homes (whether alone or with spouses, 
+                        children or guardians) or in group living arrangements"
+                    </p>
+                    <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
+                    <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFourTwo = false">Close</button>
+                </modal>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 5">
+                <div>
+                    <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
+                    <img 
+                        class="abs-content" 
+                        style="left: 50%; bottom: 23%; width: 40%; box-shadow: 1px 1px 2px 2px #ccc;" 
+                        src="./assets/images/dog-disabled-owner.jpg" 
+                        title="photo credit: Labrador guide dog and his disabled owner_Fotolia_113482366_Subscription_XXL.jpg">
+                    <p class="abs-content txt-md" style="left: 5%; bottom: 30%; width: 40%;">Click on the “Need to know” button now to further define what Functionally Impaired Adult means.</p>
+                    <my-footer/>
+                    <p class="abs-content pure-button is-org anim-shift" v-if="currentSlide === 5" @click="modalFiveOne = true">Need<br>to<br>know!</p>
+                </div>
+
+                <modal v-if="modalFiveOne">
+                    <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">Definition: Functionally Impaired Adult</h2>
+                    <p class="abs-content txt-sm" style="left: 10%; bottom: 10%; width: 80%;" slot="body">
+                        "Functionally impaired adult means chronically impaired disabled persons 18 years of age or older,
+                        including victims of Alzheimer's disease and related disorders with neurological and
+                        organic brain dysfunction, who are physically or mentally impaired to the extent that their capacity for
+                        independence and their ability to carry out activities of daily living is markedly limited. Activities of
+                        daily living include, but are not limited to, adaptive activities such as cleaning, shopping, cooking,
+                        taking public transportation, maintaining a residence, caring appropriately for one's grooming or hygiene,
+                        using telephones and directories, or using a post office. Marked limitations refer to the severity of impairment,
+                        and not the number of limited activities, and occur when the degree of limitation is such as to seriously interfere
+                        with the ability to function independently".
+                    </p>
+                    <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
+                    <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFiveOne = false">Close</button>
+                </modal>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 6">
+                <div>
+                    <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
+                    <img 
+                        class="abs-content" 
+                        style="left: 70%; bottom: 19%; width: 20%; box-shadow: 1px 1px 2px 2px #ccc;" 
+                        src="./assets/images/elderly-living.jpg" 
+                        title="Photo credit: Photolia- W Man Woman Old3_00077398">
+                    <p class="abs-content txt-md" style="left: 5%; bottom: 45%; width: 62%;" >Identifying the adult participant’s living arrangement is a requirement for CACFP.</p>
+                    <p class="abs-content txt-md" style="left: 5%; bottom: 25%; width: 65%;">Click on the “Need to know” button now to further define what a group living arrangement is.</p>
+                    <my-footer/>
+                    <p class="abs-content pure-button is-org anim-shift" v-if="currentSlide === 6" @click="modalSixOne = true">Need<br>to<br>know!</p>
+                </div>
+
+                <modal v-if="modalSixOne">
+                    <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">Definition: Group living arrangment</h2>
+                    <p class="abs-content txt-md" style="left: 10%; bottom: 30%; width: 80%;" slot="body">
+                        "Residential communities which may or may not be subsidized by federal, State, or local funds but which are private 
+                        residences housing an individual or a group of individuals who are primarily responsible for their own care and who maintain a 
+                        presence in the community but who may need on-site monitoring".
+                    </p>
+                    <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
+                    <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalSixOne = false">Close</button>
+                </modal>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 7">
+                <div>
+                    <a href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/AdultEnrollmentForm-7-2018.pdf" target="_blank">
+                        <img 
+                            class="abs-content pure-button is-paperclip anim-shift is-grn" 
+                            v-if="currentSlide === 7" 
+                            src="./assets/images/paperclip.svg">
+                    </a>
+                    <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Training Portal Home Enrollment Form</h1>
+                    <p class="abs-content txt-md" style="left: 5%; bottom: 50%; width: 62%;" >The Adult Enrollment form collects the required information in one simple form!</p>
+                    <p class="abs-content txt-md" style="left: 5%; bottom: 35%; width: 65%;">Click on the button with the paper clip located in the top right corner to download a copy of the form.</p>
+                    <p class="abs-content txt-md anim-slide" style="left: -80%; bottom: 13%; width: 50%; animation-delay: 4s;" v-if="currentSlide === 7">
+                        Let’s take a closer look at the Adult Participant enrollment form from the State agency
+                    </p>
+                    <my-footer/>
+                </div>
+            </div>
+
+            <!-- SLIDE VIDEO -->
+            <!-- <div id="videoForm" class="abs-content" style="left: 10%; top: 5%;"></div> -->
+            <div v-if="currentSlide === 8">
+                    <video id="videoOne" class="abs-content" style="left: 10%; top: 5%; width: 80%;" src="./assets/video/8.mp4" controls></video>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 9">
+                <img 
+                    class="abs-content" 
+                    style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
+                    src="./assets/images/Joe Black Example.jpg" 
+                    @click="wrongAnswer">
+                <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #1:</p>
+                <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
+                <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
+                    Correct! Joe’s enrollment documentation is missing the information on his living arrangement. 
+                    This makes the documentation invalid. Joe’s meals cannot be claimed until the enrollment 
+                    documentation is returned to the participant and completed.
+                </p>
+                <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
+            </div>
+
+            <div v-if="currentSlide === 9">
+                <div class="abs-content" style="left: 6.5%; bottom: 47%; width: 38%; height: 10%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 10">
+                <img 
+                    class="abs-content" 
+                    style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
+                    src="./assets/images/John Smith Example.jpg" 
+                    @click="wrongAnswer">
+                <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #2:</p>
+                <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
+                <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
+                    Correct! Because John is under the age of 60, the enrollment documentation must indicate if he is a 
+                    “functionally impaired adult.” This box needs to be checked for any adult day care participant under 
+                    the age of 60. As in the previous example, John’s meals cannot be claimed until the enrollment 
+                    documentation is returned to the participant or their guardian and completed.
+                </p>
+                <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
+            </div>
+
+            <div v-if="currentSlide === 10">
+                <div class="abs-content" style="left: 6.3%; bottom: 64%; width: 38%; height: 9%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
+            </div>
+
+            <!-- NEW SLIDE  -->
+            <div v-if="currentSlide === 11">
+                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Recording Keeping</h1>
+                <img 
+                    class="abs-content" 
+                    style="left: 50%; bottom: 23%; width: 40%;" 
+                    src="./assets/images/data-records.png" 
+                    title="photo credit: Data-MagnifyingGlass Fotolia_41471060_Subscription_XL / PadlockandKey_Fotolia_26005195_Subscription_XL">
+                <p class="abs-content txt-md" style="left: 5%; bottom: 20%; width: 40%;">
+                    All CACFP documents must be maintained on file for 3 years plus the current year.<br><br>
+                    But, keep adult enrollment documentation for all participants currently enrolled!
+                </p>
+                <my-footer/>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 12">
+                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%;">Enrollment Documentation Best Practice</h1>
+                <p class="abs-content txt-xlg" style="left: 5%; bottom: 50%; width: 80%">An enrollment policy would address these issues:</p>
+                <ul class="abs-content pure-menu-list txt-md" style="left: 10%; bottom: 13%; padding-bottom: 3%; width: 80%;">
+                    <li class="pure-menu-item" style="padding-bottom: 3%;" >When the institution will collect enrollment documentation</li>
+                    <li class="pure-menu-item" style="padding-bottom: 3%;">Where the enrollment documentation will be kept</li>
+                    <li class="pure-menu-item" style="padding-bottom: 3%;">Who is responsible for verifying the enrollment documentation</li>
+                    <li class="pure-menu-item">How to ensure that enrollment records are kept confidential</li>
+                </ul>
+                <my-footer/>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 13">
+                <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 80%;">Enrollment Documentation Best Practice</h1>
+                <img class="abs-content" style="left: 70%; bottom: 25%; width: 30%;" src="./assets/images/best-practices.jpg" title="Photo credit: Best practice icon_Fotolia_140006081_Subscription_XXL">
+                <ul class="abs-content pure-menu-list txt-md" style="left: 8%; bottom: 10%; padding-bottom: 3%; width: 60%;">
+                    <li class="pure-menu-item" style="padding-bottom: 3%;" >Keep enrollment documentation organized in a binder at the center</li>
+                    <li class="pure-menu-item" style="padding-bottom: 3%;">Arrange enrollment documentation alphabetically</li>
+                    <li class="pure-menu-item" style="padding-bottom: 3%;">Document participant withdrawal date on the enrollment documentation</li>
+                    <li class="pure-menu-item" style="padding-bottom: 3%;">Before filing your monthly claim, ensure that all enrollment documentation is complete, including the date and signature</li>
+                </ul>
+                <my-footer/>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 14">
+                <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
+                <my-footer/>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 15">
+                <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
+                <my-footer/>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 16">
+                <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
+                <my-footer/>
+            </div>
+
+            <!-- NEW SLIDE -->
+            <div v-if="currentSlide === 17">
+                <img 
+                    class="abs-content" 
+                    style="left: 20%; top: 5%; width: 60%;" 
+                    src="./assets/images/questions-concerns.jpg">
+                <div v-if="showFinish">
+                    <a class="abs-content pure-button txt-btn" style="bottom: 10%; right: 1%; background-color: #fca424;" href="https://ncnutrition.adobeconnect.com/child-enrollment-tp">Exit to Training Portal</a>     
+                    <button class="abs-content pure-button txt-btn" style="bottom: 10%; left: 1%; background-color: #fca424;" @Click="slideFinish()">Return to the beginning</a>     
+                </div>
+            </div>   
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <script src="./main-compiled.js"></script>
+        
+    </body>
 </html>

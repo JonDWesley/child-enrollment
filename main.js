@@ -5,13 +5,17 @@ Vue.component ('modal', {
   template: "#modal-template"
 })
 
+Vue.component ('my-footer', {
+  template: "#footer-template"
+})
+
 var app = new Vue({
   el: '#app',
   data() {
     return {
       currentSlide: 0,
       bgImgSrc: './assets/images/slide-standard.png',
-      showNav: false,
+      showNav: true,
       showFinish: false,
       previousDisabled: false,
       playDisabled: false,
@@ -21,7 +25,7 @@ var app = new Vue({
       rightAnswerMsg: false,
       wrongAnswerMsg: false,
       highlightAnswer: '',
-      modalThreeOne: false,
+      modalTwoOne: false,
       modalFourOne: false,
       modalFourTwo: false,
       modalFiveOne: false,
@@ -85,6 +89,20 @@ var app = new Vue({
     wrongAnswer() {
       this.rightAnswerMsg = false;
       this.wrongAnswerMsg = true;
+    },
+
+    modalTwoOneFunc() {
+      console.log("modal open");
+      this.modalTwoOne = true;
+      audio.src = "./assets/audio/test.mp3";
+      audio.play();
+    },
+
+    closeModal() {
+      console.log("modal closed");
+      this.modalTwoOne = false;
+      audio.src = "";
+      audio.pause();
     },
 
     slideControl() {
