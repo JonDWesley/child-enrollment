@@ -49,7 +49,6 @@
     right: 17.5%;
     width: 5%;
     padding: 1%;
-    cursor: pointer;
     transform: rotate(0deg);
   }
 
@@ -58,7 +57,6 @@
     right: 1%;
     width: 5%;
     padding: 1%;
-    cursor: pointer;
     transform: rotate(180deg);
   }
   
@@ -66,9 +64,8 @@
     bottom: 2.5%;
     width: 5%;
     padding: 1%;
-    cursor: pointer;
   }
-  
+
   .footer {
     left: 3%;
     bottom: 6%;
@@ -76,59 +73,59 @@
   
   .img-lg {
     height: 100%;
+    
   }
 
   .img-logo {
     width: 12%;
   }
-  
-  .txt-xlg {
-    font-size: 4vw;
-  }
-
-  .txt-lg  {
-    font-size: 3vw;
-  }
-
-  .txt-md {
-    font-size: 2.5vw;
-  }
-  
-  .txt-sm {
-    font-size: 2.0vw;
-  }
-
-  .txt-xsm {
-    font-size: 1vw;
-  }
-
-  .txt-btn {
-    font-size: 3vw;
-    box-shadow: 1px 3px 2px #777777;
-  }
 
   .photo {
     box-shadow: 1px 1px 2px 2px #ccc;
   }
+  
+  .txt-xlg {
+    font-size: 4vw;
+    color: #00376d;
+  }
 
-  .is-grn {
-    right: 1%;
-    top: 0.1%;
-    background-color: #588023;
-    font-size: 1.5vw;
-    color: white;
-    box-shadow: 1px 3px 2px #777777;
+  .txt-lg  {
+    font-size: 3vw;
+    color: #00376d;
+  }
+
+  .txt-md {
+    font-size: 2.5vw;
+    color: #00376d;
   }
   
-  .is-org {
+  .txt-sm {
+    font-size: 2.0vw;
+    color: #00376d;
+  }
+
+  .txt-xsm {
+    font-size: 1vw;
+    color: #00376d;
+  }
+
+  .txt-btn {
+    font-size: 2.5vw;
+    box-shadow: 1px 3px 2px #777777;
     background-color: #fca424;
+    color: #3A2F33;
+  }
+  
+  .corner-box-org {
+    background-color: #fca424;
+    color: #3A2F33;
     right: 1%;
     top: 0.1%;
     font-size: 1.5vw;
     box-shadow: 1px 3px 2px #777777;
   }
  
-  .is-paperclip {
+  .corner-box-paperclip {
     top: 2.5%;
     width: 8%;
     height: 14%
@@ -142,7 +139,18 @@
     opacity: .0;
     cursor: default;
   }
+  
+  /* ////////////////////////// */
+    /* Radio Buttons CSS */
+  /* ////////////////////////// */
 
+  .form-radio {
+    position: absolute;
+    left: -10%;
+    height: 2vw;
+    width: 2vw;
+    cursor: pointer;  
+  }
   
   /* ////////////////////////// */
     /* modal CSS */

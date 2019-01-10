@@ -1,20 +1,19 @@
 # adult-enrollment
 
 #TODO Keep these notes in order to move changes to other modules :
-###. remove the console.log showing "true"
-###. make question pdf full screen and scollable
-###. make question answer come up on a modal and make nav bar sticky with a white background
-###. get second audio for answers to play only on a correct answer
-###. fix reference in audio track to nutritionnc.com home page in footer (incorrect)
-###. Senario #2 has an akward delay in the start of the audio
-###. fix intro video to correctly illistrate how nav buttons work
-###. fix nextAttention animation in IE
-###. remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
-###. clean up code
-###. improve notes within code
-###. Improve accesability
+* make question pdf full screen and scollable
+* make question answer come up on a modal and make nav bar sticky with a white background
+* get second audio for answers to play only on a correct answer
+* fix reference in audio track to nutritionnc.com home page in footer (incorrect)
+* Senario #2 has an akward delay in the start of the audio
+* fix intro video to correctly illistrate how nav buttons work
+* fix nextAttention animation in IE
+* remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
+* clean up code
+* improve notes within code
+* Improve accesability
 
-# Resources, links, and files needed:
+## Resources, links, and files needed:
 
 ## Project setup
 ```
