@@ -15,7 +15,7 @@ var app = new Vue({
       //////////////////////////////////
       // rendered slides properties
       //////////////////////////////////
-      currentSlide: 10,
+      currentSlide: 12,
       bgImgSrc: './assets/images/slide-standard.png',
       showModal: false,
       showModalTwo: false,
@@ -126,8 +126,8 @@ var app = new Vue({
       this.highlightAnswer = 'is-highlighted';
     },
     wrongAnswer: function wrongAnswer() {
-      this.rightAnswerMsg = false;
       this.wrongAnswerMsg = true;
+      this.rightAnswerMsg = false;
     },
     slideControl: function slideControl() {
       if (this.currentSlide === 0) {
@@ -168,52 +168,53 @@ var app = new Vue({
 
       if (this.currentSlide === 7) {
         audio.src = "./assets/audio/7.mp3";
-        this.bgImgSrc = "./assets/images/slide-standard.png";
       }
 
       if (this.currentSlide === 8) {
-        audio.src = "";
+        audio.src = "#";
         this.currentQuestion = 1;
       }
 
       if (this.currentSlide === 9) {
-        audio.src = "./assets/audio/test.mp3";
+        audio.src = "#";
       }
 
-      if (this.currentSlide === 110) {
-        audio.src = "./assets/audio/test.mp3"; //reset the correct answer highlighting and message
-
-        this.rightAnswerMsg = false;
-        this.highlightAnswer = '';
-        this.bgImgSrc = "./assets/images/slide-blank.png";
+      if (this.currentSlide === 10) {
+        audio.src = "#";
       }
 
       if (this.currentSlide === 11) {
-        audio.src = "./assets/audio/11.mp3";
+        audio.src = "#";
       }
 
       if (this.currentSlide === 12) {
-        audio.src = "./assets/audio/12.mp3";
+        audio.src = "#";
       }
 
       if (this.currentSlide === 13) {
-        audio.src = "./assets/audio/13.mp3";
+        audio.src = "#";
+        this.bgImgSrc = "./assets/images/slide-standard.png";
+        this.showNav = true;
       }
 
       if (this.currentSlide === 14) {
-        audio.src = "./assets/audio/14.mp3";
+        audio.src = "#";
+        this.bgImgSrc = "./assets/images/child-enroll-sim1.jpg";
+        this.showNav = false;
       }
 
       if (this.currentSlide === 15) {
-        audio.src = "./assets/audio/15.mp3";
+        audio.src = "#";
+        this.bgImgSrc = "./assets/images/slide-standard.png";
+        this.showNav = true;
       }
 
       if (this.currentSlide === 16) {
-        audio.src = "./assets/audio/16.mp3";
+        audio.src = "#";
       }
 
       if (this.currentSlide === 17) {
-        audio.src = "./assets/audio/17.mp3";
+        audio.src = "#";
         this.showFinish = true;
         this.showNav = false;
         audio.autoplay = true;

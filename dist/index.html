@@ -246,9 +246,9 @@
                     Some institutions are exempt from collecting CACFP Enrollment documentation.</p>
                     
                 <p 
-                class="abs-content txt-md anim-slide" 
-                style="left: -95%; bottom: 20%; width: 65%; animation-delay: 4s;">
-                Before we talk about them, click the next button to test your knowledge of what we have covered so far!</p>
+                    class="abs-content txt-md anim-slide" 
+                    style="left: -95%; bottom: 20%; width: 65%; animation-delay: 4s;">
+                    Before we talk about them, click the next button to test your knowledge of what we have covered so far!</p>
                     
                 <my-footer/>
             </div>   
@@ -736,74 +736,148 @@
                 
                 </div>
 
+            <!-- SLIDE: STATE ENROLLMENT FORM - TWO PARAGRAPHS -->
+            <div v-if="currentSlide === 12">
+                    
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 80%; width: 70%;">
+                    State Child Enrollment Form</h1>
+
+                <a 
+                    href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/ChildEnrollmentForm-7-2018.pdf" target="_blank">
+                    <img 
+                        class="abs-content pure-button corner-box-paperclip anim-shift is-grn"
+                        src="./assets/images/paperclip.svg"></a>
+
+                    
+                <p 
+                    class="abs-content txt-lg" 
+                    style="left: 5%; bottom: 40%; width: 62%;" >
+                    The state agency offers the CACFP Child Participant Enrollment Form to assist 
+                    you in capturing all the required enrollment documentation information on one page!</p>
+                    
+                <p 
+                    class="abs-content txt-md anim-slide" 
+                    style="left: -70%; bottom: 20%; width: 50%; animation-delay: 4s;">
+                    Download the form now by click on the button with the paperclip located in the top right corner!</p>
+
+            </div>
+
             <!-- SLIDE VIDEO -->
+            <div v-if="currentSlide === 13">
+                    
+                <video 
+                    id="videoOne" 
+                    class="abs-content" 
+                    style="left: 10%; top: 5%; width: 80%;" 
+                    src="./assets/video/8.mp4" 
+                    controls></video>
+
+            </div>
+
+            <!-- SLIDE: ENROLLMENT FORM PRACTICE - SIMULATION -->
+            <div v-if="currentSlide === 14">
+                
+                <div 
+                    class="abs-content" 
+                    style="top: 0%; width: 100%; height: 100%;"
+                    @click="wrongAnswer()">
+
+                    <img    
+                        class="abs-content pure-button arrow-previous-simulation"
+                        src="./assets/images/left-arrow.svg"
+                        @click="previous()">
+                    
+                    <img 
+                        class="abs-content pure-button audio-button-simulation"
+                        style="right: 12%;" src="./assets/images/play.svg"
+                        @Click="playMedia()">
+                    
+                    <img
+                        class="abs-content pure-button audio-button-simulation"
+                        style="right: 6.5%;" src="./assets/images/pause.svg"
+                        @Click="pauseMedia()">
+                
+                    <img
+                        class="abs-content pure-button arrow-next-simulation"
+                        src="./assets/images/right-arrow.svg"
+                        @click="next()">
+        
+                    <p 
+                        v-show="rightAnswerMsg"
+                        class="abs-content txt-md" 
+                        style="left: 5%; top: 5%; width: 50%; height: 15%; background-color: #faf393; padding: 5%; position: sticky;">
+                        Correct! Remember the following information in required to be filled out: child's normal days and hours of care, 
+                        meals normally received while in care.</p>
+
+                    <p 
+                        v-show="wrongAnswerMsg"
+                        class="abs-content txt-sm" 
+                        style="left: 0%; top: 0%; width: 20%; height: 4%; background-color: #faf393; padding: 1%; position: sticky;">
+                        That is incorrect. Try again...</p></div>
+
+                <div 
+                      
+                    class="abs-content" 
+                    style="left: 78%; top: 27%; width: 20%; height: 4%; z-index: 2;"
+                    v-bind:class="highlightAnswer"
+                    @click="rightAnswer()"></div>
+
+            </div>
+
+            <!-- SLIDE: BEST PRACTICES - FOUR  PARAGRAPHS -->
+            <div v-if="currentSlide === 15">
+                    
+                    <h1 
+                        class="abs-content txt-xlg" 
+                        style="left: 5%; bottom: 80%; width: 95%;">
+                        Enrollment Documentation Best Practices</h1>
+
+                    <img 
+                        class="abs-content" 
+                        style="right: 0%; bottom: 18%; width: 35%;"
+                        src="./assets/images/best-practices.jpg" 
+                        title="Photo credit: Lawbook_Fotolia_18168497_Subscription_L">
+                        
+                    <p 
+                        class="abs-content txt-md anim-slide" 
+                        style="left: -125%; bottom: 60%; width: 65%; animation-delay: 3s;">
+                        Many successful programs keep enrollment documentation organized in a binder at the center.</p>
+                    
+                    <p 
+                        class="abs-content txt-md anim-slide" 
+                        style="left: -125%; bottom: 40%; width: 65%; animation-delay: 5s;">
+                        In order to show that the documentation is updated annually, make sure the signatures are dated.</p>
+                    <p 
+                        class="abs-content txt-md anim-slide" 
+                        style="left: -125%; bottom: 20%; width: 65%; animation-delay: 7s;">
+                        Enrollment documentation should be verified for accuracy by a facility representative.</p>
+
+                    <my-footer/>
+
+                </div>   
+
+            <!-- NEW SLIDE -->
             <div v-if="currentSlide === 16">
-                    <video id="videoOne" class="abs-content" style="left: 10%; top: 5%; width: 80%;" src="./assets/video/8.mp4" controls></video>
-            </div>
-
-            <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 17">
-                <img 
-                    class="abs-content" 
-                    style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
-                    src="#" 
-                    @click="wrongAnswer">
-                <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #1:</p>
-                <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
-                <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
-                    Correct! Joe’s enrollment documentation is missing the information on his living arrangement. 
-                    This makes the documentation invalid. Joe’s meals cannot be claimed until the enrollment 
-                    documentation is returned to the participant and completed.
-                </p>
-                <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
-            </div>
-
-            <div v-if="currentSlide === 17">
-                <div class="abs-content" style="left: 6.5%; bottom: 47%; width: 38%; height: 10%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
-            </div>
-
-            <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 18">
-                <img 
-                    class="abs-content" 
-                    style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
-                    src="#" 
-                    @click="wrongAnswer">
-                <p class="abs-content txt-xlg" style="left: 50%; bottom: 70%; width: 45%">Review an enrollment <br> form - Senario #2:</p>
-                <p class="abs-content txt-sm" style="left: 50%; bottom: 60%; width: 45%;">Click in the section that is missing information.</p>
-                <p class="abs-content txt-sm" style="left: 50%; bottom: 20%;" v-show="rightAnswerMsg === true">
-                    Correct! Because John is under the age of 60, the enrollment documentation must indicate if he is a 
-                    “functionally impaired adult.” This box needs to be checked for any adult day care participant under 
-                    the age of 60. As in the previous example, John’s meals cannot be claimed until the enrollment 
-                    documentation is returned to the participant or their guardian and completed.
-                </p>
-                <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
-            </div>
-
-            <div v-if="currentSlide === 18">
-                <div class="abs-content" style="left: 6.3%; bottom: 64%; width: 38%; height: 9%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
-            </div>
-
-            <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 19">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 110">
+            <div v-if="currentSlide === 17">
                 <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 111">
+            <div v-if="currentSlide === 18">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 112">
+            <div v-if="currentSlide === 19">
                 <img 
                     class="abs-content" 
                     style="left: 20%; top: 5%; width: 60%;" 

@@ -66,6 +66,28 @@
     padding: 1%;
   }
 
+  .arrow-previous-simulation {
+    top: 1%;
+    right: 17.5%;
+    width: 5%;
+    padding: 1%;
+    transform: rotate(0deg);
+  }
+
+  .arrow-next-simulation {
+    top: 1%;
+    right: 1%;
+    width: 5%;
+    padding: 1%;
+    transform: rotate(180deg);
+  }
+  
+  .audio-button-simulation {
+    top: 1%;
+    width: 5%;
+    padding: 1%;
+  }
+
   .footer {
     left: 3%;
     bottom: 6%;
@@ -126,9 +148,13 @@
   }
  
   .corner-box-paperclip {
+    background-color: #588023;
+    color: #3A2F33;
+    right: 1%;
     top: 2.5%;
     width: 8%;
-    height: 14%
+    height: 14%;
+    box-shadow: 1px 3px 2px #777777;
   }
 
   .is-highlighted {
