@@ -46,20 +46,11 @@
 
         <!-- COMPONENT FOR DEFAULT FOOTER -->
         <script type="text/x-template" id="footer-template">
-            
             <footer 
-                class="abs-content txt-sm footer">
+                class="abs-content txt-xsm footer">
                 Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/child-enrollment-tp" target="_blank">Training Portal Home</a>
             </footer>
-
         </script>
-
-        <div 
-            id='testContainer' 
-            class="abs-content txt-xlg" 
-            style="left: 5%; bottom: 75%; width: 70%; display: none; z-index: 1;">
-            <p>here is some test text</p>
-        </div>
     
         <div id="app" class="main-container">
             
@@ -72,25 +63,27 @@
             <div class="navBar" v-if="showNav" style= "z-index: 10;">
                 
                 <img
-                    v-bind:class="{ disabled: previousDisabled }"
+                    v-if="previousEnabled"    
                     class="abs-content pure-button arrow-previous"
                     src="./assets/images/left-arrow.svg"
                     @click="previous()">
                 
                 <img
-                    v-bind:class="{ 'attention-play': playAttention, disabled: playDisabled  }"
+                    v-if="playEnabled" 
+                    v-bind:class="{ 'attention-play': playAttention}"
                     class="abs-content pure-button audio-button"
                     style="right: 12%;" src="./assets/images/play.svg"
                     @Click="playMedia()">
                 
                 <img
-                    v-bind:class="{ disabled: pauseDisabled  }"
+                    v-if="pauseEnabled"
                     class="abs-content pure-button audio-button"
                     style="right: 6.5%;" src="./assets/images/pause.svg"
                     @Click="pauseMedia()">
             
                 <img
-                    v-bind:class="{ 'attention-next': nextAttention, disabled: nextDisabled }"
+                    v-if="nextEnabled"
+                    v-bind:class="{ 'attention-next': nextAttention }"
                     class="abs-content pure-button arrow-next"
                     src="./assets/images/right-arrow.svg"
                     @click="next()">
@@ -163,7 +156,7 @@
                 
             </div>
 
-            <!-- SLIDE: NON-EXEMPT INSTITUTIONS - TWO PARAGRAPHS, ANIMATED TEXT AND LIST IN MODAL - HAS OWN MODAL -->
+            <!-- SLIDE: NON-EXEMPT INSTITUTIONS - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL -->
             <div v-if="currentSlide === 2">
             
                 <h1 
@@ -174,7 +167,7 @@
                 <p 
                     class="abs-content txt-lg" 
                     style="left: 5%; bottom: 55%; width: 80%;">
-                    Which child care programs that need enrollment documentation?</p>
+                    Which child care programs need enrollment documentation?</p>
 
                 <p 
                     class="abs-content txt-lg anim-slide" 
@@ -183,9 +176,9 @@
 
                 <p 
                     class="abs-content pure-button corner-box-org anim-shift" 
-                    @click="modalTwoOne = true">Need<br>to<br>know!</p>
+                    @click="showModal = true">Good<br>to<br>know!</p>
 
-                <modal v-if="modalTwoOne">
+                <modal v-if="showModal">
 
                     <h2 
                         class="abs-content txt-lg " 
@@ -231,7 +224,7 @@
                         class="abs-content txt-sm pure-button" 
                         style="left: 50%; bottom: 5%;" 
                         slot="footer" 
-                        @click="modalTwoOne = false;">Close</button>
+                        @click="showModal = false;">Close</button>
 
                 </modal>
                 
@@ -251,128 +244,505 @@
                     class="abs-content txt-lg" 
                     style="left: 5%; bottom: 45%; width: 62%;" >
                     Some institutions are exempt from collecting CACFP Enrollment documentation.</p>
-
+                    
                 <p 
-                    class="abs-content txt-md anim-slide" 
-                    style="left: -95%; bottom: 18%; width: 65%; animation-delay: 4s;">
-                    Before we talk about them, test your knowledge of what we have covered so far!</p>
-
+                class="abs-content txt-md anim-slide" 
+                style="left: -95%; bottom: 20%; width: 65%; animation-delay: 4s;">
+                Before we talk about them, click the next button to test your knowledge of what we have covered so far!</p>
+                    
                 <my-footer/>
             </div>   
+                
+            <!-- SLIDE: NON-EXEMPT INSTITUTIONS - QUIZ -->
+            <div v-if="currentSlide === 4">
+                <h1 
+                class="abs-content txt-xlg" 
+                style="left: 5%; bottom: 80%; width: 70%;">
+                Test Your Knowledge!</h1>
+                
+                <img 
+                class="abs-content" 
+                style="right: 0%; bottom: 18%; width: 35%;"
+                src="./assets/images/quiz-ready.jpg" 
+                title="Photo credit: AreYouReady Fotolia_40620786_Subscription_XL">
+                
+                <p 
+                class="abs-content txt-md" 
+                style="left: 5%; top: 12%; width: 80%;">{{ questionTxt }}</p>
+                
+                <form 
+                id="questionForm"
+                class="abs-content pure-form txt-md" 
+                style="left: 10%; bottom: 20%; width: 55%">
+                
+                    <label for="option-one" class="pure-radio">
+                    
+                        <input id="option-one" type="radio" name="answer" class="form-radio" value="0">
+                        
+                        <span id="choice1">{{ choice1 }}</span></label>
+                    
+                    <label for="option-two" class="pure-radio">
+                        
+                        <input id="option-two" type="radio" name="answer" class="form-radio" value="1">
+                        
+                        <span id="choice2">{{ choice2 }}</span></label>
+                        
+                    <label for="option-three" class="pure-radio">
+                        
+                        <input id="option-three" type="radio" name="answer" class="form-radio" value="2">
+                        
+                        <span id="choice3">{{ choice3 }}</span></label></form>
+                        
+                <button 
+                    class="abs-content pure-button txt-btn" 
+                    style="left: 10%; bottom: 3%;"  
+                    @click="quizSubmit()">
+                    Submit answer</button>
+                            
+                <modal v-if="modalQuiz">
+                    
+                    <h2 
+                    class="abs-content txt-lg " 
+                    style="left: 10%; bottom: 70%;" 
+                    slot="header">
+                    {{ quizModalHeading }}</h2>
+                    
+                    <p 
+                    class="abs-content txt-md" 
+                    style="left: 15%; bottom: 30%; width: 60%"
+                    slot="body">
+                    {{ quizModalBody }}</p>
+                    
+                    <button 
+                    class="abs-content txt-sm pure-button" 
+                    style="left: 50%; bottom: 5%;" 
+                    slot="footer" 
+                    @click="modalQuiz = false">Close</button>
+                    
+                </modal>
+                
+            </div>
+                        
+            <!-- SLIDE: EXEMPT INSTITUTIONS AT-RISK AFTER-SCHOOL - BASIC LIST -->
+            <div v-if="currentSlide === 5">
+                
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 70%; width: 70%;">
+                    Requirements: At-risk Afterschool Care</h1>
+                
+                <img 
+                    class="abs-content" 
+                    style="right: 0%; bottom: 20%; width: 25%;"
+                    src="./assets/images/requirements-aram.jpg" 
+                    title="Photo credit: AA-HispMiddleSchoolBoy Fotolia_34673951_Subscription_XXL">
+                    
+                <p 
+                    class="abs-content txt-lg" 
+                    style="left: 5%; bottom: 45%; width: 62%;" >
+                    At‐risk afterschool programs do have to keep the following records daily:</p>
 
-                <!-- SLIDE: NON-EXEMPT INSTITUTIONS - QUIZ -->
-                <div v-if="currentSlide === 4">
-                    <h1 
+                <ol 
+                    class="abs-content txt-md" 
+                    style="left: 5%; bottom: 15%; width: 50%">   
+                
+                    <li 
+                        style="padding-bottom: 3%;">
+                        Names of participants (daily roster)</li>
+                    
+                    <li 
+                        style="padding-bottom: 3%;">
+                        Number of snacks or meals delivered</li>
+                    
+                    <li 
+                        style="padding-bottom: 3%;">
+                        Number of snacks or meals served</li></ol>
+
+                <my-footer/>
+            
+            </div>
+
+            <!-- SLIDE: EXEMPT INSTITUTIONS EMERGENCY SHELTER - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL  -->
+            <div v-if="currentSlide === 6">
+                    
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 70%; width: 70%;">
+                    Requirements: Emergency Shelters</h1>
+                    
+                <p 
+                    class="abs-content txt-lg" 
+                    style="left: 5%; bottom: 45%; width: 62%;" >
+                    Emergency Shelters do not have to maintain CACFP enrollment documentation for children.</p>
+                    
+                <p 
+                    class="abs-content txt-md anim-slide" 
+                    style="left: -85%; bottom: 20%; width: 50%; animation-delay: 4s;">
+                    At minimum, they need to keep a list with each child's name, date of birth, and dates of residency in the shelter!</p>
+
+                <p 
+                    class="abs-content pure-button corner-box-org anim-shift" 
+                    @click="showModal = true">Good<br>to<br>know!</p>
+
+                <modal v-if="showModal">
+
+                    <h2 
+                        class="abs-content txt-lg " 
+                        style="left: 10%; bottom: 70%; width: 60%;" 
+                        slot="header">
+                        Additional Requirement <br> for at-risk-afterschool meals:</h2>
+
+                    <p 
+                        class="abs-content txt-md" 
+                        style="left: 15%; bottom: 35%; width: 65%;" 
+                        slot="body">
+                        Emergency shelters must ensure that only meals served to eligible resident children are claimed. Also,
+                        note that meals served to adults & non‐resident children are not reimbursable.</p>
+                    
+                    <p 
+                        class="abs-content txt-xsm" 
+                        style="left: 75%; bottom: 7%;" 
+                        slot="footer">
+                        Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">
+                        USDA: 7CFR Part 226</a></p>
+
+                    <button 
+                        class="abs-content txt-sm pure-button" 
+                        style="left: 50%; bottom: 5%;" 
+                        slot="footer" 
+                        @click="showModal = false;">Close</button>
+
+                </modal>
+                    
+                <my-footer/>
+
+            </div>   
+
+            <!-- SLIDE: EXEMPT INSTITUTIONS OUTSIDE SCHOOL HOURS CARE - BASIC LIST -->
+            <div v-if="currentSlide === 7">
+                
+                <h1 
+                class="abs-content txt-xlg" 
+                style="left: 2%; bottom: 80%; width: 98%;">
+                Requirements: Outside-School-Hours Care</h1>
+                
+                <p 
+                    class="abs-content txt-lg" 
+                    style="left: 5%; bottom: 60%; width: 80%;" >
+                    Centers that operate outside-school-hours care centers 
+                    must keep the following documentation:</p>
+
+                <ol 
+                    class="abs-content txt-md" 
+                    style="left: 5%; bottom: 30%; width: 80%">   
+                
+                    <li 
+                        style="padding-bottom: 2%;">
+                        Names of participants</li>
+                    
+                    <li 
+                        style="padding-bottom: 2%;">
+                        Attendance records</li>
+                    
+                    <li 
+                        style="padding-bottom: 2%;">
+                        Daily meal counts</li></ol>
+
+                <p 
+                    class="abs-content txt-md" 
+                    style="left: 5%; bottom: 7%; width: 80%;" >
+                    Remember, if an outside-school-hours care center is operated as part of a child care center 
+                    that participates in the CACFP, it will require CACFP enrollment documentation.</p>
+
+                <my-footer/>
+            
+            </div>
+
+            <!-- SLIDE: EXEMPT INSTITUTIONS - QUIZ -->
+            <div v-if="currentSlide === 8">
+                
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 80%; width: 70%;">
+                    Test Your Knowledge!</h1>
+                
+                <p 
+                    class="abs-content txt-md" 
+                    style="left: 5%; top: 12%; width: 80%;">{{ questionTxt }}</p>
+                
+                <form 
+                    id="questionForm"
+                    class="abs-content pure-form txt-md" 
+                    style="left: 10%; bottom: 20%; width: 85%">
+                
+                    <label for="option-one" class="pure-radio">
+                    
+                        <input 
+                            id="option-one" type="radio" name="answer" class="form-radio" value="0" 
+                            class="abs-content" 
+                            style="left: -5%; margin-top: 1%;">
+                        
+                        <span id="choice1">{{ choice1 }}</span></label>
+                    
+                    <label for="option-two" class="pure-radio">
+                        
+                        <input 
+                            id="option-two" type="radio" name="answer" class="form-radio" value="1"
+                            class="abs-content" 
+                            style="left: -5%; margin-top: 1%;">
+                        
+                        <span id="choice2">{{ choice2 }}</span></label>
+                        
+                    <label for="option-three" class="pure-radio">
+                        
+                        <input 
+                            id="option-three" type="radio" name="answer" class="form-radio" value="2"
+                            class="abs-content" 
+                            style="left: -5%; margin-top: 1%;">
+                        
+                        <span id="choice3">{{ choice3 }}</span></label></form>
+                        
+                <button 
+                    class="abs-content pure-button txt-btn" 
+                    style="left: 10%; bottom: 3%;"  
+                    @click="quizSubmit()">
+                    Submit answer</button>
+                            
+                <modal v-if="modalQuiz">
+                    
+                    <h2 
+                    class="abs-content txt-lg " 
+                    style="left: 10%; bottom: 70%;" 
+                    slot="header">
+                    {{ quizModalHeading }}</h2>
+                    
+                    <p 
+                    class="abs-content txt-md" 
+                    style="left: 15%; bottom: 30%; width: 60%"
+                    slot="body">
+                    {{ quizModalBody }}</p>
+                    
+                    <button 
+                    class="abs-content txt-sm pure-button" 
+                    style="left: 50%; bottom: 5%;" 
+                    slot="footer" 
+                    @click="modalQuiz = false">Close</button>
+                    
+                </modal>
+                
+            </div>
+                        
+            <!-- SLIDE: CHILD CARE ENROLLMENT REGS - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL -->
+            <div v-if="currentSlide === 9">
+            
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 70%; width: 70%;">
+                    Enrollment Documentation Regulations</h1>
+
+                <p 
+                    class="abs-content txt-lg" 
+                    style="left: 5%; bottom: 50%; width: 80%;">
+                    Why do child care programs need enrollment documentation?</p>
+
+                <p 
+                    class="abs-content txt-xlg anim-slide" 
+                    style="left: -95%; bottom: 20%; width: 65%; animation-delay: 4s;">
+                    … It’s in the regulations!</p>
+
+                <p 
+                    class="abs-content pure-button corner-box-org anim-shift" 
+                    @click="showModal = true">Good<br>to<br>know!</p>
+
+                <modal v-if="showModal">
+
+                    <h2 
+                        class="abs-content txt-lg " 
+                        style="left: 10%; bottom: 70%; width: 70%;" 
+                        slot="header">
+                        What we mean when we talk about "The regulations".</h2>
+
+                    <p 
+                        class="abs-content txt-md" 
+                        style="left: 10%; bottom: 30%; width: 65%;" 
+                        slot="body">
+                        The Code of Federal Regulations (CFR) is the codification of general and permanent rules
+                        published in the Federal Register by the departments and agencies of the Federal
+                        Government produced by the Office of the Federal Register and the Government Publishing
+                        Office.</p>
+                    
+                    <p 
+                        class="abs-content txt-xsm" 
+                        style="left: 75%; bottom: 7%;" 
+                        slot="footer">
+                        Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">
+                        USDA: 7CFR Part 226</a></p>
+
+                    <button 
+                        class="abs-content txt-sm pure-button" 
+                        style="left: 50%; bottom: 5%;" 
+                        slot="footer" 
+                        @click="showModal = false;">Close</button>
+
+                </modal>
+                
+                <my-footer/>
+
+            </div>
+        
+            <!-- Enrollment Documentation Regulations -->
+            <div v-if="currentSlide === 10">
+                <div>
+                    <h1
                         class="abs-content txt-xlg" 
-                        style="left: 5%; bottom: 80%; width: 70%;">
-                        Test Your Knowledge!</h1>
-    
+                        style="left: 5%; bottom: 80%; width: 90%;">
+                        Enrollment Documentation Regulations</h1>
+
                     <img 
                         class="abs-content" 
                         style="right: 0%; bottom: 18%; width: 35%;"
-                        src="./assets/images/quiz-ready.jpg" 
-                        title="Photo credit: AreYouReady Fotolia_40620786_Subscription_XL">
-    
+                        src="./assets/images/regulations-book.jpg" 
+                        title="Photo credit: Lawbook_Fotolia_18168497_Subscription_L">
+
                     <p 
                         class="abs-content txt-md" 
-                        style="left: 5%; top: 12%; width: 80%;">{{ questionTxt }}</p>
-                            
-                    <form 
-                        id="questionForm"
-                        class="abs-content pure-form txt-md" 
-                        style="left: 10%; bottom: 20%; width: 55%">
-                        
-                        <label for="option-one" class="pure-radio">
-                            
-                            <input id="option-one" type="radio" name="answer" class="form-radio" value="0">
-                            
-                            <span id="choice1">{{ choice1 }}</span></label>
-    
-                        <label for="option-two" class="pure-radio">
-                            
-                            <input id="option-two" type="radio" name="answer" class="form-radio" value="1">
-                            
-                            <span id="choice2">{{ choice2 }}</span></label>
-    
-                        <label for="option-three" class="pure-radio">
-                            
-                            <input id="option-three" type="radio" name="answer" class="form-radio" value="2">
-                            
-                            <span id="choice3">{{ choice3 }}</span></label></form>
-    
-                    <button 
+                        style="left: 5%; bottom: 60%; width: 70%;">
+                        Click on the large yellow buttons to read the regulations 
+                        are related to child enrollment documentation requirements!</p>
+                    
+                    <p 
                         class="abs-content pure-button txt-btn" 
-                        style="left: 10%; bottom: 3%;"  
-                        @click="quizSubmit()">
-                        Submit answer</button>
-    
-                    <modal v-if="modalQuiz">
-    
-                            <h2 
-                                class="abs-content txt-lg " 
-                                style="left: 10%; bottom: 70%;" 
-                                slot="header">
-                                {{ quizModalHeading }}</h2>
-                            
-                            <p 
-                                class="abs-content txt-md" 
-                                style="left: 15%; bottom: 30%; width: 60%"
-                                slot="body">
-                                {{ quizModalBody }}</p>
-            
-                            <button 
-                                class="abs-content txt-sm pure-button" 
-                                style="left: 50%; bottom: 5%;" 
-                                slot="footer" 
-                                @click="modalQuiz = false">Close</button>
-        
-                        </modal>
+                        style="left: 10%; bottom: 40%;" 
+                        @click="showModal = true">
+                        7 CFR 226.15 (e)</p>
+                    
+                    <p 
+                        class="abs-content pure-button txt-btn" 
+                        style="left: 10%; bottom: 20%;" 
+                        @click="showModalTwo = true">
+                        7 CFR 226.10 (d)</p>
+                    
+                    <my-footer/>
                 
                 </div>
 
-            <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 5">
-                <div>
-                    <h1 class="abs-content txt-xlg" style="left: 5%; bottom: 70%; width: 70%;">Enrollment Documentation Requirements</h1>
-                    <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 40%;" @click="modalFourOne = true">Regulation: 226.19a(b)(8)</p>
-                    <p class="abs-content pure-button txt-btn" style="left: 20%; bottom: 20%;" @click="modalFourTwo = true">Regulation: 226.19a(b)(10)</p>
-                    <p class="abs-content txt-md" style="left: 5%; bottom: 60%;">Click on each regulation below to take a closer look!</p>
+                <modal v-if="showModal">
+                    <h2 
+                        class="abs-content txt-lg" 
+                        style="left: 20%; bottom: 75%;" 
+                        slot="header">
+                        7 CFR 226.15 (e)</h2>
+
+                    <p 
+                        class="abs-content txt-md" 
+                        style="left: 10%; bottom: 20%; width: 80%;" 
+                        slot="body">
+                        "Each institution shall establish procedures to collect and maintain all program records required under 
+                        this part as well as any records required by the State agency. Failure to maintain such records shall be 
+                        grounds for the denial of reimbursement (...) Such documentation of enrollment must 
+                        be updated annually, signed by a parent or legal guardian, and include information on each child's normal 
+                        days and hours of care and the meals normally received while in care."</p>
+
+                    <p 
+                        class="abs-content txt-xsm" 
+                        style="left: 75%; bottom: 7%;" 
+                        slot="footer">
+                        Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">
+                        USDA: 7CFR Part 226</a></p>
+                    
+                    <button 
+                        class="abs-content txt-sm pure-button" 
+                        style="left: 50%; bottom: 5%;" 
+                        slot="footer"  
+                        @click="showModal = false">
+                        close</button>
+
+                </modal>
+
+                <modal v-if="showModalTwo">
+                    <h2 
+                        class="abs-content txt-lg" 
+                        style="left: 20%; bottom: 75%;" 
+                        slot="header">
+                        7 CFR 226.10 (d)</h2>
+
+                    <p 
+                        class="abs-content txt-md" 
+                        style="left: 10%; bottom: 20%; width: 80%" 
+                        slot="body">
+                        "All records to support the claim shall be retained for a period of three years after the date of submission 
+                        of the final claim for the fiscal year to which they pertain, except that if audit findings have not been 
+                        resolved, the records shall be retained beyond the end of the three year period as long as may be required 
+                        for the resolution of the issues raised by the audit. All accounts and records pertaining to the Program shall 
+                        be made available, upon request, to representatives of the State agency"</p>
+
+                    <p 
+                        class="abs-content txt-xsm" 
+                        style="left: 75%; bottom: 7%;" 
+                        slot="footer">
+                        Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">
+                        USDA: 7CFR Part 226</a></p>
+                    
+                    <button 
+                        class="abs-content txt-sm pure-button" 
+                        style="left: 50%; bottom: 5%;" 
+                        slot="footer"  
+                        @click="showModalTwo = false">
+                        Close</button>
+
+                </modal>
+
+            </div>
+            <!-- SLIDE: EXEMPT INSTITUTIONS OUTSIDE SCHOOL HOURS CARE - BASIC LIST -->
+            <div v-if="currentSlide === 11">
+                
+                    <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 2%; bottom: 80%; width: 98%;">
+                    Enrollment Documentation Key Points</h1>
+    
+                    <ol 
+                        class="abs-content txt-md" 
+                        style="left: 5%; bottom: 10%; width: 95%">   
+                    
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Must be Kept on file</li>
+                        
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Include each child's normal days and hours of care</li>
+                        
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Include meals normally received while in care</li>
+                        
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Must be signed by a parent or guardian</li>
+                        
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Must be updated annually</li>
+                        
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Must be kept confidential</li>
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Retain for three years plus the current fiscal year</li></ol>
+    
                     <my-footer/>
+                
                 </div>
 
-                <modal v-if="modalFourOne">
-                    <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">7 CFR 226.19a(b)(8)</h2>
-                    <p class="abs-content txt-md" style="left: 10%; bottom: 40%; width: 70%;" slot="body">
-                        "Adult day care centers shall collect and maintain documentation of the enrollment of each 
-                        adult participant including information used to determine eligibility for free and reduced price meals."
-                    </p>
-                    <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
-                    <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFourOne = false">close</button>
-                </modal>
-
-                <modal v-if="modalFourTwo">
-                    <h2 class="abs-content txt-lg" style="left: 20%; bottom: 75%;" slot="header">7 CFR 226.19a(b)(10)</h2>
-                    <p class="abs-content txt-md" style="left: 10%; bottom: 10%; width: 80%" slot="body">
-                        "Each adult day care center shall maintain records on the age of each enrolled person.
-                        In addition, each adult day care center shall maintain records which demonstrate that each 
-                        enrolled person under the age of 60 meets the functional impairment eligibility requirements 
-                        established under the definition of “functionally impaired adult” contained in this part. 
-                        Finally, each adult day care center shall maintained records which document that qualified 
-                        adult day care participants reside in their own homes (whether alone or with spouses, 
-                        children or guardians) or in group living arrangements"
-                    </p>
-                    <p class="abs-content txt-xsm" style="left: 75%; bottom: 7%;" slot="footer">Source: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">USDA: 7CFR Part 226</a></p>
-                    <button class="abs-content txt-sm pure-button" style="left: 50%; bottom: 5%;" slot="footer"  @click="modalFourTwo = false">Close</button>
-                </modal>
-            </div>
-
             <!-- SLIDE VIDEO -->
-            <div v-if="currentSlide === 6">
+            <div v-if="currentSlide === 16">
                     <video id="videoOne" class="abs-content" style="left: 10%; top: 5%; width: 80%;" src="./assets/video/8.mp4" controls></video>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 7">
+            <div v-if="currentSlide === 17">
                 <img 
                     class="abs-content" 
                     style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
@@ -388,12 +758,12 @@
                 <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
             </div>
 
-            <div v-if="currentSlide === 7">
+            <div v-if="currentSlide === 17">
                 <div class="abs-content" style="left: 6.5%; bottom: 47%; width: 38%; height: 10%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 8">
+            <div v-if="currentSlide === 18">
                 <img 
                     class="abs-content" 
                     style="left: 5%; bottom: 1%; height: 98%; box-shadow: 1px 1px 2px 2px #ccc;" 
@@ -410,30 +780,30 @@
                 <p class="abs-content txt-md" style="left: 50%; bottom: 25%; width: 60%;" v-show="wrongAnswerMsg === true">That is not correct. Try again...</p>
             </div>
 
-            <div v-if="currentSlide === 8">
+            <div v-if="currentSlide === 18">
                 <div class="abs-content" style="left: 6.3%; bottom: 64%; width: 38%; height: 9%;" v-bind:class="highlightAnswer" @click="rightAnswer"></div>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 9">
+            <div v-if="currentSlide === 19">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 10">
+            <div v-if="currentSlide === 110">
                 <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 11">
+            <div v-if="currentSlide === 111">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 12">
+            <div v-if="currentSlide === 112">
                 <img 
                     class="abs-content" 
                     style="left: 20%; top: 5%; width: 60%;" 

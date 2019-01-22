@@ -134,11 +134,6 @@
   .is-highlighted {
     border: 8px solid #fca424;
   }
-
-  .disabled {
-    opacity: .0;
-    cursor: default;
-  }
   
   /* ////////////////////////// */
     /* Radio Buttons CSS */

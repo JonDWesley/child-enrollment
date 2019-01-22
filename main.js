@@ -13,40 +13,57 @@ var app = new Vue({
   el: '#app',
   data() {
     return {
-      currentSlide: 0,
+      
+      //////////////////////////////////
+      // rendered slides properties
+      //////////////////////////////////
+      currentSlide: 10,
       bgImgSrc: './assets/images/slide-standard.png',
-      showNav: true,
+      showModal: false,
+      showModalTwo: false,
       showFinish: false,
-      nextDisabled: false,
-      previousDisabled: false,
-      playDisabled: false,
-      pauseDisabled: false,
+
+      //////////////////////////////////
+      // navigation button properties
+      //////////////////////////////////
+      showNav: true,
+      nextEnabled: true,
+      previousEnabled: true,
+      playEnabled: true,
+      pauseEnabled: true,
       playAttention: false,
       nextAttention: false,
+
+      //////////////////////////////////
+      // Simulation properties
+      //////////////////////////////////
       rightAnswerMsg: false,
       wrongAnswerMsg: false,
       highlightAnswer: '',
-      modalTwoOne: false,
 
-      //QUIZ RELATED DATA
+      //////////////////////////////////
+      // QUIZ RELATED DATA
+      //////////////////////////////////
       currentQuestion: 0,
       modalQuiz: false,
       quizModalHeading: 'That is not correct. Please try again.',
       quizModalBody: '',
       
-      //ARRAY OF QUESTION OBJECTS
+      //////////////////////////////////
+      // ARRAY OF QUESTION OBJECTS
+      //////////////////////////////////
       allQuestions: [
         {
             question: 'Out-side-school-hours care centers are required to enroll participants with CACFP enrollment documentation under which circumstance?',
-            answers: ["The instituiton is under a sponsoring organization", "The out-side-school-hours care program is part of the centers CACFP", "The out-side-school-hours care center has a occupancy limit over 100 persons"],
-            explanation: "Remember, if an outside-school-hours care center is opertated as part of a child care center that participates in the CACFP, it will require CACFP enrollment documentation.",
+            answers: ["The institution is under a sponsoring organization", "The out-side-school-hours care program is part of the centers CACFP", "The out-side-school-hours care center has a occupancy limit over 100 persons"],
+            explanation: "Remember, if an outside-school-hours care center is operated as part of a child care center that participates in the CACFP, it will require CACFP enrollment documentation.",
             correct: 1
         },
         {
-            question: '',
-            answers: ["TWO ONE", "TWO TWO", "TWO THREE"],
-            explanation: "REPONSE TWO",
-            correct: 0
+            question: 'Which one of the below types of institutions WOULD require CACFP enrollment documentation for all child participants?',
+            answers: ["An outside-school-hours care program that is NOT part of a center already running a CACFP", "An at-risk-afterschool care facility that is being operated in facilities owned by a for-profit organization", "An outside-school-hours care center is operated as part of a child care center that participates in the CACFP"],
+            explanation: "Remember that when an outside-school-hours care center is operated as part of a child care center that participates in the CACFP, child enrollment documentation is required.",
+            correct: 2
         },
         {
             question: 'TEST QUESTION THREE',
@@ -55,7 +72,7 @@ var app = new Vue({
             correct: 2
         }
       ]
-      
+
     }
   },
 
@@ -102,7 +119,7 @@ var app = new Vue({
     },
 
     slideWelcome() { 
-      audio.src ="./assets/audio/0.mp3";
+      audio.src ="./assets/audio/test.mp3";
       audio.play();
       audio.onended = function(e) {
         app.showNav = true;
@@ -116,8 +133,8 @@ var app = new Vue({
       this.playAttention = false;
       audio.pause();
       audio.autoplay = false;
-      audio.src ="./assets/audio/0.mp3";
-      this.previousDisabled = true;
+      audio.src ="./assets/audio/test.mp3";
+      this.previousEnabled = false;
     },
 
     rightAnswer() {
@@ -134,51 +151,47 @@ var app = new Vue({
     slideControl() {
       if (this.currentSlide === 0) {
         audio.src = "./assets/audio/0.mp3"; 
-        this.previousDisabled = true;
+        this.previousEnabled = false;
+        this.playEnabled = false;
+        this.pauseEnabled = false;
+      } else {
+        this.previousEnabled = true;
+        this.playEnabled = true;
+        this.pauseEnabled = true;
       }
       if (this.currentSlide === 1) {
         audio.src = "./assets/audio/1.mp3"
-        this.previousDisabled = false;
       }
       if (this.currentSlide === 2) {
         audio.src = "./assets/audio/2.mp3" 
       }
       if (this.currentSlide === 3) {
         audio.src = "./assets/audio/3.mp3"
-        this.nextDisabled = false;
       }
       if (this.currentSlide === 4) {
         audio.src = "./assets/audio/4.mp3"
         this.currentQuestion = 0;
-        this.nextDisabled = true;
       }
       if (this.currentSlide === 5) {
         audio.src = "./assets/audio/5.mp3"
-        this.nextDisabled = false; 
       }
       if (this.currentSlide === 6) {
         audio.src = "./assets/audio/6.mp3" 
       }
       if (this.currentSlide === 7) {
         audio.src = "./assets/audio/7.mp3";
-        this.pauseDisabled = false;
-        this.playDisabled = false;
         this.bgImgSrc = "./assets/images/slide-standard.png"
       }
       if (this.currentSlide === 8) {
         audio.src = "";
-        this.pauseDisabled = true;
-        this.playDisabled = true;
-        this.bgImgSrc = "./assets/images/slide-blank.png" 
+        this.currentQuestion = 1;
       }
       if (this.currentSlide === 9) {
-        audio.src = "./assets/audio/9.1.mp3";
-        this.pauseDisabled = false;
-        this.playDisabled = false;
-        this.bgImgSrc = "./assets/images/slide-blank.png";
+        audio.src = "./assets/audio/test.mp3";
       }
-      if (this.currentSlide === 10) {
-        audio.src = "./assets/audio/10.1.mp3";
+
+      if (this.currentSlide === 110) {
+        audio.src = "./assets/audio/test.mp3";
         //reset the correct answer highlighting and message
         this.rightAnswerMsg = false;
         this.highlightAnswer = '';
@@ -186,7 +199,6 @@ var app = new Vue({
       }
       if (this.currentSlide === 11) {
         audio.src = "./assets/audio/11.mp3" 
-        this.bgImgSrc = "./assets/images/slide-standard.png";
       }
       if (this.currentSlide === 12) {
         audio.src = "./assets/audio/12.mp3" 
@@ -225,7 +237,6 @@ var app = new Vue({
       if (selectedOption == this.allQuestions[this.currentQuestion].correct) {
         this.quizModalHeading = "That is correct!";
         this.quizModalBody = (this.allQuestions[this.currentQuestion].explanation);
-        this.nextDisabled = false;
       }
     }
   }
