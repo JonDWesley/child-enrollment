@@ -15,7 +15,7 @@ var app = new Vue({
       //////////////////////////////////
       // rendered slides properties
       //////////////////////////////////
-      currentSlide: 12,
+      currentSlide: 10,
       bgImgSrc: './assets/images/slide-standard.png',
       showModal: false,
       showModalTwo: false,
@@ -218,6 +218,11 @@ var app = new Vue({
         this.showFinish = true;
         this.showNav = false;
         audio.autoplay = true;
+      }
+
+      if (this.currentSlide === 20) {
+        this.showNav = false;
+        this.bgImgSrc = "./assets/images/slide-blank.png";
       }
 
       audio.load();
