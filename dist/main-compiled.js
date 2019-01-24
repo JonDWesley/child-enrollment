@@ -1,7 +1,5 @@
 "use strict";
 
-var audio = new Audio();
-var video = document.getElementById("videoOne");
 Vue.component('modal', {
   template: "#modal-template"
 });
@@ -15,8 +13,9 @@ var app = new Vue({
       //////////////////////////////////
       // rendered slides properties
       //////////////////////////////////
-      currentSlide: 10,
+      currentSlide: 0,
       bgImgSrc: './assets/images/slide-standard.png',
+      audio: '',
       showModal: false,
       showModalTwo: false,
       showFinish: false,
@@ -35,7 +34,7 @@ var app = new Vue({
       //////////////////////////////////
       rightAnswerMsg: false,
       wrongAnswerMsg: false,
-      highlightAnswer: '',
+      highlightAnswer: false,
       //////////////////////////////////
       // QUIZ RELATED DATA
       //////////////////////////////////
@@ -81,32 +80,61 @@ var app = new Vue({
   methods: {
     previous: function previous() {
       this.currentSlide--;
-      audio.pause();
+      this.audio.pause();
       this.slideControl();
     },
     next: function next() {
       this.playAttention = true;
       this.nextAttention = false;
       this.currentSlide++;
-      audio.pause();
+      this.audio.pause();
       this.slideControl();
     },
     playMedia: function playMedia() {
-      audio.play();
       this.playAttention = false;
 
-      audio.onended = function (e) {
-        app.nextAttention = true;
-      };
+      if (this.currentSlide === 1) {
+        var video = document.getElementById("videoOne");
+        video.play();
+
+        video.onended = function () {
+          app.nextAttention = true;
+        };
+      } else if (this.currentSlide === 14) {
+        var _video = document.getElementById("videoOne");
+
+        _video.play();
+
+        _video.onended = function () {
+          app.nextAttention = true;
+        };
+      } else {
+        this.audio.play();
+
+        this.audio.onended = function () {
+          app.nextAttention = true;
+        };
+      }
     },
     pauseMedia: function pauseMedia() {
-      audio.pause();
+      if (this.currentSlide === 1) {
+        var video = document.getElementById("videoOne");
+        video.pause();
+      } else if (this.currentSlide === 14) {
+        var _video2 = document.getElementById("videoOne");
+
+        _video2.pause();
+      } else {
+        this.audio.pause();
+      }
     },
     slideWelcome: function slideWelcome() {
-      audio.src = "./assets/audio/test.mp3";
-      audio.play();
+      var audio = new Audio();
+      this.audio = audio;
+      this.audio.src = "./assets/audio/test.mp3";
+      this.audio.play();
 
-      audio.onended = function (e) {
+      this.audio.onended = function (e) {
         app.showNav = true;
         app.next();
       };
@@ -115,23 +143,32 @@ var app = new Vue({
       this.currentSlide = 0;
       this.showNav = true;
       this.playAttention = false;
-      audio.pause();
-      audio.autoplay = false;
-      audio.src = "./assets/audio/test.mp3";
+      this.audio.pause();
+      this.audio.autoplay = false;
+      this.audio.src = "#";
       this.previousEnabled = false;
     },
     rightAnswer: function rightAnswer() {
       this.rightAnswerMsg = true;
       this.wrongAnswerMsg = false;
-      this.highlightAnswer = 'is-highlighted';
+      this.highlightAnswer = true;
     },
     wrongAnswer: function wrongAnswer() {
-      this.wrongAnswerMsg = true;
+      if (this.wrongAnswerMsg === true) {
+        this.wrongAnswerMsg = false;
+      } else {
+        this.wrongAnswerMsg = true;
+      }
+
       this.rightAnswerMsg = false;
+      this.highlightAnswer = false;
     },
     slideControl: function slideControl() {
+      //resets values every slide unless different in if statement
+      this.bgImgSrc = "./assets/images/slide-standard.png";
+      console.log(this.currentSlide); //start if statements for each slide
+
       if (this.currentSlide === 0) {
-        audio.src = "./assets/audio/0.mp3";
         this.previousEnabled = false;
         this.playEnabled = false;
         this.pauseEnabled = false;
@@ -141,91 +178,77 @@ var app = new Vue({
         this.pauseEnabled = true;
       }
 
+      ;
+
       if (this.currentSlide === 1) {
-        audio.src = "./assets/audio/1.mp3";
+        this.bgImgSrc = "./assets/images/slide-blank.png";
       }
 
-      if (this.currentSlide === 2) {
-        audio.src = "./assets/audio/2.mp3";
-      }
+      if (this.currentSlide === 2) {}
 
-      if (this.currentSlide === 3) {
-        audio.src = "./assets/audio/3.mp3";
-      }
+      if (this.currentSlide === 3) {}
 
       if (this.currentSlide === 4) {
-        audio.src = "./assets/audio/4.mp3";
         this.currentQuestion = 0;
       }
 
-      if (this.currentSlide === 5) {
-        audio.src = "./assets/audio/5.mp3";
-      }
+      if (this.currentSlide === 5) {}
 
-      if (this.currentSlide === 6) {
-        audio.src = "./assets/audio/6.mp3";
-      }
+      if (this.currentSlide === 6) {}
 
-      if (this.currentSlide === 7) {
-        audio.src = "./assets/audio/7.mp3";
-      }
+      if (this.currentSlide === 7) {}
 
       if (this.currentSlide === 8) {
-        audio.src = "#";
         this.currentQuestion = 1;
       }
 
-      if (this.currentSlide === 9) {
-        audio.src = "#";
+      if (this.currentSlide === 9) {// this.audio.src = "#";
       }
 
-      if (this.currentSlide === 10) {
-        audio.src = "#";
+      if (this.currentSlide === 10) {// this.audio.src = "#";
       }
 
-      if (this.currentSlide === 11) {
-        audio.src = "#";
+      if (this.currentSlide === 11) {// this.audio.src = "#";
       }
 
-      if (this.currentSlide === 12) {
-        audio.src = "#";
+      if (this.currentSlide === 12) {// this.audio.src = "#";
       }
 
-      if (this.currentSlide === 13) {
-        audio.src = "#";
-        this.bgImgSrc = "./assets/images/slide-standard.png";
-        this.showNav = true;
+      if (this.currentSlide === 13) {// this.audio.src = "#";
       }
 
       if (this.currentSlide === 14) {
-        audio.src = "#";
-        this.bgImgSrc = "./assets/images/child-enroll-sim1.jpg";
-        this.showNav = false;
+        this.audio.src = "#";
+        this.bgImgSrc = "./assets/images/slide-standard.png";
       }
 
       if (this.currentSlide === 15) {
-        audio.src = "#";
-        this.bgImgSrc = "./assets/images/slide-standard.png";
-        this.showNav = true;
+        // this.audio.src = "#";
+        this.bgImgSrc = "./assets/images/child-enroll-sim1.jpg";
       }
 
       if (this.currentSlide === 16) {
-        audio.src = "#";
+        this.audio.src = "#";
+        this.bgImgSrc = "./assets/images/slide-standard.png";
       }
 
       if (this.currentSlide === 17) {
-        audio.src = "#";
-        this.showFinish = true;
-        this.showNav = false;
-        audio.autoplay = true;
+        this.audio.src = "#";
       }
 
-      if (this.currentSlide === 20) {
+      if (this.currentSlide === 18) {
+        this.audio.src = "#";
+        this.showFinish = true;
+        this.showNav = false;
+        this.audio.autoplay = true;
+      }
+
+      if (this.currentSlide === 21) {
         this.showNav = false;
         this.bgImgSrc = "./assets/images/slide-blank.png";
       }
 
-      audio.load();
+      this.audio.load();
     },
     quizSubmit: function quizSubmit() {
       //declaring the variable that retreives the user's selected radio button
@@ -241,73 +264,4 @@ var app = new Vue({
       }
     }
   }
-}); /////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////// FOR DELETION //////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-// var questionText = document.getElementById("questionText");
-// Display the first question's text and the possible answers. 
-// questionText.innerHTML = this.allQuestions[0].question;
-// document.getElementById("choice1").innerHTML = this.allQuestions[0].answers[0]; 
-// document.getElementById("choice2").innerHTML = this.allQuestions[0].answers[1];
-// document.getElementById("choice3").innerHTML = this.allQuestions[0].answers[2];
-// var question0 = {
-//     question: 'If you are unclear on any of the Civil Rights requirements in the CACFP, which of the following sources of information would you review for the most authoritative and comprehensive guidance?',
-//     answers: ["7 CFR 266.5 FNS Ins", "FNS Instruction 113-1", "nutritionnc.com"],
-//     explanation: "Remember that FNS Instruction 113-1 is an authoritative and comprehensive source regarding Civil Right compliance in the CACFP and it can be downloaded in the files section of this training portal.",
-//     correct: 1
-//   };
-// var question1 = {
-//     question: 'TEST Question TWO',
-//     answers: ["TestTwoOne", "TestTwoTwo", "TestTwoThree"],
-//     explanation: "Remember that FNS Instruction 113-1 is an authoritative and comprehensive source regarding Civil Right compliance in the CACFP and it can be downloaded in the files section of this training portal.",
-//     correct: 1
-//   };
-// var question2 = {
-//     question: 'TEST Question THREE',
-//     answers: ["7 CFR 266.5 FNS Ins", "FNS Instruction 113-1", "nutritionnc.com"],
-//     explanation: "Remember that FNS Instruction 113-1 is an authoritative and comprehensive source regarding Civil Right compliance in the CACFP and it can be downloaded in the files section of this training portal.",
-//     correct: 1
-//   };
-// //variable of all questions
-// var this.allQuestions = [question0, question1, question2];
-// //question objects
-// const this.allQuestions = [
-//   {
-//       question: 'If you are unclear on any of the Civil Rights requirements in the CACFP, which of the following sources of information would you review for the most authoritative and comprehensive guidance?',
-//       answers: ["7 CFR 266.5 FNS Ins", "FNS Instruction 113-1", "nutritionnc.com"],
-//       explanation: "Remember that FNS Instruction 113-1 is an authoritative and comprehensive source regarding Civil Right compliance in the CACFP and it can be downloaded in the files section of this training portal.",
-//       correct: 1
-//   },
-//   {
-//       question: 'If you are unclear on any of the Civil Rights requirements in the CACFP, which of the following sources of information would you review for the most authoritative and comprehensive guidance?',
-//       answers: ["7 CFR 266.5 FNS Ins", "FNS Instruction 113-1", "nutritionnc.com"],
-//       explanation: "Remember that FNS Instruction 113-1 is an authoritative and comprehensive source regarding Civil Right compliance in the CACFP and it can be downloaded in the files section of this training portal.",
-//       correct: 1
-//   },
-//   {
-//       question: 'If you are unclear on any of the Civil Rights requirements in the CACFP, which of the following sources of information would you review for the most authoritative and comprehensive guidance?',
-//       answers: ["7 CFR 266.5 FNS Ins", "FNS Instruction 113-1", "nutritionnc.com"],
-//       explanation: "Remember that FNS Instruction 113-1 is an authoritative and comprehensive source regarding Civil Right compliance in the CACFP and it can be downloaded in the files section of this training portal.",
-//       correct: 1
-//   }
-// ]
-// //this statement will execute if all questions have been answered AND the score is higher than the threshold
-// if (this.currentQuestion == this.allQuestions.length && totalScore >= (this.allQuestions.length*0.80)) {
-//   document.getElementById("questionForm").style.display = "none"; //hides the HTML form containing the questions
-//   questionText.innerHTML = "Your score is " + totalScore + " of " + this.allQuestions.length + " You may now download your certificate.";
-//   navButton.style.display = "none"; //hides the button used to execute this function
-//   sudoDownloadButton.style.display = "block"; //reveals the <a> tag, that looks like a button, for downloading the file
-// //this statement will execute if all questions have been answered BUT the score is below the padding threshold
-// } else if (this.currentQuestion == this.allQuestions.length && totalScore < (this.allQuestions.length*0.80)) {
-//     document.getElementById("questionForm").style.display = "none"; //again, hides the form containing the questions
-//     questionText.innerHTML = "Your score is " + totalScore + " out of " + this.allQuestions.length + ". You must get at least 80% of the questions right in order to download the training certificate. Please click the button below to retake the quiz.";
-//     navButton.style.display = "none"; //as above, hides the button used to execute this function
-//     retakeButton.style.display = "block"; //reveals the button used to reload the entire quiz
-//this statement executes only when not all questions have been answered. This is the code used for dynamically populating the question and answers in the quiz
-// } else {
-//     questionText.innerHTML = this.allQuestions[this.currentQuestion].question;
-//     document.getElementById("choice1").innerHTML = this.allQuestions[this.currentQuestion].answers[0];
-//     document.getElementById("choice2").innerHTML = this.allQuestions[this.currentQuestion].answers[1];
-//     document.getElementById("choice3").innerHTML = this.allQuestions[this.currentQuestion].answers[2];
-// }
+});

@@ -56,11 +56,10 @@
             
             <!-- GLOBAL IMAGES AND NAV BAR IN MOST SLIDES -->
             <img 
-                class="background-img"
-                style= "z-index: -10;" 
+                class="background-img"   
                 :src="bgImgSrc">
         
-            <div class="navBar" v-if="showNav" style= "z-index: 10;">
+            <div class="navBar" v-if="showNav">
                 
                 <img
                     v-if="previousEnabled"    
@@ -118,8 +117,21 @@
 
             </div>
 
-            <!-- SLIDE: OBJECTIVES - BASIC LIST -->
+            <!-- SLIDE: INSTRUCTIONS - VIDEO -->
             <div v-if="currentSlide === 1">
+                    
+                <video 
+                    id="videoOne" 
+                    class="abs-content" 
+                    style="left: 10%; top: 5%; width: 80%;" 
+                    src="./assets/video/1.mp4"></video>
+            
+                <my-footer/>
+                    
+            </div>
+
+            <!-- SLIDE: OBJECTIVES - BASIC LIST -->
+            <div v-if="currentSlide === 2">
                 
                 <h1 
                     class="abs-content txt-xlg" 
@@ -157,7 +169,7 @@
             </div>
 
             <!-- SLIDE: NON-EXEMPT INSTITUTIONS - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL -->
-            <div v-if="currentSlide === 2">
+            <div v-if="currentSlide === 3">
             
                 <h1 
                     class="abs-content txt-xlg" 
@@ -172,7 +184,7 @@
                 <p 
                     class="abs-content txt-lg anim-slide" 
                     style="left: -95%; bottom: 18%; width: 65%; animation-delay: 4s;">
-                    All types of centers require enrollment documentation except for emergency shelters and at-risk afterschool care centers.</p>
+                    All types of centers require enrollment documentation except for emergency shelters and At-risk afterschool care centers.</p>
 
                 <p 
                     class="abs-content pure-button corner-box-org anim-shift" 
@@ -233,7 +245,7 @@
             </div>
 
             <!-- SLIDE: EXEMPT INSTITUTIONS 1 - TWO PARAGRAPHS -->
-            <div v-if="currentSlide === 3">
+            <div v-if="currentSlide === 4">
                     
                 <h1 
                     class="abs-content txt-xlg" 
@@ -246,15 +258,15 @@
                     Some institutions are exempt from collecting CACFP Enrollment documentation.</p>
                     
                 <p 
-                    class="abs-content txt-md anim-slide" 
-                    style="left: -95%; bottom: 20%; width: 65%; animation-delay: 4s;">
+                    class="abs-content txt-lg anim-slide" 
+                    style="left: -105%; bottom: 20%; width: 65%; animation-delay: 4s;">
                     Before we talk about them, click the next button to test your knowledge of what we have covered so far!</p>
                     
                 <my-footer/>
             </div>   
                 
             <!-- SLIDE: NON-EXEMPT INSTITUTIONS - QUIZ -->
-            <div v-if="currentSlide === 4">
+            <div v-if="currentSlide === 5">
                 <h1 
                 class="abs-content txt-xlg" 
                 style="left: 5%; bottom: 80%; width: 70%;">
@@ -324,7 +336,7 @@
             </div>
                         
             <!-- SLIDE: EXEMPT INSTITUTIONS AT-RISK AFTER-SCHOOL - BASIC LIST -->
-            <div v-if="currentSlide === 5">
+            <div v-if="currentSlide === 6">
                 
                 <h1 
                     class="abs-content txt-xlg" 
@@ -363,7 +375,7 @@
             </div>
 
             <!-- SLIDE: EXEMPT INSTITUTIONS EMERGENCY SHELTER - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL  -->
-            <div v-if="currentSlide === 6">
+            <div v-if="currentSlide === 7">
                     
                 <h1 
                     class="abs-content txt-xlg" 
@@ -373,7 +385,7 @@
                 <p 
                     class="abs-content txt-lg" 
                     style="left: 5%; bottom: 45%; width: 62%;" >
-                    Emergency Shelters do not have to maintain CACFP enrollment documentation for children.</p>
+                    Emergency shelters do not have to maintain CACFP enrollment documentation for children.</p>
                     
                 <p 
                     class="abs-content txt-md anim-slide" 
@@ -390,7 +402,7 @@
                         class="abs-content txt-lg " 
                         style="left: 10%; bottom: 70%; width: 60%;" 
                         slot="header">
-                        Additional Requirement <br> for at-risk-afterschool meals:</h2>
+                        Additional Requirement <br> for emergency shelters:</h2>
 
                     <p 
                         class="abs-content txt-md" 
@@ -419,7 +431,7 @@
             </div>   
 
             <!-- SLIDE: EXEMPT INSTITUTIONS OUTSIDE SCHOOL HOURS CARE - BASIC LIST -->
-            <div v-if="currentSlide === 7">
+            <div v-if="currentSlide === 8">
                 
                 <h1 
                 class="abs-content txt-xlg" 
@@ -459,7 +471,7 @@
             </div>
 
             <!-- SLIDE: EXEMPT INSTITUTIONS - QUIZ -->
-            <div v-if="currentSlide === 8">
+            <div v-if="currentSlide === 9">
                 
                 <h1 
                     class="abs-content txt-xlg" 
@@ -533,7 +545,7 @@
             </div>
                         
             <!-- SLIDE: CHILD CARE ENROLLMENT REGS - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL -->
-            <div v-if="currentSlide === 9">
+            <div v-if="currentSlide === 10">
             
                 <h1 
                     class="abs-content txt-xlg" 
@@ -548,7 +560,7 @@
                 <p 
                     class="abs-content txt-xlg anim-slide" 
                     style="left: -95%; bottom: 20%; width: 65%; animation-delay: 4s;">
-                    … It’s in the regulations!</p>
+                    … It’s in the Regulations!</p>
 
                 <p 
                     class="abs-content pure-button corner-box-org anim-shift" 
@@ -560,7 +572,7 @@
                         class="abs-content txt-lg " 
                         style="left: 10%; bottom: 70%; width: 70%;" 
                         slot="header">
-                        What we mean when we talk about "The regulations".</h2>
+                        What we mean when we talk about the "Regulations".</h2>
 
                     <p 
                         class="abs-content txt-md" 
@@ -591,7 +603,7 @@
             </div>
         
             <!-- Enrollment Documentation Regulations -->
-            <div v-if="currentSlide === 10">
+            <div v-if="currentSlide === 11">
                 <div>
                     <h1
                         class="abs-content txt-xlg" 
@@ -607,8 +619,8 @@
                     <p 
                         class="abs-content txt-md" 
                         style="left: 5%; bottom: 60%; width: 70%;">
-                        Click on the large yellow buttons to read the regulations 
-                        are related to child enrollment documentation requirements!</p>
+                        Click on the large yellow buttons to read the Regulations 
+                        related to child enrollment documentation requirements!</p>
                     
                     <p 
                         class="abs-content pure-button txt-btn" 
@@ -674,7 +686,7 @@
                         of the final claim for the fiscal year to which they pertain, except that if audit findings have not been 
                         resolved, the records shall be retained beyond the end of the three year period as long as may be required 
                         for the resolution of the issues raised by the audit. All accounts and records pertaining to the Program shall 
-                        be made available, upon request, to representatives of the State agency"</p>
+                        be made available, upon request, to representatives of the State agency."</p>
 
                     <p 
                         class="abs-content txt-xsm" 
@@ -694,7 +706,7 @@
 
             </div>
             <!-- SLIDE: EXEMPT INSTITUTIONS OUTSIDE SCHOOL HOURS CARE - BASIC LIST -->
-            <div v-if="currentSlide === 11">
+            <div v-if="currentSlide === 12">
                 
                     <h1 
                     class="abs-content txt-xlg" 
@@ -732,12 +744,12 @@
                             style="padding-bottom: 2%;">
                             Retain for three years plus the current fiscal year</li></ol>
     
-                    <my-footer/>
+                <my-footer/>
                 
-                </div>
+            </div>
 
             <!-- SLIDE: STATE ENROLLMENT FORM - TWO PARAGRAPHS -->
-            <div v-if="currentSlide === 12">
+            <div v-if="currentSlide === 13">
                     
                 <h1 
                     class="abs-content txt-xlg" 
@@ -765,68 +777,72 @@
             </div>
 
             <!-- SLIDE VIDEO -->
-            <div v-if="currentSlide === 13">
+            <div v-if="currentSlide === 14">
                     
                 <video 
                     id="videoOne" 
                     class="abs-content" 
                     style="left: 10%; top: 5%; width: 80%;" 
-                    src="./assets/video/8.mp4"></video>
+                    src="./assets/video/14.mp4"></video>
 
             </div>
 
             <!-- SLIDE: ENROLLMENT FORM PRACTICE - SIMULATION -->
-            <div v-if="currentSlide === 14">
-                
+            <div v-if="currentSlide === 15">
+
                 <div 
                     class="abs-content" 
                     style="top: 0%; width: 100%; height: 100%;"
                     @click="wrongAnswer()">
-
-                    <img    
-                        class="abs-content pure-button arrow-previous-simulation"
-                        src="./assets/images/left-arrow.svg"
-                        @click="previous()">
-                    
-                    <img 
-                        class="abs-content pure-button audio-button-simulation"
-                        style="right: 12%;" src="./assets/images/play.svg"
-                        @Click="playMedia()">
-                    
-                    <img
-                        class="abs-content pure-button audio-button-simulation"
-                        style="right: 6.5%;" src="./assets/images/pause.svg"
-                        @Click="pauseMedia()">
-                
-                    <img
-                        class="abs-content pure-button arrow-next-simulation"
-                        src="./assets/images/right-arrow.svg"
-                        @click="next()">
         
                     <p 
                         v-show="rightAnswerMsg"
-                        class="abs-content txt-md" 
-                        style="left: 5%; top: 5%; width: 50%; height: 15%; background-color: #faf393; padding: 5%; position: sticky;">
-                        Correct! Remember the following information in required to be filled out: child's normal days and hours of care, 
-                        meals normally received while in care.</p>
+                        class="abs-content simulation-txt-box txt-sm" 
+                        style="left: 5%; top: 5%; width: 40%; height: 10%">
+                        <span>Correct!</span><br><br>
+                        <span>The child's normal days and hours of care, meals normally received while in care is required to be filled out.</span></p>
 
                     <p 
                         v-show="wrongAnswerMsg"
-                        class="abs-content txt-sm" 
-                        style="left: 0%; top: 0%; width: 20%; height: 4%; background-color: #faf393; padding: 1%; position: sticky;">
-                        That is incorrect. Try again...</p></div>
+                        class="abs-content simulation-txt-box txt-sm anim-fade" 
+                        style="left: 5%; top: 5%; width: 20%; height: 6%;">
+                        That is incorrect. Try again...</p>
+                
+                </div>
 
                 <div 
                       
                     class="abs-content" 
-                    style="left: 78%; top: 27%; width: 20%; height: 4%; z-index: 2;"
-                    v-bind:class="highlightAnswer"
-                    @click="rightAnswer()"></div>
+                    style="left: 78%; top: 27%; width: 20%; height: 4%;"
+                    v-bind:class= "{ 'is-highlighted': highlightAnswer }"
+                    @click="rightAnswer()">
+                
+                </div>
+
+                <img    
+                    class="abs-content pure-button arrow-previous-simulation"
+                    src="./assets/images/left-arrow.svg"
+                    @click="previous()">
+                
+                <img 
+                    class="abs-content pure-button audio-button-simulation"
+                    style="right: 12%;" src="./assets/images/play.svg"
+                    @Click="playMedia()">
+                
+                <img
+                    class="abs-content pure-button audio-button-simulation"
+                    style="right: 6.5%;" src="./assets/images/pause.svg"
+                    @Click="pauseMedia()">
+            
+                <img
+                    class="abs-content pure-button arrow-next-simulation"
+                    src="./assets/images/right-arrow.svg"
+                    @click="next()">
 
             </div>
 
             <!-- SLIDE: BEST PRACTICES - FOUR  PARAGRAPHS -->
-            <div v-if="currentSlide === 15">
+            <div v-if="currentSlide === 16">
                     
                     <h1 
                         class="abs-content txt-xlg" 
@@ -858,25 +874,25 @@
                 </div>   
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 16">
+            <div v-if="currentSlide === 17">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 17">
+            <div v-if="currentSlide === 18">
                 <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 18">
+            <div v-if="currentSlide === 19">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
                 <my-footer/>
             </div>
 
             <!-- NEW SLIDE -->
-            <div v-if="currentSlide === 19">
+            <div v-if="currentSlide === 20">
                 <img 
                     class="abs-content" 
                     style="left: 20%; top: 5%; width: 60%;" 
@@ -889,7 +905,7 @@
         
 
         <!-- SLIDE: NON-EXEMPT INSTITUTIONS - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL -->
-        <div v-if="currentSlide === 20">
+        <div v-if="currentSlide === 21">
             
             <h1 
                 class="abs-content txt-xlg" 
@@ -904,7 +920,7 @@
             <p 
                 class="abs-content txt-lg anim-slide" 
                 style="left: -95%; bottom: 18%; width: 65%; animation-delay: 4s;">
-                All types of centers require enrollment documentation except for emergency shelters and at-risk afterschool care centers.</p> -->
+                All types of centers require enrollment documentation except for emergency shelters and At-risk afterschool care centers.</p> -->
 
             <p 
                 class="abs-content pure-button corner-box-org anim-shift" 
@@ -939,8 +955,6 @@
                     @click="showModal = false;">Close</button>
 
             </modal>
-            
-            <my-footer/>
         
         </div>
 

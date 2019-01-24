@@ -11,7 +11,14 @@
 * remane any slides with named functions attached to them to the same name as their function (add a notes about why you did this)
 * clean up code
 * improve notes within code
+* Make sure Navigation for simulation is working
+* Make a close button for simulation feedback modals
+* make it possible to select the next button without firing wrong answer modal
 * Improve accesability
+* use a switch() function to fire SlideControl()
+* make sure their is a footer on every page!
+* Tie video controls to the nav bar play/pause buttons
+* make sure your final slide contains the correct nds
 
 ## Resources, links, and files needed:
 

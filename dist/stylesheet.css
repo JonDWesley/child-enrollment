@@ -66,28 +66,6 @@
     padding: 1%;
   }
 
-  .arrow-previous-simulation {
-    top: 1%;
-    right: 17.5%;
-    width: 5%;
-    padding: 1%;
-    transform: rotate(0deg);
-  }
-
-  .arrow-next-simulation {
-    top: 1%;
-    right: 1%;
-    width: 5%;
-    padding: 1%;
-    transform: rotate(180deg);
-  }
-  
-  .audio-button-simulation {
-    top: 1%;
-    width: 5%;
-    padding: 1%;
-  }
-
   .footer {
     left: 3%;
     bottom: 6%;
@@ -162,6 +140,42 @@
   }
   
   /* ////////////////////////// */
+    /* Simulation CSS */
+  /* ////////////////////////// */
+
+  .arrow-previous-simulation {
+    top: 1%;
+    right: 17.5%;
+    width: 5%;
+    padding: 1%;
+    transform: rotate(0deg);
+  }
+
+  .arrow-next-simulation {
+    top: 1%;
+    right: 1%;
+    width: 5%;
+    padding: 1%;
+    transform: rotate(180deg);
+  }
+  
+  .audio-button-simulation {
+    top: 1%;
+    width: 5%;
+    padding: 1%;
+  }
+
+  .simulation-txt-box {
+    background-color: #faf393; 
+    position: sticky; 
+    border-radius: 20px;
+    text-align: center;
+    padding: 2%;
+    box-shadow: 1px 3px 2px #777777;
+  }
+
+
+  /* ////////////////////////// */
     /* Radio Buttons CSS */
   /* ////////////////////////// */
 
@@ -179,7 +193,6 @@
   
   .modal-mask {
     position: absolute;
-    z-index: 9998;
     top: 0%;
     left: 0%;
     display: flex;
@@ -218,7 +231,7 @@
   .modal-default-button {
     float: right;
   }
-  
+
   /* ////////////////////////// */
     /* shift */
   /* ////////////////////////// */
