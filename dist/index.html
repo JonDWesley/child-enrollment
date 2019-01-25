@@ -48,7 +48,7 @@
         <script type="text/x-template" id="footer-template">
             <footer 
                 class="abs-content txt-xsm footer">
-                Janaury 2019 | <a href="https://ncnutrition.adobeconnect.com/child-enrollment-tp" target="_blank">Training Portal Home</a>
+                Janaury 2019 | <a href="https://www.nutritionnc.com/" target="_blank">NC CACFP Home Page</a>
             </footer>
         </script>
     
@@ -853,7 +853,7 @@
                         class="abs-content" 
                         style="right: 0%; bottom: 18%; width: 35%;"
                         src="./assets/images/best-practices.jpg" 
-                        title="Photo credit: Lawbook_Fotolia_18168497_Subscription_L">
+                        title="Photo credit: Best practice icon_Fotolia_140006081_Subscription_XXL">
                         
                     <p 
                         class="abs-content txt-md anim-slide" 
@@ -873,92 +873,37 @@
 
                 </div>   
 
-            <!-- NEW SLIDE -->
+            <!-- SLIDE: FINAL -->
             <div v-if="currentSlide === 17">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
                 <my-footer/>
             </div>
 
-            <!-- NEW SLIDE -->
+            <!-- SLIDE: FINAL -->
             <div v-if="currentSlide === 18">
                 <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
                 <my-footer/>
             </div>
 
-            <!-- NEW SLIDE -->
+            <!-- SLIDE: FINAL -->
             <div v-if="currentSlide === 19">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
                 <my-footer/>
             </div>
 
-            <!-- NEW SLIDE -->
+            <!-- SLIDE: FINAL -->
             <div v-if="currentSlide === 20">
                 <img 
                     class="abs-content" 
                     style="left: 20%; top: 5%; width: 60%;" 
                     src="./assets/images/questions-concerns.jpg">
                 <div v-if="showFinish">
-                    <a class="abs-content pure-button txt-btn" style="bottom: 10%; right: 1%; background-color: #fca424;" href="https://ncnutrition.adobeconnect.com/child-enrollment-tp">Exit to Training Portal</a>     
+                    <a class="abs-content pure-button txt-btn" style="bottom: 10%; right: 1%; background-color: #fca424;" href="https://www.nutritionnc.com/">NC CACFP Home Page</a>     
                     <button class="abs-content pure-button txt-btn" style="bottom: 10%; left: 1%; background-color: #fca424;" @Click="slideFinish()">Return to the beginning</a>     
                 </div>
             </div>   
-        
 
-        <!-- SLIDE: NON-EXEMPT INSTITUTIONS - TWO PARAGRAPHS, ANIMATED TEXT AND MODAL -->
-        <div v-if="currentSlide === 21">
-            
-            <h1 
-                class="abs-content txt-xlg" 
-                style="left: 15%; bottom: 15%; width: 70%; height: 70%; border: 3px solid #fca424; text-align: center;">
-                Main content area</h1>
-
-            <!-- <p 
-                class="abs-content txt-lg" 
-                style="left: 5%; bottom: 55%; width: 80%;">
-                Which child care programs need enrollment documentation?</p>
-
-            <p 
-                class="abs-content txt-lg anim-slide" 
-                style="left: -95%; bottom: 18%; width: 65%; animation-delay: 4s;">
-                All types of centers require enrollment documentation except for emergency shelters and At-risk afterschool care centers.</p> -->
-
-            <p 
-                class="abs-content pure-button corner-box-org anim-shift" 
-                @click="showModal = true">Good<br>to<br>know!</p>
-
-            <modal v-if="showModal">
-
-                <h2 
-                    class="abs-content txt-xlg " 
-                    style="left: 10%; bottom: 60%;" 
-                    slot="header">
-                    Example of a modal pop-up window</h2>
-                
-                
-                <p 
-                    class="abs-content txt-lg" 
-                    style="left: 10%; bottom: 30%; width: 65%;" 
-                    slot="body">
-                    Important content will be here!</p>
-                
-                <p 
-                    class="abs-content txt-xsm" 
-                    style="left: 75%; bottom: 7%;" 
-                    slot="footer">
-                    Footer: <a href="https://www.fns.usda.gov/part-226%E2%80%94child-and-adult-care-food-program" target="_blank">
-                    Additional Resources!</a></p>
-
-                <button 
-                    class="abs-content txt-sm pure-button" 
-                    style="left: 50%; bottom: 5%;" 
-                    slot="footer" 
-                    @click="showModal = false;">Close</button>
-
-            </modal>
-        
         </div>
-
-    </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
         <script src="./main-compiled.js"></script>

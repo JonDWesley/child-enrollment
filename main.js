@@ -25,7 +25,7 @@ var app = new Vue({
       //////////////////////////////////
       // navigation button properties
       //////////////////////////////////
-      showNav: true,
+      showNav: false,
       nextEnabled: true,
       previousEnabled: true,
       playEnabled: true,
@@ -75,6 +75,11 @@ var app = new Vue({
     }
   },
 
+  mounted() {
+    const audio = new Audio();
+    this.audio = audio;
+  },
+
   computed: {
     questionTxt() {
       return this.allQuestions[this.currentQuestion].question
@@ -105,6 +110,8 @@ var app = new Vue({
       this.slideControl();
     },
 
+    //FIX: a way to play a video object the same way audio is played
+    //FIX: set first intruction video to autoplay
     playMedia() {
       this.playAttention=false;
       if (this.currentSlide === 1) {
@@ -139,25 +146,26 @@ var app = new Vue({
       }
     },
 
+    //FIX: Why is this audio onended firing each and everytime!?
     slideWelcome() { 
-      const audio = new Audio();
-      this.audio = audio;
-      this.audio.src ="./assets/audio/test.mp3";
+      this.audio.src ="./assets/audio/0.mp3";
+      this.audio.pause();
       this.audio.play();
-      this.audio.onended = function(e) {
+      this.audio.onended = function() {
         app.showNav = true;
         app.next();
       }
     },
 
     slideFinish() {
-      this.currentSlide = 0;
-      this.showNav = true;
-      this.playAttention = false;
       this.audio.pause();
       this.audio.autoplay = false;
-      this.audio.src ="#";
+      this.currentSlide = 0;
+      this.showNav = true;
       this.previousEnabled = false;
+      this.playEnabled = false;
+      this.pauseEnabled = false;
+      this.audio.src ="./assets/audio/0.mp3";
     },
 
     rightAnswer() {
@@ -166,6 +174,7 @@ var app = new Vue({
       this.highlightAnswer = true;
     },
 
+    //FIX: the wrong answer dialogue box should go away on its own
     wrongAnswer() {
       if (this.wrongAnswerMsg === true) {
         this.wrongAnswerMsg = false;
@@ -178,8 +187,8 @@ var app = new Vue({
 
     slideControl() {
       //resets values every slide unless different in if statement
-      this.bgImgSrc = "./assets/images/slide-standard.png"
-      console.log(this.currentSlide)
+      this.bgImgSrc = "./assets/images/slide-standard.png";
+      this.showNav = true;
 
       //start if statements for each slide
       if (this.currentSlide === 0) {
@@ -221,56 +230,61 @@ var app = new Vue({
       }
 
       if (this.currentSlide === 9) {
-        // this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
       }
 
       if (this.currentSlide === 10) {
-        // this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
       }
 
       if (this.currentSlide === 11) {
-        // this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
       }
 
       if (this.currentSlide === 12) {
-        // this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
       }
 
       if (this.currentSlide === 13) {
-        // this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
       }
 
       if (this.currentSlide === 14) {
-        this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
         this.bgImgSrc = "./assets/images/slide-standard.png";
       }
 
       if (this.currentSlide === 15) {
-        // this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
         this.bgImgSrc = "./assets/images/child-enroll-sim1.jpg";
+        this.showNav = false;
       }
 
       if (this.currentSlide === 16) {
-        this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
         this.bgImgSrc = "./assets/images/slide-standard.png";
       }
       if (this.currentSlide === 17) {
-        this.audio.src = "#";
+        this.audio.src = "./assets/audio/test.mp3";
       }
       
-      if (this.currentSlide === 18) {
-        this.audio.src = "#";
+      if (this.currentSlide === 20) {
+        this.audio.src = "./assets/audio/test.mp3";
         this.showFinish = true;
         this.showNav = false;
         this.audio.autoplay = true;
       }
 
+      //FIX: this hack to cancel the effect of calling of audio.onend 
+      //function which executes 'next()' bringing the users to a blank screen.
       if (this.currentSlide === 21) {
+        this.audio.autoplay = false;
         this.showNav = false;
-        this.bgImgSrc = "./assets/images/slide-blank.png"
+        this.currentSlide = 20;
       }
       
       this.audio.load();
+
     },
 
     quizSubmit() {
