@@ -1,7 +1,10 @@
 # adult-enrollment
 
 #TODO
-* get second audio for answers to play only on a correct answer
+* Make audio and video autoplay on each slide
+* Make the best practices topics buttons with modal pop-ups
+* If you use show instead of if, do you get better performance?
+* get second audio to play for answer or modal events 
 * Replace the development CDN with the production one
 * fix reference in audio track to nutritionnc.com home page in footer (incorrect)
 * Senario #2 has an akward delay in the start of the audio

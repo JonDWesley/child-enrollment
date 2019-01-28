@@ -206,70 +206,92 @@ var app = new Vue({
       } 
     
       if (this.currentSlide === 2) {
+        this.audio.src = "./assets/audio/2.mp3";
       }
 
       if (this.currentSlide === 3) {
+        this.audio.src = "./assets/audio/3.mp3";
       }
 
       if (this.currentSlide === 4) {
         this.currentQuestion = 0;
+        this.audio.src = "./assets/audio/4.mp3";
       }
 
       if (this.currentSlide === 5) {
+        this.audio.src = "./assets/audio/5.mp3";
       }
 
       if (this.currentSlide === 6) {
+        this.audio.src = "./assets/audio/6.mp3";
       }
 
       if (this.currentSlide === 7) {
-
+        this.audio.src = "./assets/audio/7.mp3";
       }
 
       if (this.currentSlide === 8) {
         this.currentQuestion = 1;
+        this.audio.src = "./assets/audio/8.mp3";
       }
 
       if (this.currentSlide === 9) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/9.mp3";
       }
 
       if (this.currentSlide === 10) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/10.mp3";
       }
 
       if (this.currentSlide === 11) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/11.mp3";
       }
 
       if (this.currentSlide === 12) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/12.mp3";
       }
 
       if (this.currentSlide === 13) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/13.mp3";
       }
 
       if (this.currentSlide === 14) {
-        this.audio.src = "./assets/audio/test.mp3";
         this.bgImgSrc = "./assets/images/slide-standard.png";
       }
 
       if (this.currentSlide === 15) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/15.mp3";
         this.bgImgSrc = "./assets/images/child-enroll-sim1.jpg";
         this.showNav = false;
+        this.showModal = true;
       }
 
       if (this.currentSlide === 16) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/16.mp3";
         this.bgImgSrc = "./assets/images/slide-standard.png";
       }
       if (this.currentSlide === 17) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/17.mp3";
+      }
+
+      if (this.currentSlide === 18) {
+        this.audio.src = "./assets/audio/18.mp3";
+      }
+      
+      if (this.currentSlide === 19) {
+        this.audio.src = "./assets/audio/19.mp3";
       }
       
       if (this.currentSlide === 20) {
-        this.audio.src = "./assets/audio/test.mp3";
+        this.audio.src = "./assets/audio/20.mp3";
+      }
+      
+      if (this.currentSlide === 21) {
+        this.audio.src = "./assets/audio/21.mp3";
+      }
+      
+      if (this.currentSlide === 22) {
+        this.audio.src = "./assets/audio/22.mp3";
         this.showFinish = true;
         this.showNav = false;
         this.audio.autoplay = true;
@@ -277,7 +299,7 @@ var app = new Vue({
 
       //FIX: this hack to cancel the effect of calling of audio.onend 
       //function which executes 'next()' bringing the users to a blank screen.
-      if (this.currentSlide === 21) {
+      if (this.currentSlide === 23) {
         this.audio.autoplay = false;
         this.showNav = false;
         this.currentSlide = 20;

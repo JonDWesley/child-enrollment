@@ -182,7 +182,7 @@
                     Which child care programs need enrollment documentation?</p>
 
                 <p 
-                    class="abs-content txt-lg anim-slide" 
+                    class="abs-content txt-lg anim-slide-in" 
                     style="left: -95%; bottom: 18%; width: 65%; animation-delay: 4s;">
                     All types of centers require enrollment documentation except for emergency shelters and At-risk afterschool care centers.</p>
 
@@ -258,7 +258,7 @@
                     Some institutions are exempt from collecting CACFP Enrollment documentation.</p>
                     
                 <p 
-                    class="abs-content txt-lg anim-slide" 
+                    class="abs-content txt-lg anim-slide-in" 
                     style="left: -105%; bottom: 20%; width: 65%; animation-delay: 4s;">
                     Before we talk about them, click the next button to test your knowledge of what we have covered so far!</p>
                     
@@ -388,7 +388,7 @@
                     Emergency shelters do not have to maintain CACFP enrollment documentation for children.</p>
                     
                 <p 
-                    class="abs-content txt-md anim-slide" 
+                    class="abs-content txt-md anim-slide-in" 
                     style="left: -85%; bottom: 20%; width: 50%; animation-delay: 4s;">
                     At minimum, they need to keep a list with each child's name, date of birth, and dates of residency in the shelter!</p>
 
@@ -558,8 +558,8 @@
                     Why do child care programs need enrollment documentation?</p>
 
                 <p 
-                    class="abs-content txt-xlg anim-slide" 
-                    style="left: -95%; bottom: 20%; width: 65%; animation-delay: 4s;">
+                    class="abs-content txt-xlg anim-slide-in" 
+                    style="left: -95%; bottom: 20%; width: 65%; animation-delay: 3s;">
                     … It’s in the Regulations!</p>
 
                 <p 
@@ -715,7 +715,7 @@
     
                     <ol 
                         class="abs-content txt-md" 
-                        style="left: 5%; bottom: 10%; width: 95%">   
+                        style="left: 5%; bottom: 10%; width: 95%">    
                     
                         <li 
                             style="padding-bottom: 2%;">
@@ -759,7 +759,7 @@
                 <a 
                     href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/ChildEnrollmentForm-7-2018.pdf" target="_blank">
                     <img 
-                        class="abs-content pure-button corner-box-paperclip anim-shift is-grn"
+                        class="abs-content pure-button corner-box-paperclip anim-shift"
                         src="./assets/images/paperclip.svg"></a>
 
                     
@@ -770,9 +770,9 @@
                     you in capturing all the required enrollment documentation information on one page!</p>
                     
                 <p 
-                    class="abs-content txt-md anim-slide" 
+                    class="abs-content txt-md anim-slide-in" 
                     style="left: -70%; bottom: 20%; width: 50%; animation-delay: 4s;">
-                    Download the form now by click on the button with the paperclip located in the top right corner!</p>
+                    Download the form now by click on the button with the paperclip located in the top right corner.</p>
 
             </div>
 
@@ -805,7 +805,7 @@
                     <p 
                         v-show="wrongAnswerMsg"
                         class="abs-content simulation-txt-box txt-sm anim-fade" 
-                        style="left: 5%; top: 5%; width: 20%; height: 6%;">
+                        style="left: 8%; top: 9%; width: 20%; height: 6%;">
                         That is incorrect. Try again...</p>
                 
                 </div>
@@ -818,6 +818,13 @@
                     @click="rightAnswer()">
                 
                 </div>
+
+                <img 
+                    class="abs-content"
+                    style="left: 0%; top: 0%; width: 8%;"
+                    src="./assets/images/question-mark.png"
+                    @click="showModal = true">
+
 
                 <img    
                     class="abs-content pure-button arrow-previous-simulation"
@@ -839,15 +846,42 @@
                     src="./assets/images/right-arrow.svg"
                     @click="next()">
 
+                <div 
+                    v-if="showModal" 
+                    class="modal-container-small">
+                    
+                    <h2 
+                        class="abs-content txt-lg" 
+                        style="left: 10%; top: 7%;">
+                        How to complete this practice activity:</h2>
+
+                    <p 
+                        class="abs-content txt-md" 
+                        style="left: 10%; bottom: 14%; width: 80%;">
+                        Please take a moment to review this document and 
+                        determine what is missing. Once you have located 
+                        the section with the missing information, click 
+                        where the missing information should be. On each 
+                        attempt, you will receive instant feedback. 
+                        Please take as many attempts as you require.</p>
+                    
+                    <button 
+                        class="abs-content pure-button txt-btn" 
+                        style="left: 45%; bottom: -5%;"
+                        @click="showModal = false">
+                        close</button>
+
+                </div>
+
             </div>
 
-            <!-- SLIDE: BEST PRACTICES - FOUR  PARAGRAPHS -->
+            <!-- SLIDE: BEST PRACTICES - LIST -->
             <div v-if="currentSlide === 16">
                     
                     <h1 
                         class="abs-content txt-xlg" 
-                        style="left: 5%; bottom: 80%; width: 95%;">
-                        Enrollment Documentation Best Practices</h1>
+                        style="left: 5%; bottom: 80%; width: 90%;">
+                        General Best Practices</h1>
 
                     <img 
                         class="abs-content" 
@@ -855,44 +889,165 @@
                         src="./assets/images/best-practices.jpg" 
                         title="Photo credit: Best practice icon_Fotolia_140006081_Subscription_XXL">
                         
-                    <p 
-                        class="abs-content txt-md anim-slide" 
-                        style="left: -125%; bottom: 60%; width: 65%; animation-delay: 3s;">
-                        Many successful programs keep enrollment documentation organized in a binder at the center.</p>
                     
-                    <p 
-                        class="abs-content txt-md anim-slide" 
-                        style="left: -125%; bottom: 40%; width: 65%; animation-delay: 5s;">
-                        In order to show that the documentation is updated annually, make sure the signatures are dated.</p>
-                    <p 
-                        class="abs-content txt-md anim-slide" 
-                        style="left: -125%; bottom: 20%; width: 65%; animation-delay: 7s;">
-                        Enrollment documentation should be verified for accuracy by a facility representative.</p>
+                        <ul 
+                        class="abs-content txt-sm" 
+                        style="left: -120%; bottom: 5%; width: 62%">   
+
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 10s;">
+                            Keep enrollment documentation organized at the center.</li>
+
+                        <li 
+                            class="anim-slide-in" 
+                            style="padding-bottom: 2%; animation-delay: 26s;">
+                            Make sure parent/guardian signatures are dated.</li>
+
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 37s;">
+                            Staff understand the confidentiality policy and where documentation is kept.</li>
+
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 47s;">
+                            Write withdrawal dates on the enrollment documentation before archiving it.</li>
+                            
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 60s;">
+                            Ensure enrollments are up to date before filing monhtly claim.</li>
+                        
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 69s;">
+                            Consider having all enrollment documentation updated at the same time annually.</li>
+                        
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 79s;">
+                            Enrollment documentation should be verified by a facility representative.</li></ul>
 
                     <my-footer/>
 
-                </div>   
+                </div>  
+
+            <!-- SLIDE: Enrollment Policy - LIST -->
+            <div v-if="currentSlide === 17">
+                    
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 80%; width: 90%;">
+                    Enrollment Policy Best Practices</h1>
+
+                <img 
+                    class="abs-content" 
+                    style="right: 0%; bottom: 18%; width: 35%;"
+                    src="./assets/images/best-practices.jpg" 
+                    title="Photo credit: Best practice icon_Fotolia_140006081_Subscription_XXL">
+
+                    <ul 
+                        class="abs-content txt-md" 
+                        style="left: -120%; bottom: 15%; width: 62%">   
+
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 2s;">
+                            <strong>When </strong> will enrollment documentation be collected?</li>
+
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 3s;">
+                            <strong>Who </strong> will verifying enrollment documentation?</li>
+
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 4s;">
+                            <strong>Where</strong> will enrollment documentation be kept?</li>
+
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 5s;">
+                            <strong>How</strong> will records be retained for 3 years, plus the current year</li>
+                            
+                        <li 
+                            class="anim-slide-in"
+                            style="padding-bottom: 2%; animation-delay: 6s;">
+                            <strong>How </strong> will records are kept confidential.</li></ul>
+
+                <my-footer/>
+
+            </div>   
+            
+            <!-- SLIDE: RECAP - LIST -->
+            <div v-if="currentSlide === 18">
+                    
+                <h1 
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 80%; width: 90%;">
+                    Child Enrollment Documentation Recap</h1>
+
+                    <ul 
+                        class="abs-content txt-md" 
+                        style="left: 5%; bottom: 5%; width: 85%">   
+
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Have child's completed Enrollment documentation on file</li>
+
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Include information on each child's normal days and hours of care</li>
+
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Include information on meals normally received</li>
+
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Signature by a parent or guardian is required</li>
+                            
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Update forms annually</li>
+                            
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Keep forms confidential</li>
+                            
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Retained forms three years plus the current fiscal year</li>
+                            
+                        <li 
+                            style="padding-bottom: 2%;">
+                            Must be kept confidential</li></ul>
+
+                <my-footer/>
+
+            </div>   
 
             <!-- SLIDE: FINAL -->
-            <div v-if="currentSlide === 17">
+            <div v-if="currentSlide === 19">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/award-info.jpg">
                 <my-footer/>
             </div>
 
             <!-- SLIDE: FINAL -->
-            <div v-if="currentSlide === 18">
+            <div v-if="currentSlide === 20">
                 <img class="abs-content" style="left: 5%; top: 5%; width: 90%; transform: rotate(-0.5deg) " src="./assets/images/fraud-statement.jpg" title="Fraud Statement from page 6 of aggreement">
                 <my-footer/>
             </div>
 
             <!-- SLIDE: FINAL -->
-            <div v-if="currentSlide === 19">
+            <div v-if="currentSlide === 21">
                 <img class="abs-content" style="left: 20%; top: 5%; width: 60%;" src="./assets/images/non-dis-statement.jpg">
                 <my-footer/>
             </div>
 
             <!-- SLIDE: FINAL -->
-            <div v-if="currentSlide === 20">
+            <div v-if="currentSlide === 22">
                 <img 
                     class="abs-content" 
                     style="left: 20%; top: 5%; width: 60%;" 
@@ -905,7 +1060,8 @@
 
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script> -->
         <script src="./main-compiled.js"></script>
         
     </body>
