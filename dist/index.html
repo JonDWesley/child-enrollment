@@ -17,13 +17,14 @@
     <body>
 
         <noscript>
-            <strong>We're sorry but adult-enrollment doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+            <strong>We're sorry but child-enrollment doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
         </noscript>
     
         <!-- COMPONENT FOR DEFAULT MODAL -->
         <script type="text/x-template" id="modal-template">
             <div class="modal-mask">
-                <div class="modal-container"
+                <div 
+                    class="modal-container"
                     role="dialog"
                     aria-labelledby="pop-up textbox"
                     aria-describedby="a text box of additional information">
@@ -52,14 +53,18 @@
             </footer>
         </script>
     
-        <div id="app" class="main-container">
+        <div 
+            id="app" 
+            class="main-container">
             
             <!-- GLOBAL IMAGES AND NAV BAR IN MOST SLIDES -->
             <img 
                 class="background-img"   
                 :src="bgImgSrc">
         
-            <div class="navBar" v-if="showNav">
+            <div 
+                class="navBar" 
+                v-if="showNav">
                 
                 <img
                     v-if="previousEnabled"    
@@ -135,7 +140,7 @@
                 
                 <h1 
                     class="abs-content txt-xlg" 
-                    style="left: 5%; bottom: 75%; width: 70%;">
+                    style="left: 5%; bottom: 80%; width: 70%;">
                     Module Objectives</h1>
 
                 <img 
@@ -146,11 +151,15 @@
                 
                 <ol 
                     class="abs-content txt-md" 
-                    style="left: 5%; bottom: 15%; width: 45%">   
+                    style="left: 5%; bottom: 5%; width: 50%">   
                     
                     <li 
                         style="padding-bottom: 3%;">
                         List the types of institutions that require enrollment documentation</li>
+                    
+                    <li 
+                        style="padding-bottom: 3%;">
+                        List the institution types that do not require enrollment documentation</li>
                     
                     <li 
                         style="padding-bottom: 3%;">
@@ -199,9 +208,9 @@
                         Examples of institutions that need enrollment documentation:</h2>
                     
                     <ol 
-                    class="abs-content txt-md" 
-                    style="left: 15%; bottom: 35%; width: 45%"
-                    slot="body">   
+                        class="abs-content txt-md" 
+                        style="left: 15%; bottom: 35%; width: 45%"
+                        slot="body">   
                         
                         <li 
                             style="padding-bottom: 1%;">
@@ -255,11 +264,11 @@
                 <p 
                     class="abs-content txt-lg" 
                     style="left: 5%; bottom: 45%; width: 62%;" >
-                    Some institutions are exempt from collecting CACFP Enrollment documentation.</p>
+                    Some institutions are exempt from collecting CACFP enrollment documentation.</p>
                     
                 <p 
                     class="abs-content txt-lg anim-slide-in" 
-                    style="left: -105%; bottom: 20%; width: 65%; animation-delay: 4s;">
+                    style="left: -105%; bottom: 20%; width: 65%; animation-delay: 30s;">
                     Before we talk about them, click the next button to test your knowledge of what we have covered so far!</p>
                     
                 <my-footer/>
@@ -267,41 +276,63 @@
                 
             <!-- SLIDE: NON-EXEMPT INSTITUTIONS - QUIZ -->
             <div v-if="currentSlide === 5">
+                
                 <h1 
-                class="abs-content txt-xlg" 
-                style="left: 5%; bottom: 80%; width: 70%;">
-                Test Your Knowledge!</h1>
+                    class="abs-content txt-xlg" 
+                    style="left: 5%; bottom: 80%; width: 70%;">
+                    Test Your Knowledge!</h1>
                 
                 <img 
-                class="abs-content" 
-                style="right: 0%; bottom: 18%; width: 35%;"
-                src="./assets/images/quiz-ready.jpg" 
-                title="Photo credit: AreYouReady Fotolia_40620786_Subscription_XL">
+                    class="abs-content" 
+                    style="right: 0%; bottom: 18%; width: 35%;"
+                    src="./assets/images/quiz-ready.jpg" 
+                    title="Photo credit: AreYouReady Fotolia_40620786_Subscription_XL">
                 
                 <p 
-                class="abs-content txt-md" 
-                style="left: 5%; top: 12%; width: 80%;">{{ questionTxt }}</p>
-                
-                <form 
-                id="questionForm"
-                class="abs-content pure-form txt-md" 
-                style="left: 10%; bottom: 20%; width: 55%">
-                
-                    <label for="option-one" class="pure-radio">
+                    class="abs-content txt-md" 
+                    style="left: 5%; top: 12%; width: 80%;">{{ questionTxt }}</p>
                     
-                        <input id="option-one" type="radio" name="answer" class="form-radio" value="0">
+                <form 
+                    id="questionForm"
+                    class="abs-content pure-form txt-md" 
+                    style="left: 10%; bottom: 20%; width: 55%">
+                
+                    <label 
+                        for="option-one" 
+                        class="pure-radio">
+                    
+                        <input 
+                            id="option-one" 
+                            type="radio" 
+                            name="answer" 
+                            class="form-radio" 
+                            value="0">
                         
                         <span id="choice1">{{ choice1 }}</span></label>
                     
-                    <label for="option-two" class="pure-radio">
+                    <label 
+                        for="option-two" 
+                        class="pure-radio">
                         
-                        <input id="option-two" type="radio" name="answer" class="form-radio" value="1">
+                        <input 
+                            id="option-two" 
+                            type="radio" 
+                            name="answer" 
+                            class="form-radio" 
+                            value="1">
                         
                         <span id="choice2">{{ choice2 }}</span></label>
                         
-                    <label for="option-three" class="pure-radio">
+                    <label 
+                        for="option-three" 
+                        class="pure-radio">
                         
-                        <input id="option-three" type="radio" name="answer" class="form-radio" value="2">
+                        <input 
+                            id="option-three" 
+                            type="radio" 
+                            name="answer" 
+                            class="form-radio" 
+                            value="2">
                         
                         <span id="choice3">{{ choice3 }}</span></label></form>
                         
@@ -314,22 +345,22 @@
                 <modal v-if="modalQuiz">
                     
                     <h2 
-                    class="abs-content txt-lg " 
-                    style="left: 10%; bottom: 70%;" 
-                    slot="header">
-                    {{ quizModalHeading }}</h2>
+                        class="abs-content txt-lg " 
+                        style="left: 10%; bottom: 70%;" 
+                        slot="header">
+                        {{ quizModalHeading }}</h2>
                     
                     <p 
-                    class="abs-content txt-md" 
-                    style="left: 15%; bottom: 30%; width: 60%"
-                    slot="body">
-                    {{ quizModalBody }}</p>
+                        class="abs-content txt-md" 
+                        style="left: 15%; bottom: 30%; width: 60%"
+                        slot="body">
+                        {{ quizModalBody }}</p>
                     
                     <button 
-                    class="abs-content txt-sm pure-button" 
-                    style="left: 50%; bottom: 5%;" 
-                    slot="footer" 
-                    @click="modalQuiz = false">Close</button>
+                        class="abs-content txt-sm pure-button" 
+                        style="left: 50%; bottom: 5%;" 
+                        slot="footer" 
+                        @click="modalQuiz = false">Close</button>
                     
                 </modal>
                 
@@ -434,9 +465,9 @@
             <div v-if="currentSlide === 8">
                 
                 <h1 
-                class="abs-content txt-xlg" 
-                style="left: 2%; bottom: 80%; width: 98%;">
-                Requirements: Outside-School-Hours Care</h1>
+                    class="abs-content txt-xlg" 
+                    style="left: 2%; bottom: 80%; width: 98%;">
+                    Requirements: Outside-School-Hours Care</h1>
                 
                 <p 
                     class="abs-content txt-lg" 
@@ -487,7 +518,9 @@
                     class="abs-content pure-form txt-md" 
                     style="left: 10%; bottom: 20%; width: 85%">
                 
-                    <label for="option-one" class="pure-radio">
+                    <label 
+                        for="option-one" 
+                        class="pure-radio">
                     
                         <input 
                             id="option-one" type="radio" name="answer" class="form-radio" value="0" 
@@ -496,7 +529,9 @@
                         
                         <span id="choice1">{{ choice1 }}</span></label>
                     
-                    <label for="option-two" class="pure-radio">
+                    <label 
+                        for="option-two"
+                        class="pure-radio">
                         
                         <input 
                             id="option-two" type="radio" name="answer" class="form-radio" value="1"
@@ -505,7 +540,9 @@
                         
                         <span id="choice2">{{ choice2 }}</span></label>
                         
-                    <label for="option-three" class="pure-radio">
+                    <label 
+                        for="option-three" 
+                        class="pure-radio">
                         
                         <input 
                             id="option-three" type="radio" name="answer" class="form-radio" value="2"
@@ -523,22 +560,22 @@
                 <modal v-if="modalQuiz">
                     
                     <h2 
-                    class="abs-content txt-lg " 
-                    style="left: 10%; bottom: 70%;" 
-                    slot="header">
-                    {{ quizModalHeading }}</h2>
+                        class="abs-content txt-lg " 
+                        style="left: 10%; bottom: 70%;" 
+                        slot="header">
+                        {{ quizModalHeading }}</h2>
                     
                     <p 
-                    class="abs-content txt-md" 
-                    style="left: 15%; bottom: 30%; width: 60%"
-                    slot="body">
-                    {{ quizModalBody }}</p>
+                        class="abs-content txt-md" 
+                        style="left: 15%; bottom: 30%; width: 60%"
+                        slot="body">
+                        {{ quizModalBody }}</p>
                     
                     <button 
-                    class="abs-content txt-sm pure-button" 
-                    style="left: 50%; bottom: 5%;" 
-                    slot="footer" 
-                    @click="modalQuiz = false">Close</button>
+                        class="abs-content txt-sm pure-button" 
+                        style="left: 50%; bottom: 5%;" 
+                        slot="footer" 
+                        @click="modalQuiz = false">Close</button>
                     
                 </modal>
                 
@@ -709,17 +746,17 @@
             <div v-if="currentSlide === 12">
                 
                     <h1 
-                    class="abs-content txt-xlg" 
-                    style="left: 2%; bottom: 80%; width: 98%;">
-                    Enrollment Documentation Key Points</h1>
+                        class="abs-content txt-xlg" 
+                        style="left: 2%; bottom: 80%; width: 98%;">
+                        Enrollment Documentation Key Points</h1>
     
                     <ol 
                         class="abs-content txt-md" 
-                        style="left: 5%; bottom: 10%; width: 95%">    
+                        style="left: 5%; bottom: 5%; width: 95%">    
                     
                         <li 
                             style="padding-bottom: 2%;">
-                            Must be Kept on file</li>
+                            Must be kept on file</li>
                         
                         <li 
                             style="padding-bottom: 2%;">
@@ -742,8 +779,12 @@
                             Must be kept confidential</li>
                         <li 
                             style="padding-bottom: 2%;">
-                            Retain for three years plus the current fiscal year</li></ol>
-    
+                            Retain for three years plus the current fiscal year</li>
+                            
+                        <li 
+                            style="padding-bottom: 2%;">
+                            valid for one year from the date that it was signed</li></ol>
+                            
                 <my-footer/>
                 
             </div>
@@ -757,12 +798,12 @@
                     State Child Enrollment Form</h1>
 
                 <a 
-                    href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/ChildEnrollmentForm-7-2018.pdf" target="_blank">
+                    href="https://www.nutritionnc.com/snp/pdf/cacfp/forms/fy2019/enrollment/ChildEnrollmentForm-7-2018.pdf" 
+                    target="_blank">
                     <img 
                         class="abs-content pure-button corner-box-paperclip anim-shift"
                         src="./assets/images/paperclip.svg"></a>
 
-                    
                 <p 
                     class="abs-content txt-lg" 
                     style="left: 5%; bottom: 40%; width: 62%;" >
@@ -810,8 +851,7 @@
                 
                 </div>
 
-                <div 
-                      
+                <div   
                     class="abs-content" 
                     style="left: 78%; top: 27%; width: 20%; height: 4%;"
                     v-bind:class= "{ 'is-highlighted': highlightAnswer }"
@@ -824,7 +864,6 @@
                     style="left: 0%; top: 0%; width: 8%;"
                     src="./assets/images/question-mark.png"
                     @click="showModal = true">
-
 
                 <img    
                     class="abs-content pure-button arrow-previous-simulation"
@@ -846,31 +885,34 @@
                     src="./assets/images/right-arrow.svg"
                     @click="next()">
 
-                <div 
-                    v-if="showModal" 
-                    class="modal-container-small">
-                    
-                    <h2 
-                        class="abs-content txt-lg" 
-                        style="left: 10%; top: 7%;">
-                        How to complete this practice activity:</h2>
+                <div
+                    v-if="showModal"
+                    class="modal-mask">
 
-                    <p 
-                        class="abs-content txt-md" 
-                        style="left: 10%; bottom: 14%; width: 80%;">
-                        Please take a moment to review this document and 
-                        determine what is missing. Once you have located 
-                        the section with the missing information, click 
-                        where the missing information should be. On each 
-                        attempt, you will receive instant feedback. 
-                        Please take as many attempts as you require.</p>
-                    
-                    <button 
-                        class="abs-content pure-button txt-btn" 
-                        style="left: 45%; bottom: -5%;"
-                        @click="showModal = false">
-                        close</button>
+                    <div class="modal-container-small">
+                        
+                        <h2 
+                            class="abs-content txt-lg" 
+                            style="left: 10%; top: 7%;">
+                            How to complete this practice activity:</h2>
 
+                        <p 
+                            class="abs-content txt-md" 
+                            style="left: 10%; bottom: 14%; width: 80%;">
+                            Please take a moment to review this document and 
+                            determine what is missing. Once you have located 
+                            the section with the missing information, click 
+                            where the missing information should be. On each 
+                            attempt, you will receive instant feedback. 
+                            Please take as many attempts as you require.</p>
+                        
+                        <button 
+                            class="abs-content pure-button txt-btn" 
+                            style="left: 45%; bottom: -5%;"
+                            @click="showModal = false">
+                            close</button>
+
+                    </div>
                 </div>
 
             </div>
@@ -891,8 +933,8 @@
                         
                     
                         <ul 
-                        class="abs-content txt-sm" 
-                        style="left: -120%; bottom: 5%; width: 62%">   
+                            class="abs-content txt-sm" 
+                            style="left: -120%; bottom: 5%; width: 62%">   
 
                         <li 
                             class="anim-slide-in"
@@ -994,7 +1036,7 @@
 
                         <li 
                             style="padding-bottom: 2%;">
-                            Have child's completed Enrollment documentation on file</li>
+                            Have child's completed enrollment documentation on file</li>
 
                         <li 
                             style="padding-bottom: 2%;">
@@ -1018,7 +1060,7 @@
                             
                         <li 
                             style="padding-bottom: 2%;">
-                            Retained forms three years plus the current fiscal year</li>
+                            Retain forms three years plus the current fiscal year</li>
                             
                         <li 
                             style="padding-bottom: 2%;">
