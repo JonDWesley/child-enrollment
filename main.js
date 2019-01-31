@@ -54,8 +54,8 @@ var app = new Vue({
       allQuestions: [
         {
             question: 'Out-side-school-hours care centers are required to enroll participants with CACFP enrollment documentation under which circumstance?',
-            answers: ["The institution is under a sponsoring organization", "The out-side-school-hours care program is part of the centers CACFP", "The out-side-school-hours care center has a occupancy limit over 100 persons"],
-            explanation: "Remember, if an outside-school-hours care center is operated as part of a child care center that participates in the CACFP, it will require CACFP enrollment documentation.",
+            answers: ["The institution is under a sponsoring organization", "The out-side-school-hours care program is part of the center's CACFP", "The out-side-school-hours care center has a occupancy limit over 100 persons"],
+            explanation: "Remember, if an outside-school-hours care center is operated as part of a child care center that participates in the CACFP, enrollment documentation will be required.",
             correct: 1
         },
         {
@@ -98,7 +98,6 @@ var app = new Vue({
   methods: { 
     previous() {
       this.currentSlide --;
-      this.audio.pause();
       this.slideControl();
     },
 
@@ -106,7 +105,6 @@ var app = new Vue({
       this.playAttention = true;
       this.nextAttention = false;
       this.currentSlide++;
-      this.audio.pause();
       this.slideControl();
     },
 
@@ -115,15 +113,15 @@ var app = new Vue({
     playMedia() {
       this.playAttention=false;
       if (this.currentSlide === 1) {
-        const video = document.getElementById("videoOne");
-        video.play();
-        video.onended = function() {
+        const videoOne = document.getElementById("videoOne");
+        videoOne.play();
+        videoOne.onended = function() {
           app.nextAttention = true;
         }
       } else if (this.currentSlide === 14) {
-        const video = document.getElementById("videoOne");
-        video.play();
-        video.onended = function() {
+        const videoTwo = document.getElementById("videoTwo");
+        videoTwo.play();
+        videoTwo.onended = function() {
           app.nextAttention = true;
         }
       } else {
@@ -136,11 +134,11 @@ var app = new Vue({
 
     pauseMedia() {
       if (this.currentSlide === 1) {
-        const video = document.getElementById("videoOne");
-        video.pause();
+        const videoOne = document.getElementById("videoOne");
+        videoOne.pause();
       } else if (this.currentSlide === 14) {
-        const video = document.getElementById("videoOne");
-        video.pause();
+        const videoTwo = document.getElementById("videoTwo");
+        videoTwo.pause();
       } else {
         this.audio.pause();
       }
@@ -174,6 +172,8 @@ var app = new Vue({
       this.highlightAnswer = true;
     },
 
+
+
     //FIX: the wrong answer dialogue box should go away on its own
     wrongAnswer() {
       if (this.wrongAnswerMsg === true) {
@@ -187,8 +187,18 @@ var app = new Vue({
 
     slideControl() {
       //resets values every slide unless different in if statement
+      const videoOne = document.getElementById("videoOne");
+      videoOne.pause();
+      const videoTwo = document.getElementById("videoTwo");
+      videoTwo.pause();
+      this.audio.pause();
       this.bgImgSrc = "./assets/images/slide-standard.png";
       this.showNav = true;
+      this.showModal = false;
+      this.rightAnswerMsg = false;
+      this.wrongAnswerMsg = false;
+      this.highlightAnswer = false;
+      this.currentQuestion = 0; //fixes an error where going back from a later question does not work
 
       //start if statements for each slide
       if (this.currentSlide === 0) {

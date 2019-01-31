@@ -5,7 +5,6 @@
   /* .box will responsively resize                    */
   /* .background-img (position static) helps responsively resize the bounding box */
   /* everything below .abs-content absolutely positioned */
-  /* TODO: Get .box to always stay in the center of the body */
 /* //////////////////////////////////////////////////////////*/
 
 :root {
@@ -49,7 +48,6 @@
     right: 17.5%;
     width: 5%;
     padding: 1%;
-    transform: rotate(0deg);
   }
 
   .arrow-next {
@@ -57,7 +55,6 @@
     right: 1%;
     width: 5%;
     padding: 1%;
-    transform: rotate(180deg);
   }
   
   .audio-button {
@@ -69,15 +66,6 @@
   .footer {
     left: 3%;
     bottom: 6%;
-  }
-  
-  .img-lg {
-    height: 100%;
-    
-  }
-
-  .img-logo {
-    width: 12%;
   }
 
   .photo {
@@ -148,7 +136,6 @@
     right: 17.5%;
     width: 5%;
     padding: 1%;
-    transform: rotate(0deg);
   }
 
   .arrow-next-simulation {
@@ -156,7 +143,6 @@
     right: 1%;
     width: 5%;
     padding: 1%;
-    transform: rotate(180deg);
   }
   
   .audio-button-simulation {
@@ -220,7 +206,6 @@
   }
   
   .modal-container-small {
-    /* this property is does NOT use the modal mask as a backdrop */
     position: absolute;
     top: 10%;
     left: 10%;
@@ -284,11 +269,9 @@
 
   @keyframes playButton {
     0% {
-        /* transform: translateY(-2px); */
         transform: scale(1);  
     }
     50% {
-        /* transform: translateY(-8px); */
         transform: scale(1.06);
         box-shadow: 1px 0.5px 2px #777777;
     }
@@ -304,19 +287,14 @@
 
   @keyframes nextButton {
     0% {
-        /* transform: translateY(-2px); */
         transform: scale(1);
-        transform: rotate(180deg);
     }
     50% {
-        /* transform: translateY(-8px); */
         transform: scale(1.06);
         box-shadow: 1px 0.5px 2px #777777;
-        transform: rotate(180deg);
     }
     100% {
         transform: translateX(-2px);
         transform: scale(1);
-        transform: rotate(180deg);
     }
   }

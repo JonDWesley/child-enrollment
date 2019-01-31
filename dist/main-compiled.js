@@ -47,8 +47,8 @@ var app = new Vue({
       //////////////////////////////////
       allQuestions: [{
         question: 'Out-side-school-hours care centers are required to enroll participants with CACFP enrollment documentation under which circumstance?',
-        answers: ["The institution is under a sponsoring organization", "The out-side-school-hours care program is part of the centers CACFP", "The out-side-school-hours care center has a occupancy limit over 100 persons"],
-        explanation: "Remember, if an outside-school-hours care center is operated as part of a child care center that participates in the CACFP, it will require CACFP enrollment documentation.",
+        answers: ["The institution is under a sponsoring organization", "The out-side-school-hours care program is part of the center's CACFP", "The out-side-school-hours care center has a occupancy limit over 100 persons"],
+        explanation: "Remember, if an outside-school-hours care center is operated as part of a child care center that participates in the CACFP, enrollment documentation will be required.",
         correct: 1
       }, {
         question: 'Which one of the below types of institutions WOULD require CACFP enrollment documentation for all child participants?',
@@ -84,14 +84,12 @@ var app = new Vue({
   methods: {
     previous: function previous() {
       this.currentSlide--;
-      this.audio.pause();
       this.slideControl();
     },
     next: function next() {
       this.playAttention = true;
       this.nextAttention = false;
       this.currentSlide++;
-      this.audio.pause();
       this.slideControl();
     },
     //FIX: a way to play a video object the same way audio is played
@@ -100,18 +98,17 @@ var app = new Vue({
       this.playAttention = false;
 
       if (this.currentSlide === 1) {
-        var video = document.getElementById("videoOne");
-        video.play();
+        var videoOne = document.getElementById("videoOne");
+        videoOne.play();
 
-        video.onended = function () {
+        videoOne.onended = function () {
           app.nextAttention = true;
         };
       } else if (this.currentSlide === 14) {
-        var _video = document.getElementById("videoOne");
+        var videoTwo = document.getElementById("videoTwo");
+        videoTwo.play();
 
-        _video.play();
-
-        _video.onended = function () {
+        videoTwo.onended = function () {
           app.nextAttention = true;
         };
       } else {
@@ -124,12 +121,11 @@ var app = new Vue({
     },
     pauseMedia: function pauseMedia() {
       if (this.currentSlide === 1) {
-        var video = document.getElementById("videoOne");
-        video.pause();
+        var videoOne = document.getElementById("videoOne");
+        videoOne.pause();
       } else if (this.currentSlide === 14) {
-        var _video2 = document.getElementById("videoOne");
-
-        _video2.pause();
+        var videoTwo = document.getElementById("videoTwo");
+        videoTwo.pause();
       } else {
         this.audio.pause();
       }
@@ -173,8 +169,19 @@ var app = new Vue({
     },
     slideControl: function slideControl() {
       //resets values every slide unless different in if statement
+      var videoOne = document.getElementById("videoOne");
+      videoOne.pause();
+      var videoTwo = document.getElementById("videoTwo");
+      videoTwo.pause();
+      this.audio.pause();
       this.bgImgSrc = "./assets/images/slide-standard.png";
-      this.showNav = true; //start if statements for each slide
+      this.showNav = true;
+      this.showModal = false;
+      this.rightAnswerMsg = false;
+      this.wrongAnswerMsg = false;
+      this.highlightAnswer = false;
+      this.currentQuestion = 0; //fixes an error where going back from a later question does not work
+      //start if statements for each slide
 
       if (this.currentSlide === 0) {
         this.previousEnabled = false;
